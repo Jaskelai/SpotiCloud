@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.github.kornilovmikhail.spoticloud_mvvm"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,11 +23,70 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //kotlin
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    //material
+    def materialVersion = '1.1.0-alpha09'
+    implementation "com.google.android.material:material:$materialVersion"
+    //recycler
+    def recyclerVersion = '1.1.0-beta-02'
+    implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
+    //constraint
+    def constraintVersion = '2.0.0-beta2'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    //appcompat
+    def appCompatVersion = '1.1.0-rc01'
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    //rxKotlin
+    def rxKotlinVersion = '2.4.0'
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    //rxAndroid
+    def rxAndroidVersion = '2.1.1'
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    //dagger
+    def daggerVersion = '2.24'
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    //inject
+    def javaxInjectVersion = '1'
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+    //lifecycle
+    def architectureComponentVersion = '2.1.0-rc01'
+    implementation "androidx.lifecycle:lifecycle-runtime:$architectureComponentVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$architectureComponentVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponentVersion"
+    //room
+    "androidx.room:room-runtime:$architectureComponentVersion"
+    kapt "androidx.room:room-compiler:$architectureComponentVersion"
+    implementation "androidx.room:room-rxjava2:$architectureComponentVersion"
+    //okhttp
+    def okhttpVersion = '3.8.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    //gson
+    def gsonVersion = '2.8.2'
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    //retrofit
+    def retrofitVersion = '2.4.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    //picasso
+    def picassoVersion = '2.71828'
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    //spotify auth
+    def spotifyAuthVersion = '1.1.0'
+    implementation "com.spotify.android:auth:$spotifyAuthVersion"
+    //junit
+    def junitVersion = '4.12'
+    implementation "junit:junit:$junitVersion"
+    //mockito
+    def mockitoVersion = '2.23.0'
+    implementation "org.mockito:mockito-inline:$mockitoVersion"
+    //espresso
+    def espressoRunnerVersion = '1.0.2'
+    def espressoCoreVersion = '3.0.2'
+    implementation "com.android.support.test:runner:$espressoRunnerVersion"
+    implementation "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
+
 }
