@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud_mvvm.di
+package com.github.kornilovmikhail.spoticloud_mvvm.di.scope
 
 import javax.inject.Scope
 

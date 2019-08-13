@@ -1,6 +1,7 @@
 package com.github.kornilovmikhail.spoticloud_mvvm.di
 
 import android.content.Context
+import com.github.kornilovmikhail.spoticloud_mvvm.di.scope.AppScope
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

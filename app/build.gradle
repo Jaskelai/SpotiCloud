@@ -78,6 +78,9 @@ dependencies {
     //spotify auth
     def spotifyAuthVersion = '1.1.0'
     implementation "com.spotify.android:auth:$spotifyAuthVersion"
+    //cicerone
+    def ciceroneVersion = '5.0.0'
+    implementation "ru.terrakok.cicerone:cicerone:$ciceroneVersion"
     //junit
     def junitVersion = '4.12'
     implementation "junit:junit:$junitVersion"
