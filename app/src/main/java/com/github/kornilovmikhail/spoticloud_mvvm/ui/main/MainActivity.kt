@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud_mvvm.ui
+package com.github.kornilovmikhail.spoticloud_mvvm.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
