@@ -1,10 +1,9 @@
-package com.github.kornilovmikhail.spoticloud_mvvm.di
+package com.github.kornilovmikhail.spoticloud.di
 
 import android.content.Context
-import com.github.kornilovmikhail.spoticloud_mvvm.App
-import com.github.kornilovmikhail.spoticloud_mvvm.di.scope.AppScope
-import com.github.kornilovmikhail.spoticloud_mvvm.ui.main.di.MainActivityBuilder
-import com.github.kornilovmikhail.spoticloud_mvvm.ui.main.di.MainActivityModule
+import com.github.kornilovmikhail.spoticloud.App
+import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
+import com.github.kornilovmikhail.spoticloud.ui.main.di.MainActivityBuilder
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

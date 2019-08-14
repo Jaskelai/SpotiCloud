@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud_mvvm.musicservice
+package com.github.kornilovmikhail.spoticloud.musicservice
 
 import javax.inject.Scope
 

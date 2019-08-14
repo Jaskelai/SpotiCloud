@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud_mvvm
+package com.github.kornilovmikhail.spoticloud
 
 import org.junit.Test
 

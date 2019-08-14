@@ -1,8 +1,8 @@
-package com.github.kornilovmikhail.spoticloud_mvvm.ui.main
+package com.github.kornilovmikhail.spoticloud.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.github.kornilovmikhail.spoticloud_mvvm.R
+import com.github.kornilovmikhail.spoticloud.R
 import dagger.android.AndroidInjection
 
 class MainActivity : AppCompatActivity() {

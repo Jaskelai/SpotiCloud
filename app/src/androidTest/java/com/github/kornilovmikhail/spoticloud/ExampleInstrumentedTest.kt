@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud_mvvm
+package com.github.kornilovmikhail.spoticloud
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
