@@ -59,7 +59,7 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$architectureComponentVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponentVersion"
     //room
-    "androidx.room:room-runtime:$architectureComponentVersion"
+    implementation "androidx.room:room-runtime:$architectureComponentVersion"
     kapt "androidx.room:room-compiler:$architectureComponentVersion"
     implementation "androidx.room:room-rxjava2:$architectureComponentVersion"
     //okhttp

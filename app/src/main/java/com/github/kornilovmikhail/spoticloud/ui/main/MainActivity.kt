@@ -3,10 +3,14 @@ package com.github.kornilovmikhail.spoticloud.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.kornilovmikhail.spoticloud.R
-import com.github.kornilovmikhail.spoticloud.ui.feature.start.StartFragment
 import dagger.android.AndroidInjection
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject lateinit var navigator: Navigator
+    @Inject lateinit var navigatorHolder: NavigatorHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,9 +18,17 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
 
         setContentView(R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container, StartFragment.getInstance())
-            .commit()
     }
+
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
+    }
+
+    fun getContainerId(): Int = R.id.container
 }

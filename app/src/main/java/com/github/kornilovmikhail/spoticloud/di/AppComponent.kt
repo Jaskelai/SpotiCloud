@@ -11,10 +11,10 @@ import dagger.android.AndroidInjector
 
 @AppScope
 @Component(modules = [AndroidInjectionModule::class, MainActivityBuilder::class])
-interface AppComponent: AndroidInjector<App> {
+interface AppComponent : AndroidInjector<App> {
 
     @Component.Factory
-    interface Factory{
+    interface Factory {
 
         fun create(@BindsInstance appContext: Context): AppComponent
     }

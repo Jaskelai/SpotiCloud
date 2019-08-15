@@ -2,7 +2,6 @@ package com.github.kornilovmikhail.spoticloud
 
 import android.app.Application
 import com.github.kornilovmikhail.spoticloud.di.DaggerAppComponent
-import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

@@ -9,11 +9,6 @@ import com.github.kornilovmikhail.spoticloud.R
 
 class StartFragment : Fragment() {
 
-    companion object {
-
-        fun getInstance() = StartFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
