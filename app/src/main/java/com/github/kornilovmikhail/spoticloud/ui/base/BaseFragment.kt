@@ -1,28 +1,34 @@
 package com.github.kornilovmikhail.spoticloud.ui.base
 
+import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import dagger.android.AndroidInjection
+import android.view.View
+import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
+abstract class BaseFragment: Fragment(), HasAndroidInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onAttach(context: Context) {
         inject()
-        super.onCreate(savedInstanceState)
+        super.onAttach(context)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         subscribe()
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     protected fun inject() {
-        AndroidInjection.inject(this)
+        AndroidSupportInjection.inject(this)
     }
 
     protected abstract fun subscribe()
