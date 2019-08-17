@@ -2,6 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.android.AndroidInjection
 
 abstract class BaseActivity: AppCompatActivity() {
 
@@ -11,7 +12,9 @@ abstract class BaseActivity: AppCompatActivity() {
         subscribe()
     }
 
-    protected abstract fun inject()
+    protected fun inject() {
+        AndroidInjection.inject(this)
+    }
 
     protected abstract fun subscribe()
 }
