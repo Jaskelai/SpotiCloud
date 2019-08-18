@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector
 interface StartFragmentBuilder {
 
     @ScreenScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [StartFragmentModule::class])
     fun bindStartFragment(): StartFragment
 }

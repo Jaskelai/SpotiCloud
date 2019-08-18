@@ -18,10 +18,12 @@ abstract class BaseFragment: Fragment(), HasAndroidInjector {
     override fun onAttach(context: Context) {
         inject()
         super.onAttach(context)
+        injectViewModel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
         subscribe()
     }
 
@@ -30,6 +32,10 @@ abstract class BaseFragment: Fragment(), HasAndroidInjector {
     protected fun inject() {
         AndroidSupportInjection.inject(this)
     }
+
+    protected abstract fun injectViewModel()
+
+    protected abstract fun setupViews()
 
     protected abstract fun subscribe()
 }

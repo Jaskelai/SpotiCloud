@@ -11,7 +11,7 @@ interface MainActivityBuilder {
 
     @MainActivityScope
     @ContributesAndroidInjector(
-        modules = [MainActivityModule::class, CiceroneModule::class, StartFragmentBuilder::class]
+        modules = [MainActivityModule::class, ViewModelModule::class, CiceroneModule::class, StartFragmentBuilder::class]
     )
     fun bindMainActivity(): MainActivity
 }
