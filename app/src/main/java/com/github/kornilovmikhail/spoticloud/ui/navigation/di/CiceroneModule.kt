@@ -15,6 +15,10 @@ class CiceroneModule {
 
     @Provides
     @MainActivityScope
+    fun provideCiceroneRouter(): RouterCiceroneImpl = RouterCiceroneImpl()
+
+    @Provides
+    @MainActivityScope
     fun provideCicerone(ciceroneRouter: RouterCiceroneImpl): Cicerone<RouterCiceroneImpl> =
         Cicerone.create(ciceroneRouter)
 

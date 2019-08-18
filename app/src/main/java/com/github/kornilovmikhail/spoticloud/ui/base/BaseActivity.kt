@@ -16,6 +16,7 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
         super.onCreate(savedInstanceState)
+        injectViewModel()
         subscribe()
     }
 
@@ -24,6 +25,8 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
     protected fun inject() {
         AndroidInjection.inject(this)
     }
+
+    protected abstract fun injectViewModel()
 
     protected abstract fun subscribe()
 }

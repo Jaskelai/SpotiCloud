@@ -9,6 +9,11 @@ import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 
 class StartFragment : BaseFragment() {
 
+    companion object {
+
+        fun getInstance() = StartFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
