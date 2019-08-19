@@ -13,23 +13,46 @@
         <item name="android:fontFamily">@font/oxygen</item>
     </style>
 
-    <style name="StartScreenHeadingText" parent="TextRegular">
+    <style name="ButtonRounded" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">16dp</item>
+    </style>
+
+    <style name="TextRegular.StartScreenHeadingText">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/color_start_text</item>
     </style>
 
-    <style name="StartScreenRegularText" parent="TextRegular">
+    <style name="TextRegular.StartScreenText">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/color_start_text</item>
     </style>
 
-    <style name="StartScreenRegularText.StartScreenButtons" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="cornerRadius">16dp</item>
+    <style name="ButtonRounded.StartScreenButtons">
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:backgroundTint">@color/color_start_buttons</item>
+    </style>
+
+    <style name="SoundcloudAuthRegularText" parent="TextRegular">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/color_black_text</item>
+    </style>
+
+    <style name="ButtonRounded.SoundcloudAuthButtons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="elevation">2dp</item>
+        <item name="android:backgroundTint">@color/color_soundcloud_auth_buttons</item>
+    </style>
+
+    <style name="RoundedEditTextLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
     </style>
 
 </resources>

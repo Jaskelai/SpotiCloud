@@ -10,82 +10,82 @@
         android:id="@+id/layout_start">
 
     <TextView
-            android:id="@+id/tvStartHeading"
+            android:id="@+id/tv_heading_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/start_heading"
             android:gravity="center"
             android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="@id/gdStartVertStart"
-            app:layout_constraintEnd_toEndOf="@id/gdStartVertEnd"
-            app:layout_constraintTop_toBottomOf="@id/gdStartHorizTop"
-            app:layout_constraintBottom_toTopOf="@id/imgStartLogo"
-            style="@style/StartScreenHeadingText"/>
+            app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
+            app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+            app:layout_constraintTop_toBottomOf="@id/gd_horiz_top_start"
+            app:layout_constraintBottom_toTopOf="@id/img_logo_start"
+            style="@style/TextRegular.StartScreenHeadingText"/>
 
     <ImageView
-            android:id="@+id/imgStartLogo"
+            android:id="@+id/img_logo_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/logo"
             android:src="@drawable/logo"
             android:layout_marginBottom="8dp"
-            app:layout_constraintTop_toBottomOf="@id/tvStartHeading"
-            app:layout_constraintStart_toStartOf="@id/gdStartVertStart"
-            app:layout_constraintEnd_toEndOf="@id/gdStartVertEnd"
-            app:layout_constraintBottom_toTopOf="@id/btnStartAuthSoundcloud"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_heading_start"
+            app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
+            app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+            app:layout_constraintBottom_toTopOf="@id/btn_soundcloud_start"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStartAuthSoundcloud"
+            android:id="@+id/btn_soundcloud_start"
             android:text="@string/signin_soundcloud"
             android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="@id/gdStartVertStart"
-            app:layout_constraintEnd_toEndOf="@id/gdStartVertEnd"
-            app:layout_constraintBottom_toTopOf="@id/tvStartAuthChoice"
-            style="@style/StartScreenRegularText.StartScreenButtons"/>
+            app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
+            app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+            app:layout_constraintBottom_toTopOf="@id/tv_choice_start"
+            style="@style/ButtonRounded.StartScreenButtons"/>
 
     <TextView
-            android:id="@+id/tvStartAuthChoice"
+            android:id="@+id/tv_choice_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_choice"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnStartAuthSpotify"
-            style="@style/StartScreenRegularText"/>
+            app:layout_constraintBottom_toTopOf="@id/btn_spotify_start"
+            style="@style/TextRegular.StartScreenText"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStartAuthSpotify"
+            android:id="@+id/btn_spotify_start"
             android:text="@string/signin_spotify"
             android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="@id/gdStartVertStart"
-            app:layout_constraintEnd_toEndOf="@id/gdStartVertEnd"
-            app:layout_constraintBottom_toTopOf="@id/gdStartHorizBottom"
-            style="@style/StartScreenRegularText.StartScreenButtons"/>
+            app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
+            app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+            app:layout_constraintBottom_toTopOf="@id/gd_horiz_bottom_start"
+            style="@style/ButtonRounded.StartScreenButtons"/>
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gdStartHorizTop"
+            android:id="@+id/gd_horiz_top_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gdStartHorizBottom"
+            android:id="@+id/gd_horiz_bottom_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.95"/>
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gdStartVertStart"
+            android:id="@+id/gd_vert_start_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gdStartVertEnd"
+            android:id="@+id/gd_vert_end_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

@@ -6,4 +6,7 @@
     <color name="color_start_background_grad_end">#303b4f</color>
     <color name="color_start_text">#79d294</color>
     <color name="color_start_buttons">#7ece96</color>
+    <color name="color_soundcloud_auth_buttons">#64a478</color>
+    <color name="color_black_text">#1B1B1B</color>
+    <color name="color_soundcloud">#ff8800</color>
 </resources>

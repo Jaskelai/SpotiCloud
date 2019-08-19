@@ -8,6 +8,6 @@ import javax.inject.Inject
 class StartViewModel @Inject constructor(private val router: Router): ViewModel(), LifecycleObserver {
 
     fun onBtnAuthSoundcloudClick() {
-
+        router.navigateToSoundcloudAuthScreen()
     }
 }

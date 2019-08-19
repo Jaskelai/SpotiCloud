@@ -12,12 +12,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "SOUNDCLOUD_URL", "\"https://api.soundcloud.com/\""
+        buildConfigField "String", "SOUNDCLOUD_CLIENT_ID", "\"51762b5b2ec86582ea95a9d816077654\""
+        buildConfigField "String", "SOUNDCLOUD_CLIENT_SECRET", "\"9923d03b898d96820129c1b6720d915c\""
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled true
     }
 }
 

@@ -32,7 +32,7 @@ class StartFragment : BaseFragment() {
     }
 
     override fun setupViews() {
-        btnStartAuthSoundcloud.setOnClickListener {
+        btn_soundcloud_start.setOnClickListener {
             startViewModel.onBtnAuthSoundcloudClick()
         }
     }

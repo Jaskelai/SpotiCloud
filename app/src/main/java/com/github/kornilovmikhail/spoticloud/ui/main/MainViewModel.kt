@@ -9,8 +9,13 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val router: Router) : ViewModel(), LifecycleObserver {
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    private var isFirst = true
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun navigateToStartScreen() {
-        router.navigateToStartScreen()
+        if (isFirst) {
+            router.navigateToStartScreen()
+            isFirst = false
+        }
     }
 }
