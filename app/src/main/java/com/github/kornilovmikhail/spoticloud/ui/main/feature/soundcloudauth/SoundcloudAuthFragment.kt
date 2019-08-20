@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentSoundcloudAuthBinding
@@ -60,5 +59,14 @@ class SoundcloudAuthFragment : BaseFragment() {
 
     override fun subscribe() {
         lifecycle.addObserver(soundcloudAuthViewModel)
+
+        soundcloudAuthViewModel.errorCodeLiveData.observe(this, Observer {
+            when (it) {
+                STATUS_BAD_CONNECTION -> tv_error_soundcloud_auth.text = getString(R.string.bad_connection)
+                STATUS_BAD_CREDENTIALS -> tv_error_soundcloud_auth.text = getString(R.string.bad_credentials)
+                else -> {
+                }
+            }
+        })
     }
 }

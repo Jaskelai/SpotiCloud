@@ -2,7 +2,7 @@ package com.github.kornilovmikhail.spoticloud.di
 
 import android.content.Context
 import com.github.kornilovmikhail.spoticloud.App
-import com.github.kornilovmikhail.spoticloud.data.di.LocalDataModule
+import com.github.kornilovmikhail.spoticloud.data.di.SharedPreferencesModule
 import com.github.kornilovmikhail.spoticloud.data.di.NetworkModule
 import com.github.kornilovmikhail.spoticloud.data.di.RepositoryModule
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
@@ -18,7 +18,7 @@ import dagger.android.AndroidInjector
         AndroidInjectionModule::class,
         CiceroneModule::class,
         NetworkModule::class,
-        LocalDataModule::class,
+        SharedPreferencesModule::class,
         RepositoryModule::class,
         MainActivityBuilder::class]
 )

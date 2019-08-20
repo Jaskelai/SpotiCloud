@@ -5,6 +5,7 @@
 
     <dist:module dist:instant="true"/>
 
+
     <application
             android:name="com.github.kornilovmikhail.spoticloud.App"
             android:allowBackup="true"

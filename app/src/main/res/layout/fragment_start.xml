@@ -24,8 +24,8 @@
 
     <ImageView
             android:id="@+id/img_logo_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
             android:contentDescription="@string/logo"
             android:src="@drawable/logo"
             android:layout_marginBottom="8dp"
@@ -37,7 +37,7 @@
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_soundcloud_start"
             android:text="@string/signin_soundcloud"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
             app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
             app:layout_constraintBottom_toTopOf="@id/tv_choice_start"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_choice"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_spotify_start"
@@ -68,14 +68,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.05"/>
+            app:layout_constraintGuide_percent="0.02"/>
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gd_horiz_bottom_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.95"/>
+            app:layout_constraintGuide_percent="0.98"/>
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gd_vert_start_start"

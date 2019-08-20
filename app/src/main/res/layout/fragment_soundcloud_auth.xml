@@ -37,7 +37,7 @@
                     app:layout_constraintTop_toBottomOf="@id/btn_back_soundcloud_auth"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    style="@style/SoundcloudAuthRegularText"/>
+                    style="@style/TextRegular.SoundcloudAuthRegularText"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_logo_soundcloud_auth"
@@ -89,13 +89,23 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                    android:id="@+id/tv_error_soundcloud_auth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/inputlayout_password_soundcloud_auth"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/TextRegular.SoundcloudAuthErrorText"/>
+
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_signin_soundcloud"
                     android:text="@string/signin"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="@id/gd_vert_start_soundcloud_auth"
                     app:layout_constraintEnd_toEndOf="@id/gd_vert_end_soundcloud_auth"
-                    app:layout_constraintTop_toBottomOf="@id/inputlayout_password_soundcloud_auth"
+                    app:layout_constraintTop_toBottomOf="@id/tv_error_soundcloud_auth"
                     style="@style/ButtonRounded.SoundcloudAuthButtons"/>
 
             <ProgressBar
@@ -106,7 +116,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/ProgressBar"/>
 
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/gd_vert_start_soundcloud_auth"

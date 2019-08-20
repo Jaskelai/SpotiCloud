@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class LocalDataModule {
+class SharedPreferencesModule {
 
     companion object {
         private const val NAME_SHAREDPREFS: String = "SPOTICLOUD_PREFERENCES"

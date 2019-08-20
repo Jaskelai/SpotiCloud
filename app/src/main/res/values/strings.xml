@@ -13,4 +13,6 @@
     <string name="password">password</string>
     <string name="signin">sign in</string>
     <string name="registration">Don\'t have a account? Register now</string>
+    <string name="bad_connection">Can\'t connect to server</string>
+    <string name="bad_credentials">Wrong email or passwrod</string>
 </resources>
