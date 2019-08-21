@@ -5,7 +5,7 @@ import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPrefer
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudApi
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Maybe
 import javax.inject.Inject
 
 class UserSoundcloudRepositoryImpl @Inject constructor(
@@ -29,5 +29,5 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
             }
             .ignoreElement()
 
-    override fun loadSavedToken(): Single<String> = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
+    override fun loadSavedToken(): Maybe<String> = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
 }

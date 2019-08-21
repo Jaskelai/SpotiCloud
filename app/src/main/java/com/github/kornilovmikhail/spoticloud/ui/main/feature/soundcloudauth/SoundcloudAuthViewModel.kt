@@ -53,4 +53,9 @@ class SoundcloudAuthViewModel @Inject constructor(
                 })
         )
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (!disposables.isDisposed) disposables.dispose()
+    }
 }

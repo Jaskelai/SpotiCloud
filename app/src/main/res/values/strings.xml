@@ -15,4 +15,5 @@
     <string name="registration">Don\'t have a account? Register now</string>
     <string name="bad_connection">Can\'t connect to server</string>
     <string name="bad_credentials">Wrong email or passwrod</string>
+    <string name="go_to_app">Go to app</string>
 </resources>

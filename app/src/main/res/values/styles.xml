@@ -36,7 +36,7 @@
         <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">60dp</item>
-        <item name="android:backgroundTint">@color/color_start_buttons</item>
+        <item name="android:backgroundTint">@drawable/selector_buttons_start</item>
     </style>
 
     <style name="TextRegular.SoundcloudAuthRegularText">
