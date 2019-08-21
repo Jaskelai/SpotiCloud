@@ -5,6 +5,7 @@
 
     <dist:module dist:instant="true"/>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:name="com.github.kornilovmikhail.spoticloud.App"
@@ -21,8 +22,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <layout android:minHeight="450dp"
-                    android:minWidth="450dp"/>
         </activity>
     </application>
 

@@ -53,6 +53,9 @@ class StartFragment : BaseFragment() {
         btn_soundcloud_start.setOnClickListener {
             startViewModel.onBtnAuthSoundcloudClicked()
         }
+        btn_spotify_start.setOnClickListener {
+            startViewModel.onBtnAuthSpotifyClicked(this)
+        }
     }
 
     override fun subscribe() {
@@ -65,6 +68,7 @@ class StartFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
     }
 
     private fun showSnackbar() {

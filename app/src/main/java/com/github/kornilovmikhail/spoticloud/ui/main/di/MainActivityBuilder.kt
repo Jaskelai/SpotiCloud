@@ -13,7 +13,6 @@ interface MainActivityBuilder {
     @ContributesAndroidInjector(
         modules = [
             MainActivityModule::class,
-            ViewModelModule::class,
             StartFragmentBuilder::class,
             SoundcloudAuthFragmentBuilder::class]
     )
