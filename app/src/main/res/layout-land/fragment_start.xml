@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/gradient_start_auth_background">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.github.kornilovmikhail.spoticloud.ui.main.feature.start.StartViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/layout_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_dodgeInsetEdges="bottom"
+                tools:context="com.github.kornilovmikhail.spoticloud.ui.main.MainActivity">
+
+            <TextView
+                    android:id="@+id/tv_heading_start"
+                    style="@style/TextRegular.StartScreenHeadingText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/start_heading"
+                    app:layout_constraintBottom_toTopOf="@id/btn_soundcloud_start"
+                    app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+                    app:layout_constraintStart_toStartOf="@id/gd_vert_start_start"
+                    app:layout_constraintTop_toBottomOf="@id/gd_horiz_top_start" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_soundcloud_start"
+                    style="@style/ButtonRounded.StartScreenButtons"
+                    android:layout_marginBottom="4dp"
+                    android:enabled="@{viewModel.soundcloudBtnActiveLiveData}"
+                    android:text="@string/signin_soundcloud"
+                    app:layout_constraintBottom_toTopOf="@id/tv_choice_start"
+                    app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+                    app:layout_constraintStart_toStartOf="@id/gd_vert_start_start" />
+
+            <TextView
+                    android:id="@+id/tv_choice_start"
+                    style="@style/TextRegular.StartScreenText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/start_choice"
+                    app:layout_constraintBottom_toTopOf="@id/btn_spotify_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_spotify_start"
+                    style="@style/ButtonRounded.StartScreenButtons"
+                    android:layout_marginBottom="8dp"
+                    android:enabled="@{viewModel.spotifyBtnActiveLiveData}"
+                    android:text="@string/signin_spotify"
+                    app:layout_constraintBottom_toTopOf="@id/gd_horiz_bottom_start"
+                    app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
+                    app:layout_constraintStart_toStartOf="@id/gd_vert_start_start" />
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gd_horiz_top_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.02" />
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gd_horiz_bottom_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.98" />
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gd_vert_start_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gd_vert_end_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
