@@ -6,12 +6,17 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.github.kornilovmikhail.spoticloud_mvvm"
+        applicationId 'com.github.kornilovmikhail.spoticloudmvvm'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "SOUNDCLOUD_URL", "\"https://api.soundcloud.com/\""
+        buildConfigField "String", "SOUNDCLOUD_CLIENT_ID", "\"51762b5b2ec86582ea95a9d816077654\""
+        buildConfigField "String", "SOUNDCLOUD_CLIENT_SECRET", "\"9923d03b898d96820129c1b6720d915c\""
+        buildConfigField "String", "SPOTIFY_URL", "\"https://api.spotify.com/v1/\""
+        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"65ce988e91de442cbe4510b47a48c2b9\""
     }
     buildTypes {
         release {
@@ -19,12 +24,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //material
     def materialVersion = '1.1.0-alpha09'
     implementation "com.google.android.material:material:$materialVersion"
@@ -47,6 +55,7 @@ dependencies {
     def daggerVersion = '2.24'
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     //inject
@@ -58,7 +67,7 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$architectureComponentVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponentVersion"
     //room
-    "androidx.room:room-runtime:$architectureComponentVersion"
+    implementation "androidx.room:room-runtime:$architectureComponentVersion"
     kapt "androidx.room:room-compiler:$architectureComponentVersion"
     implementation "androidx.room:room-rxjava2:$architectureComponentVersion"
     //okhttp
@@ -92,5 +101,4 @@ dependencies {
     def espressoCoreVersion = '3.0.2'
     implementation "com.android.support.test:runner:$espressoRunnerVersion"
     implementation "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
-
 }
