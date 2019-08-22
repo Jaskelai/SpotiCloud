@@ -22,12 +22,19 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
     }
 
     override fun auth(email: String, password: String): Completable =
-        soundCloudApi.getToken(email, password, SOUNDCLOUD_CLIENT_ID, SOUNDCLOUD_CLIENT_SECRET, SOUNDCLOUD_GRANT_TYPE)
+        soundCloudApi.getToken(
+            email,
+            password,
+            SOUNDCLOUD_CLIENT_ID,
+            SOUNDCLOUD_CLIENT_SECRET,
+            SOUNDCLOUD_GRANT_TYPE
+        )
             .map {
                 sharedPreferencesStorage.writeMessage(KEY_TOKEN_SOUNDCLOUD, it.accessToken)
                 sharedPreferencesStorage.writeMessage(KEY_REFRESH_TOKEN_SOUNDCLOUD, it.refreshToken)
             }
             .ignoreElement()
 
-    override fun loadSavedToken(): Maybe<String> = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
+    override fun getToken(): Maybe<String> =
+        sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
 }

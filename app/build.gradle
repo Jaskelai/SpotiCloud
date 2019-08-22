@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.github.kornilovmikhail.spoticloud_mvvm"
+        applicationId 'com.github.kornilovmikhail.spoticloudmvvm'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -16,7 +16,7 @@ android {
         buildConfigField "String", "SOUNDCLOUD_CLIENT_ID", "\"51762b5b2ec86582ea95a9d816077654\""
         buildConfigField "String", "SOUNDCLOUD_CLIENT_SECRET", "\"9923d03b898d96820129c1b6720d915c\""
         buildConfigField "String", "SPOTIFY_URL", "\"https://api.spotify.com/v1/\""
-        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"4cbbd7f8b70443f381717442b3588840\""
+        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"65ce988e91de442cbe4510b47a48c2b9\""
     }
     buildTypes {
         release {

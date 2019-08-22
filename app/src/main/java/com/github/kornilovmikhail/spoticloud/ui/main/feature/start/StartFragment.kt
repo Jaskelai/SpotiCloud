@@ -1,5 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.feature.start
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -69,6 +70,9 @@ class StartFragment : BaseFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (resultCode == Activity.RESULT_OK) {
+            startViewModel.handleResult(requestCode, data)
+        }
     }
 
     private fun showSnackbar() {

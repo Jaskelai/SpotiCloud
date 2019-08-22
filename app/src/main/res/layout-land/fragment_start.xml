@@ -60,6 +60,7 @@
                     android:id="@+id/btn_spotify_start"
                     style="@style/ButtonRounded.StartScreenButtons"
                     android:layout_marginBottom="8dp"
+                    android:enabled="@{viewModel.spotifyBtnActiveLiveData}"
                     android:text="@string/signin_spotify"
                     app:layout_constraintBottom_toTopOf="@id/gd_horiz_bottom_start"
                     app:layout_constraintEnd_toEndOf="@id/gd_vert_end_start"
