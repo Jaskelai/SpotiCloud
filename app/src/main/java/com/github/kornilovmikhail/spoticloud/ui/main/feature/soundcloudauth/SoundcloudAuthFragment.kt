@@ -21,8 +21,7 @@ class SoundcloudAuthFragment : BaseFragment() {
         fun getInstance() = SoundcloudAuthFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var soundcloudAuthViewModel: SoundcloudAuthViewModel
 

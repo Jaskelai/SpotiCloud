@@ -12,4 +12,5 @@
     <color name="color_red_error">#F00000</color>
     <color name="color_disabled_button">#455A64</color>
     <color name="color_white">#FFFFFF</color>
+    <color name="color_inactive_tab">#D1D3D4</color>
 </resources>
