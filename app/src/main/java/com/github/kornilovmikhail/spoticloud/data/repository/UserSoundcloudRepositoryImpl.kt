@@ -5,7 +5,6 @@ import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPrefer
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudApi
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import javax.inject.Inject
 
 class UserSoundcloudRepositoryImpl @Inject constructor(
@@ -21,8 +20,8 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
         private const val SOUNDCLOUD_GRANT_TYPE = "password"
     }
 
-    override fun auth(email: String, password: String): Completable =
-        soundCloudApi.getToken(
+    override fun auth(email: String, password: String): Completable {
+        return soundCloudApi.getToken(
             email,
             password,
             SOUNDCLOUD_CLIENT_ID,
@@ -34,7 +33,9 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
                 sharedPreferencesStorage.writeMessage(KEY_REFRESH_TOKEN_SOUNDCLOUD, it.refreshToken)
             }
             .ignoreElement()
+    }
 
-    override fun getToken(): Maybe<String> =
-        sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
+    override fun getToken(): String? {
+        return sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
+    }
 }

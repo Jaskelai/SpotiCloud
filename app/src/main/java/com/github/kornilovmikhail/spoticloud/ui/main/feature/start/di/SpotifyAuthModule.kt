@@ -27,8 +27,8 @@ class SpotifyAuthModule {
     fun provideAuthenticationRequest(
         typeToken: AuthenticationResponse.Type,
         @Named("SPOTIFY_URI") redirectUri: Uri
-    ): AuthenticationRequest =
-        AuthenticationRequest.Builder(
+    ): AuthenticationRequest {
+        return AuthenticationRequest.Builder(
             BuildConfig.SPOTIFY_CLIENT_ID,
             typeToken,
             redirectUri.toString()
@@ -44,15 +44,17 @@ class SpotifyAuthModule {
             )
             .setCampaign(CAMPAIGN)
             .build()
+    }
 
     @Provides
     @ScreenScope
     @Named("SPOTIFY_URI")
-    fun provideRedirectUri(): Uri =
-        Uri.Builder()
+    fun provideRedirectUri(): Uri {
+        return Uri.Builder()
             .scheme(SCHEME)
             .authority(AUTH)
             .build()
+    }
 
     @Provides
     @ScreenScope

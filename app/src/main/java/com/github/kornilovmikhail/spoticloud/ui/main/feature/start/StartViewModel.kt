@@ -84,25 +84,17 @@ class StartViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun checkSoundcloudAuth() {
-        soundCloudAuthUseCase.checkAuth()
-            .subscribe({
-                if (it) {
-                    soundcloudBtnActiveLiveData.value = false
-                }
-            }, {
-                it.printStackTrace()
-            })
+        val isSoundcloudAuthed = soundCloudAuthUseCase.checkAuth()
+        if (isSoundcloudAuthed) {
+            soundcloudBtnActiveLiveData.value = false
+        }
     }
 
     @SuppressLint("CheckResult")
     private fun checkSpotifyAuth() {
-        spotifyAuthUseCase.checkAuth()
-            .subscribe({
-                if (it) {
-                    spotifyBtnActiveLiveData.value = false
-                }
-            }, {
-                it.printStackTrace()
-            })
+        val isSpotifyAuthed = spotifyAuthUseCase.checkAuth()
+        if (isSpotifyAuthed) {
+            spotifyBtnActiveLiveData.value = false
+        }
     }
 }

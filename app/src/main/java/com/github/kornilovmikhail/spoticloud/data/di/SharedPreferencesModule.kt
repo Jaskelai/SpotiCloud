@@ -15,6 +15,7 @@ class SharedPreferencesModule {
 
     @Provides
     @AppScope
-    fun provideSharedPreferences(context: Context): SharedPreferences =
-        context.getSharedPreferences(NAME_SHAREDPREFS, Context.MODE_PRIVATE)
+    fun provideSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(NAME_SHAREDPREFS, Context.MODE_PRIVATE)
+    }
 }

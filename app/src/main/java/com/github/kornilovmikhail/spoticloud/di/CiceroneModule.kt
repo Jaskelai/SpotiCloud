@@ -16,10 +16,13 @@ class CiceroneModule {
 
     @Provides
     @AppScope
-    fun provideCicerone(ciceroneRouter: RouterCiceroneImpl): Cicerone<RouterCiceroneImpl> =
-        Cicerone.create(ciceroneRouter)
+    fun provideCicerone(ciceroneRouter: RouterCiceroneImpl): Cicerone<RouterCiceroneImpl> {
+        return Cicerone.create(ciceroneRouter)
+    }
 
     @Provides
     @AppScope
-    fun provideNavigatorHolder(cicerone: Cicerone<RouterCiceroneImpl>): NavigatorHolder = cicerone.navigatorHolder
+    fun provideNavigatorHolder(cicerone: Cicerone<RouterCiceroneImpl>): NavigatorHolder {
+        return cicerone.navigatorHolder
+    }
 }

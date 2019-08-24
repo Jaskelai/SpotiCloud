@@ -30,22 +30,29 @@ class NetworkModule {
         gsonConverterFactory: GsonConverterFactory,
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
         @Named(SOUNDCLOUD_URL) baseURL: String
-    ): Retrofit = Retrofit.Builder()
-        .baseUrl(baseURL)
-        .addConverterFactory(gsonConverterFactory)
-        .addCallAdapterFactory(rxJava2CallAdapterFactory)
-        .build()
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseURL)
+            .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(rxJava2CallAdapterFactory)
+            .build()
+    }
 
     @Provides
     @AppScope
-    fun provideSoundcloudApi(@Named(RETROFIT_SOUNDCLOUD) retrofit: Retrofit): SoundCloudApi =
-        retrofit.create(SoundCloudApi::class.java)
+    fun provideSoundcloudApi(@Named(RETROFIT_SOUNDCLOUD) retrofit: Retrofit): SoundCloudApi {
+        return retrofit.create(SoundCloudApi::class.java)
+    }
 
     @Provides
     @AppScope
-    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
 
     @Provides
     @AppScope
-    fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
+    fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory {
+        return RxJava2CallAdapterFactory.create()
+    }
 }

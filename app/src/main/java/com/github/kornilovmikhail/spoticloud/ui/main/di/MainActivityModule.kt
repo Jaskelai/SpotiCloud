@@ -22,8 +22,9 @@ abstract class MainActivityModule {
         @Provides
         @MainActivityScope
         @JvmStatic
-        fun provideNavigator(mainActivity: MainActivity): Navigator =
-            SupportAppNavigator(mainActivity, mainActivity.getContainerId())
+        fun provideNavigator(mainActivity: MainActivity): Navigator {
+            return SupportAppNavigator(mainActivity, mainActivity.getContainerId())
+        }
     }
 
     @Binds
