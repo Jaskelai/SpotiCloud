@@ -12,12 +12,12 @@ import androidx.lifecycle.MediatorLiveData
 import com.github.jaskelai.spoticloud.domain.interactors.CommonAuthUseCase
 import com.github.jaskelai.spoticloud.domain.interactors.SoundCloudAuthUseCase
 import com.github.jaskelai.spoticloud.domain.interactors.SpotifyAuthUseCase
-import com.github.jaskelai.spoticloud.ui.navigation.router.Router
+import com.github.jaskelai.spoticloud.ui.navigation.router.GlobalRouter
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import javax.inject.Inject
 
 class StartViewModel @Inject constructor(
-    private val router: Router,
+    private val globalRouter: GlobalRouter,
     private val soundCloudAuthUseCase: SoundCloudAuthUseCase,
     private val spotifyAuthUseCase: SpotifyAuthUseCase,
     private val commonAuthUseCase: CommonAuthUseCase,
@@ -53,11 +53,11 @@ class StartViewModel @Inject constructor(
     }
 
     fun onBtnAuthSoundcloudClicked() {
-        router.navigateToSoundcloudAuthScreen()
+        globalRouter.navigateToSoundcloudAuthScreen()
     }
 
     fun onBtnAuthSpotifyClicked(fragment: Fragment?) {
-        router.navigateToSpotifyAuthScreen(fragment, request, REQUEST_CODE_SPOTIFY)
+        globalRouter.navigateToSpotifyAuthScreen(fragment, request, REQUEST_CODE_SPOTIFY)
     }
 
     fun onBtnSnackbarClicked() {

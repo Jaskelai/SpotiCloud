@@ -1,11 +1,15 @@
 package com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer
 
-import androidx.lifecycle.*
-import com.github.jaskelai.spoticloud.ui.navigation.router.Router
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.Lifecycle
+import com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouter
 import javax.inject.Inject
 
 class BottomNavContainerViewModel @Inject constructor(
-    private val router: Router
+    private val localRouter: LocalBottomNavRouter
 ) : ViewModel(), LifecycleObserver {
 
     companion object {
@@ -16,8 +20,17 @@ class BottomNavContainerViewModel @Inject constructor(
 
     val selecteditemLiveData = MutableLiveData<Int>()
 
+    private var isFirst: Boolean
+
     init {
+        isFirst = true
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun navigateToTrackListScreen() {
         selecteditemLiveData.value = TRACK_LIST_ITEM
+        localRouter.navigateToTrackListScreen()
+        isFirst = false
     }
 
     fun onSearchBottomBtnClicked() {

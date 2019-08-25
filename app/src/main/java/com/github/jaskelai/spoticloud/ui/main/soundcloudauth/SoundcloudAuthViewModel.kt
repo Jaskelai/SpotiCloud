@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.jaskelai.spoticloud.domain.interactors.SoundCloudAuthUseCase
-import com.github.jaskelai.spoticloud.ui.navigation.router.Router
+import com.github.jaskelai.spoticloud.ui.navigation.router.GlobalRouter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
@@ -14,7 +14,7 @@ const val STATUS_BAD_CONNECTION = 0
 const val STATUS_BAD_CREDENTIALS = 1
 
 class SoundcloudAuthViewModel @Inject constructor(
-    private val router: Router,
+    private val globalRouter: GlobalRouter,
     private val soundCloudAuthUseCase: SoundCloudAuthUseCase
 ) : ViewModel(), LifecycleObserver {
 
@@ -29,7 +29,7 @@ class SoundcloudAuthViewModel @Inject constructor(
     }
 
     fun onBackButtonClicked() {
-        router.navigateToStartScreen()
+        globalRouter.navigateToStartScreen()
     }
 
     fun onSigninButtonClicked(email: String, password: String) {
@@ -43,7 +43,7 @@ class SoundcloudAuthViewModel @Inject constructor(
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    router.navigateToStartScreen()
+                    globalRouter.navigateToStartScreen()
                 }, {
                     if (it is HttpException) {
                         errorCodeLiveData.value = STATUS_BAD_CREDENTIALS

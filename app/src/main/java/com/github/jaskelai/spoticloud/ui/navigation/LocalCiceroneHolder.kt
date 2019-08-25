@@ -5,12 +5,14 @@ import ru.terrakok.cicerone.Router
 
 class LocalCiceroneHolder {
 
-    private var containers = HashMap<String, Cicerone<Router>>()
+    companion object {
+        private var containers = HashMap<String, Cicerone<Router>>()
 
-    fun getCicerone(containerTag: String): Cicerone<Router> {
-        if (!containers.containsKey(containerTag)) {
-            containers[containerTag] = Cicerone.create()
+        fun getCicerone(containerTag: String): Cicerone<Router> {
+            if (!containers.containsKey(containerTag)) {
+                containers[containerTag] = Cicerone.create()
+            }
+            return containers[containerTag] ?: Cicerone.create()
         }
-        return containers[containerTag] ?: Cicerone.create()
     }
 }

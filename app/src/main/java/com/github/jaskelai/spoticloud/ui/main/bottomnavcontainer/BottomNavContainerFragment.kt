@@ -8,8 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.jaskelai.spoticloud.R
 import com.github.jaskelai.spoticloud.ui.base.BaseFragment
+import com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.di.BottomNavQualifier
 import com.github.jaskelai.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_bottom_nav_container.*
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class BottomNavContainerFragment : BaseFragment() {
@@ -19,7 +22,14 @@ class BottomNavContainerFragment : BaseFragment() {
         fun getInstance() = BottomNavContainerFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    @field:BottomNavQualifier
+    lateinit var navigator: Navigator
+    @Inject
+    @field:BottomNavQualifier
+    lateinit var navigatorHolder: NavigatorHolder
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: BottomNavContainerViewModel
 
@@ -28,6 +38,16 @@ class BottomNavContainerFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_bottom_nav_container, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
     }
 
     override fun injectViewModel() {
@@ -59,8 +79,11 @@ class BottomNavContainerFragment : BaseFragment() {
                 BottomNavContainerViewModel.TRENDS_ITEM -> {
                     bottom_nav_view.selectedItemId = R.id.bottom_action_trends
                 }
-                else -> {}
+                else -> {
+                }
             }
         })
     }
+
+    fun getContainerId(): Int = R.id.container_bottom_nav
 }

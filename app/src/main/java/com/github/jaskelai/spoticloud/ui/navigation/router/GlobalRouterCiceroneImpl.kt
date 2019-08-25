@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerScreen
-import com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListScreen
 import com.github.jaskelai.spoticloud.ui.main.soundcloudauth.SoundcloudAuthScreen
 import com.github.jaskelai.spoticloud.ui.main.start.StartScreen
 import com.spotify.sdk.android.authentication.AuthenticationRequest
@@ -14,7 +13,7 @@ import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 import javax.inject.Inject
 
-class RouterCiceroneImpl @Inject constructor() : Router, ru.terrakok.cicerone.Router() {
+class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok.cicerone.Router() {
 
     companion object {
         private const val EXTRA_AUTH_REQUEST = "EXTRA_AUTH_REQUEST"
@@ -47,8 +46,7 @@ class RouterCiceroneImpl @Inject constructor() : Router, ru.terrakok.cicerone.Ro
     override fun navigateToBottomNavScreen() {
         executeCommands(
             BackTo(null),
-            Replace(BottomNavContainerScreen()),
-            Forward(TrackListScreen())
+            Replace(BottomNavContainerScreen())
         )
     }
 }

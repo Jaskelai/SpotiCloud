@@ -5,11 +5,11 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.github.jaskelai.spoticloud.domain.interactors.CommonAuthUseCase
-import com.github.jaskelai.spoticloud.ui.navigation.router.Router
+import com.github.jaskelai.spoticloud.ui.navigation.router.GlobalRouter
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val router: Router,
+    private val globalRouter: GlobalRouter,
     private val commonAuthUseCase: CommonAuthUseCase
 ) : ViewModel(), LifecycleObserver {
 
@@ -19,9 +19,9 @@ class MainViewModel @Inject constructor(
     fun navigateToStartScreen() {
         if (isFirst) {
             if (commonAuthUseCase.checkAuth()) {
-                router.navigateToStartScreen()
+                globalRouter.navigateToStartScreen()
             } else {
-                router.navigateToBottomNavScreen()
+                globalRouter.navigateToBottomNavScreen()
             }
             isFirst = false
         }

@@ -6,6 +6,7 @@ import com.github.jaskelai.spoticloud.data.di.SharedPreferencesModule
 import com.github.jaskelai.spoticloud.data.di.NetworkModule
 import com.github.jaskelai.spoticloud.data.di.RepositoryModule
 import com.github.jaskelai.spoticloud.di.scope.AppScope
+import com.github.jaskelai.spoticloud.ui.navigation.di.CiceroneModule
 import com.github.jaskelai.spoticloud.ui.main.di.MainActivityBuilder
 import dagger.BindsInstance
 import dagger.Component
