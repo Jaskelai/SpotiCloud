@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.soundcloudauth
+package com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData

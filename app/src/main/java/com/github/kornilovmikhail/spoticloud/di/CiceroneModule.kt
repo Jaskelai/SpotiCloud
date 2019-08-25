@@ -12,7 +12,8 @@ class CiceroneModule {
 
     @Provides
     @AppScope
-    fun provideCiceroneRouter(): RouterCiceroneImpl = RouterCiceroneImpl()
+    fun provideCiceroneRouter(): RouterCiceroneImpl =
+        RouterCiceroneImpl()
 
     @Provides
     @AppScope

@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.start
+package com.github.kornilovmikhail.spoticloud.ui.main.start
 
 import android.annotation.SuppressLint
 import android.content.Intent

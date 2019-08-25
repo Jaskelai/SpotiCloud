@@ -1,8 +1,9 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.di
 
 import com.github.kornilovmikhail.spoticloud.ui.main.MainActivity
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.soundcloudauth.di.SoundcloudAuthFragmentBuilder
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.start.di.StartFragmentBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomNavContainerBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.di.SoundcloudAuthBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.start.di.StartBuilder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,8 +14,9 @@ interface MainActivityBuilder {
     @ContributesAndroidInjector(
         modules = [
             MainActivityModule::class,
-            StartFragmentBuilder::class,
-            SoundcloudAuthFragmentBuilder::class]
+            StartBuilder::class,
+            SoundcloudAuthBuilder::class,
+            BottomNavContainerBuilder::class]
     )
     fun bindMainActivity(): MainActivity
 }

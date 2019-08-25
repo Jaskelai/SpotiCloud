@@ -1,14 +1,14 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.start.di
+package com.github.kornilovmikhail.spoticloud.ui.main.start.di
 
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.start.StartViewModel
+import com.github.kornilovmikhail.spoticloud.ui.main.start.StartViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-interface StartFragmentModule {
+interface StartModule {
 
     @Binds
     @IntoMap

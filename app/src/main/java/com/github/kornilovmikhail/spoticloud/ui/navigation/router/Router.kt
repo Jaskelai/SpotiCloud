@@ -14,4 +14,6 @@ interface Router {
         request: AuthenticationRequest?,
         requestCode: Int
     )
+
+    fun navigateToBottomNavScreen()
 }

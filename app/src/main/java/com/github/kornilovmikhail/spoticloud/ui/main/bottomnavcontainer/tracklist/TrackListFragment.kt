@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.bottomnav
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,22 +10,22 @@ import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import javax.inject.Inject
 
-class BottomNavContainerFragment : BaseFragment() {
+class TrackListFragment : BaseFragment() {
 
     companion object {
 
-        fun getInstance() = BottomNavContainerFragment()
+        fun getInstance() = TrackListFragment()
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: BottomNavContainerViewModel
+    private lateinit var viewModel: TrackListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_nav_container, container, false)
+        return inflater.inflate(R.layout.fragment_track_list, container, false)
     }
 
     override fun injectViewModel() {

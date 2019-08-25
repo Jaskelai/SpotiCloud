@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.start
+package com.github.kornilovmikhail.spoticloud.ui.main.start
 
 import androidx.fragment.app.Fragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen

@@ -1,8 +1,8 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.feature.start.di
+package com.github.kornilovmikhail.spoticloud.ui.main.start.di
 
 import android.net.Uri
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.di.ScreenScope
+import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import dagger.Module

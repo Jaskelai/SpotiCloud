@@ -3,17 +3,18 @@ package com.github.kornilovmikhail.spoticloud.ui.navigation.router
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.soundcloudauth.SoundcloudAuthScreen
-import com.github.kornilovmikhail.spoticloud.ui.main.feature.start.StartScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.start.StartScreen
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.LoginActivity
-import ru.terrakok.cicerone.BaseRouter
 import ru.terrakok.cicerone.commands.BackTo
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 import javax.inject.Inject
 
-class RouterCiceroneImpl @Inject constructor() : Router, BaseRouter() {
+class RouterCiceroneImpl @Inject constructor() : Router, ru.terrakok.cicerone.Router() {
 
     companion object {
         private const val EXTRA_AUTH_REQUEST = "EXTRA_AUTH_REQUEST"
@@ -41,5 +42,13 @@ class RouterCiceroneImpl @Inject constructor() : Router, BaseRouter() {
         intent.putExtra(EXTRA_AUTH_REQUEST, bundle)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         fragment.startActivityForResult(intent, requestCode)
+    }
+
+    override fun navigateToBottomNavScreen() {
+        executeCommands(
+            BackTo(null),
+            Replace(BottomNavContainerScreen()),
+            Forward(TrackListScreen())
+        )
     }
 }
