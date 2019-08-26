@@ -6,5 +6,5 @@ interface UserSpotifyRepository{
 
     fun auth(any: Any?): Completable
 
-    fun getToken(): String?
+    fun checkAuth(): Boolean
 }

@@ -6,5 +6,5 @@ interface UserSoundcloudRepository {
 
     fun auth(email: String, password: String): Completable
 
-    fun getToken(): String?
+    fun checkAuth(): Boolean
 }
