@@ -4,20 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.jaskelai.spoticloud.R
+import com.github.jaskelai.spoticloud.domain.model.Track
 import com.github.jaskelai.spoticloud.ui.base.BaseFragment
 import com.github.jaskelai.spoticloud.utils.injectViewModel
+import kotlinx.android.synthetic.main.fragment_track_list.*
 import javax.inject.Inject
 
-class TrackListFragment : BaseFragment() {
+class TrackListFragment : BaseFragment(), TrackListClickListener {
 
     companion object {
 
         fun getInstance() = TrackListFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var trackListAdapter: TrackListAdapter
 
     private lateinit var viewModel: TrackListViewModel
 
@@ -33,10 +40,26 @@ class TrackListFragment : BaseFragment() {
     }
 
     override fun setupViews() {
-
+        setupRecyclerView()
     }
 
     override fun subscribe() {
         lifecycle.addObserver(viewModel)
+
+        viewModel.trackListLiveData.observe(this, Observer {
+            trackListAdapter.submitList(it)
+        })
+    }
+
+    override fun onClick(track: Track?) {
+
+    }
+
+    private fun setupRecyclerView() {
+        rv_list_tracks.adapter = trackListAdapter
+        rv_list_tracks.setHasFixedSize(true)
+        rv_list_tracks.addItemDecoration(
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        )
     }
 }

@@ -19,4 +19,5 @@
     <string name="search">Search</string>
     <string name="my_tracks">My tracks</string>
     <string name="trends">Trends</string>
+    <string name="track_cover">Track cover</string>
 </resources>

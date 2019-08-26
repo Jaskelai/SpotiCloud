@@ -1,10 +1,12 @@
 package com.github.jaskelai.spoticloud.data.di
 
 import com.github.jaskelai.spoticloud.data.repository.CommonUserRepositoryImpl
+import com.github.jaskelai.spoticloud.data.repository.TracksRepositorySoundcloudImpl
 import com.github.jaskelai.spoticloud.data.repository.UserSoundcloudRepositoryImpl
 import com.github.jaskelai.spoticloud.data.repository.UserSpotifyRepositoryImpl
 import com.github.jaskelai.spoticloud.di.scope.AppScope
 import com.github.jaskelai.spoticloud.domain.interfaces.CommonUserRepository
+import com.github.jaskelai.spoticloud.domain.interfaces.TracksRepository
 import com.github.jaskelai.spoticloud.domain.interfaces.UserSoundcloudRepository
 import com.github.jaskelai.spoticloud.domain.interfaces.UserSpotifyRepository
 import dagger.Binds
@@ -30,4 +32,10 @@ interface RepositoryModule {
     fun provideUserCommonRepository(
         userCommonRepository: CommonUserRepositoryImpl
     ): CommonUserRepository
+
+    @Binds
+    @AppScope
+    fun provideFavRepository(
+        tracksSoundcloudRepository: TracksRepositorySoundcloudImpl
+    ): TracksRepository
 }

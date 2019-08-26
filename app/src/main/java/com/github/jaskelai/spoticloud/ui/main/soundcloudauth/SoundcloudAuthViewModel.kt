@@ -18,10 +18,10 @@ class SoundcloudAuthViewModel @Inject constructor(
     private val soundCloudAuthUseCase: SoundCloudAuthUseCase
 ) : ViewModel(), LifecycleObserver {
 
-    private val disposables = CompositeDisposable()
-
     val progressBarVisibilityLiveData = MutableLiveData<Boolean>()
     val errorCodeLiveData = MutableLiveData<Int>()
+
+    private val disposables = CompositeDisposable()
 
     init {
         progressBarVisibilityLiveData.value = false
