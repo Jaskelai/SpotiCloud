@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.ui.main.MainActivity
 import com.github.kornilovmikhail.spoticloud.ui.main.MainViewModel
-import com.github.kornilovmikhail.spoticloud.ui.navigation.router.Router
-import com.github.kornilovmikhail.spoticloud.ui.navigation.router.RouterCiceroneImpl
+import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
+import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouterCiceroneImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,8 +22,9 @@ abstract class MainActivityModule {
         @Provides
         @MainActivityScope
         @JvmStatic
-        fun provideNavigator(mainActivity: MainActivity): Navigator =
-            SupportAppNavigator(mainActivity, mainActivity.getContainerId())
+        fun provideNavigator(mainActivity: MainActivity): Navigator {
+            return SupportAppNavigator(mainActivity, mainActivity.getContainerId())
+        }
     }
 
     @Binds
@@ -36,5 +37,5 @@ abstract class MainActivityModule {
 
     @Binds
     @MainActivityScope
-    abstract fun provideRouter(router: RouterCiceroneImpl): Router
+    abstract fun provideRouter(router: GlobalRouterCiceroneImpl): GlobalRouter
 }

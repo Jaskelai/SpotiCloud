@@ -6,12 +6,12 @@
     <data>
         <import type="android.view.View"/>
         <variable name="viewModel"
-                  type="com.github.kornilovmikhail.spoticloud.ui.main.feature.soundcloudauth.SoundcloudAuthViewModel"/>
+                  type="com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthViewModel"/>
     </data>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.github.kornilovmikhail.spoticloud.ui.main.feature.soundcloudauth.SoundcloudAuthFragment">
+            tools:context=".ui.main.soundcloudauth.SoundcloudAuthFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="wrap_content"

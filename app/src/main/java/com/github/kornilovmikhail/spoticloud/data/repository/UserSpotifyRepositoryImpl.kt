@@ -1,25 +1,20 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
-import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
+import com.github.kornilovmikhail.spoticloud.data.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
 import com.spotify.sdk.android.authentication.AuthenticationResponse
-import io.reactivex.Completable
-import io.reactivex.Maybe
 import javax.inject.Inject
 
 class UserSpotifyRepositoryImpl @Inject constructor(
-    private val sharedPreferencesStorage: SharedPreferencesStorage
+    private val tokenHelperSpotify: TokenHelperSpotify
 ) : UserSpotifyRepository {
 
-    companion object {
-        private const val KEY_TOKEN_SPOTIFY = "key_token_spotify"
-    }
-
-    override fun auth(any: Any?): Completable = Completable.fromAction {
+    override fun auth(any: Any?) {
         val token = (any as AuthenticationResponse).accessToken
-        sharedPreferencesStorage.writeMessage(KEY_TOKEN_SPOTIFY, token)
+        tokenHelperSpotify.saveToken(token)
     }
 
-    override fun getToken(): Maybe<String> =
-        sharedPreferencesStorage.readMessage(KEY_TOKEN_SPOTIFY)
+    override fun checkAuth(): Boolean {
+        return tokenHelperSpotify.getToken() != null
+    }
 }
