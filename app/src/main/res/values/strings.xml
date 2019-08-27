@@ -16,4 +16,8 @@
     <string name="bad_connection">Can\'t connect to server</string>
     <string name="bad_credentials">Wrong email or passwrod</string>
     <string name="go_to_app">Go to app</string>
+    <string name="search">Search</string>
+    <string name="my_tracks">My tracks</string>
+    <string name="trends">Trends</string>
+    <string name="track_cover">Track cover</string>
 </resources>

@@ -14,7 +14,5 @@ class SoundCloudAuthUseCase @Inject constructor(
             .subscribeOn(Schedulers.io())
     }
 
-    fun checkAuth(): Boolean {
-        return userSoundcloudRepository.getToken() != null
-    }
+    fun checkAuth(): Boolean = userSoundcloudRepository.checkAuth()
 }

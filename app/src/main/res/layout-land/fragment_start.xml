@@ -8,7 +8,7 @@
 
         <variable
                 name="viewModel"
-                type="com.github.kornilovmikhail.spoticloud.ui.main.feature.start.StartViewModel" />
+                type="com.github.kornilovmikhail.spoticloud.ui.main.start.StartViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

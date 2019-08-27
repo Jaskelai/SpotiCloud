@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="track"
+                type="com.github.kornilovmikhail.spoticloud.domain.model.Track" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/iv_list_track_item_cover_container"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                    android:id="@+id/iv_list_track_item_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/track_cover"
+                    android:imageUrl="@{track.artworkLowSizeUrl ?? track.artworkUrl}"
+                    android:scaleType="fitCenter"
+                    tools:srcCompat="@tools:sample/avatars[3]" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+                android:id="@+id/tv_list_track_item_title"
+                style="@style/TextRegular.TrackItemTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:singleLine="true"
+                android:text="@{track.title}"
+                app:layout_constraintEnd_toStartOf="@id/iv_list_track_item_source"
+                app:layout_constraintStart_toEndOf="@id/iv_list_track_item_cover_container"
+                app:layout_constraintTop_toTopOf="@id/iv_list_track_item_cover_container"
+                tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+                android:id="@+id/tv_list_track_item_author"
+                style="@style/TextRegular.TrackItemAuthor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{track.author.name}"
+                app:layout_constraintEnd_toStartOf="@id/iv_list_track_item_source"
+                app:layout_constraintStart_toStartOf="@id/tv_list_track_item_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_list_track_item_title"
+                tools:text="@tools:sample/lorem/random" />
+
+        <ImageView
+                android:id="@+id/iv_list_track_item_source"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/track_cover"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:srcMusicResource="@{track.streamService}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars[2]" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
