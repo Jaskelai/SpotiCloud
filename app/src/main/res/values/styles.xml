@@ -14,7 +14,7 @@
     </style>
 
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
-        <item name="android:colorAccent">@color/color_primary</item>
+        <item name="android:indeterminateTint">@color/color_primary</item>
     </style>
 
     <style name="ButtonRounded" parent="Widget.MaterialComponents.Button">

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
+import com.github.kornilovmikhail.spoticloud.databinding.FragmentTrackListBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
@@ -21,22 +23,29 @@ class TrackListFragment : BaseFragment(), TrackListClickListener {
         fun getInstance() = TrackListFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var trackListAdapter: TrackListAdapter
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var trackListAdapter: TrackListAdapter
 
-    private lateinit var viewModel: TrackListViewModel
+    private lateinit var trackListViewModel: TrackListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_track_list, container, false)
+        val binding = DataBindingUtil.inflate<FragmentTrackListBinding>(
+            inflater,
+            R.layout.fragment_track_list,
+            container,
+            false
+        ).apply {
+            viewModel = trackListViewModel
+            lifecycleOwner = this@TrackListFragment
+        }
+        return binding.root
     }
 
     override fun injectViewModel() {
-        viewModel = injectViewModel(viewModelFactory)
+        trackListViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
@@ -44,9 +53,9 @@ class TrackListFragment : BaseFragment(), TrackListClickListener {
     }
 
     override fun subscribe() {
-        lifecycle.addObserver(viewModel)
+        lifecycle.addObserver(trackListViewModel)
 
-        viewModel.trackListLiveData.observe(this, Observer {
+        trackListViewModel.trackListLiveData.observe(this, Observer {
             trackListAdapter.submitList(it)
         })
     }

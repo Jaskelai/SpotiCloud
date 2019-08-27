@@ -15,7 +15,7 @@ fun setVisibility(view: View, value: Boolean?) {
 }
 
 @BindingAdapter("android:imageUrl")
-fun setImage(view: ImageView, imageUrl: String) {
+fun setImage(view: ImageView, imageUrl: String?) {
     Picasso.get()
         .load(imageUrl)
         .placeholder(R.drawable.ic_music_note_black_32dp)
