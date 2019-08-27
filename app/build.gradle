@@ -27,6 +27,13 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -71,7 +78,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$architectureComponentVersion"
     implementation "androidx.room:room-rxjava2:$architectureComponentVersion"
     //okhttp
-    def okhttpVersion = '3.8.0'
+    def okhttpVersion = '4.1.0'
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
     //gson
     def gsonVersion = '2.8.2'

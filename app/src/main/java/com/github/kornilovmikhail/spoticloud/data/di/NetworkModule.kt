@@ -100,10 +100,10 @@ class NetworkModule {
     fun provideSoundCloudInterceptor(
         tokenHelper: TokenHelperSoundcloud
     ): Interceptor {
-        return Interceptor { chain ->
-            val originalRequest = chain.request()
+        return Interceptor {
+            val originalRequest = it.request()
 
-            val url = originalRequest.url().newBuilder()
+            val url = originalRequest.url.newBuilder()
                 .addQueryParameter("oauth_token", tokenHelper.getToken())
                 .build()
 
@@ -111,7 +111,7 @@ class NetworkModule {
                 .url(url)
                 .build()
 
-            chain.proceed(newRequest)
+            it.proceed(newRequest)
         }
     }
 
