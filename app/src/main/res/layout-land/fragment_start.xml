@@ -8,7 +8,7 @@
 
         <variable
                 name="viewModel"
-                type="com.github.jaskelai.spoticloud.ui.main.start.StartViewModel" />
+                type="com.github.kornilovmikhail.spoticloud.ui.main.start.StartViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_dodgeInsetEdges="bottom"
-                tools:context="com.github.jaskelai.spoticloud.ui.main.MainActivity">
+                tools:context="com.github.kornilovmikhail.spoticloud.ui.main.MainActivity">
 
             <TextView
                     android:id="@+id/tv_heading_start"

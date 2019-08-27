@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:background="@drawable/gradient_start_auth_background">
 
     <data>
 
         <variable
                 name="viewModel"
-                type="com.github.jaskelai.spoticloud.ui.main.start.StartViewModel" />
+                type="com.github.kornilovmikhail.spoticloud.ui.main.start.StartViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -19,8 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_dodgeInsetEdges="bottom"
-                tools:context="com.github.jaskelai.spoticloud.ui.main.MainActivity">
+                app:layout_dodgeInsetEdges="bottom">
 
             <TextView
                     android:id="@+id/tv_heading_start"

@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId 'com.github.jaskelai.spoticloud'
+        applicationId 'com.github.kornilovmikhail.spoticloud'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -25,7 +25,7 @@ android {
         }
     }
     dataBinding {
-        enabled true
+        enabled = true
     }
 }
 

@@ -8,13 +8,13 @@
 
         <variable
                 name="viewModel"
-                type="com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListViewModel" />
+                type="com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.github.jaskelai.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListFragment">
+            tools:context="com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
