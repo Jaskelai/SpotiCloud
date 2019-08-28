@@ -9,8 +9,8 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class FavTracksUseCase @Inject constructor(
-    @field:SoundCloudQualifier private val soundCloudRepository: TracksRepository,
-    @field:SpotifyQualifier private val spotifyRepository: TracksRepository
+    @param:SoundCloudQualifier private val soundCloudRepository: TracksRepository,
+    @param:SpotifyQualifier private val spotifyRepository: TracksRepository
 ) {
 
     fun getFavTracks(): Single<List<Track>> {
