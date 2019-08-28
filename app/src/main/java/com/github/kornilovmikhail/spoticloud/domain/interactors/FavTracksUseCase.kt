@@ -14,9 +14,8 @@ class FavTracksUseCase @Inject constructor(
 ) {
 
     fun getFavTracks(): Single<List<Track>> {
-        return soundCloudRepository.getFavTracks()
-            .zipWith(
-                spotifyRepository.getFavTracks(),
-                BiFunction { soundCloudTracks, spotifyTracks -> soundCloudTracks + spotifyTracks })
+        return Single.zip(soundCloudRepository.getFavTracks(),
+            spotifyRepository.getFavTracks(),
+            BiFunction { soundcloudTracks, spotifyTracks -> (soundcloudTracks + spotifyTracks) })
     }
 }

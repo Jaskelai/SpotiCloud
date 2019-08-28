@@ -174,7 +174,7 @@ class NetworkModule {
 
             token?.let {token ->
                 request = request.newBuilder()
-                    .addHeader("Authorization", token)
+                    .addHeader("Authorization", "Bearer $token")
                     .build()
             }
             it.proceed(request)

@@ -6,6 +6,7 @@ import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackDBToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackToTrackDB
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -22,11 +23,11 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
                 it.map { track -> mapSoundCloudTrackResponseToTrack(track) }
             }
             .flatMap {
-                trackDao.upsert(it.map { track -> mapTrackToTrackDB(track) })
-                trackDao.findAllTracks()
+                trackDao.upsertSoundcloudTracks(it.map { track -> mapTrackToTrackDB(track) })
+                trackDao.findTracksByStreamService(StreamServiceEnum.SOUNDCLOUD)
             }
             .onErrorResumeNext {
-                trackDao.findAllTracks()
+                trackDao.findTracksByStreamService(StreamServiceEnum.SOUNDCLOUD)
             }
             .map {
                 it.map { trackDB -> mapTrackDBToTrack(trackDB) }

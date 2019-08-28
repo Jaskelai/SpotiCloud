@@ -11,7 +11,6 @@ private const val IMAGE_BIG_SIZE = 600
 fun mapSpotifyTrackRemoteToTrack(spotifyTrack: TrackSpotifyRemote): Track =
     with(spotifyTrack) {
         Track(
-            0,
             id,
             title,
             duration,
