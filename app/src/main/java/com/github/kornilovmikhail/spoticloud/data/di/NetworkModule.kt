@@ -2,8 +2,10 @@ package com.github.kornilovmikhail.spoticloud.data.di
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
 import com.github.kornilovmikhail.spoticloud.data.TokenHelperSoundcloud
+import com.github.kornilovmikhail.spoticloud.data.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
+import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyAuthedApi
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import dagger.Module
 import dagger.Provides
@@ -20,8 +22,10 @@ class NetworkModule {
 
     companion object {
         private const val SOUNDCLOUD_URL = "soundcloud_url"
+        private const val SPOTIFY_URL = "spotify_url"
         private const val RETROFIT_SOUNDCLOUD_NOT_AUTHED = "retrofit_soundcloud_no_authed"
         private const val RETROFIT_SOUNDCLOUD_AUTHED = "retrofit_soundcloud_authed"
+        private const val RETROFIT_SPOTIFY_AUTHED = "retrofit_spotify_authed"
     }
 
     @Provides
@@ -97,7 +101,7 @@ class NetworkModule {
     @Provides
     @AppScope
     @Named(RETROFIT_SOUNDCLOUD_AUTHED)
-    fun provideSoundCloudInterceptor(
+    fun provideSoundCloudAuthedInterceptor(
         tokenHelper: TokenHelperSoundcloud
     ): Interceptor {
         return Interceptor {
@@ -119,6 +123,68 @@ class NetworkModule {
     @AppScope
     fun provideSoundcloudAuthedApi(@Named(RETROFIT_SOUNDCLOUD_AUTHED) retrofit: Retrofit): SoundCloudAuthedApi {
         return retrofit.create(SoundCloudAuthedApi::class.java)
+    }
+
+    @Provides
+    @AppScope
+    @Named(SPOTIFY_URL)
+    fun provideSpotifyBaseUrl(): String = BuildConfig.SPOTIFY_URL
+
+    @Provides
+    @AppScope
+    @Named(RETROFIT_SPOTIFY_AUTHED)
+    fun provideRetrofitAuthedSpotify(
+        gsonConverterFactory: GsonConverterFactory,
+        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
+        @Named(RETROFIT_SPOTIFY_AUTHED) clientOkHttpClient: OkHttpClient,
+        @Named(SPOTIFY_URL) baseURL: String
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseURL)
+            .client(clientOkHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(rxJava2CallAdapterFactory)
+            .build()
+    }
+
+    @Provides
+    @AppScope
+    @Named(RETROFIT_SPOTIFY_AUTHED)
+    fun provideOkHttpAuthedSpotify(
+        @Named(RETROFIT_SPOTIFY_AUTHED) authInterceptor: Interceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(authInterceptor)
+            .build()
+    }
+
+    @Provides
+    @AppScope
+    @Named(RETROFIT_SPOTIFY_AUTHED)
+    fun provideSpotifyAuthedInterceptor(
+        tokenHelper: TokenHelperSpotify
+    ): Interceptor {
+        return Interceptor {
+            var request = it.request()
+
+            val token = tokenHelper.getToken()
+
+            token?.let {token ->
+                request = request.newBuilder()
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
+            }
+            it.proceed(request)
+        }
+    }
+
+    @Provides
+    @AppScope
+    fun provideSpotifyAuthedApi(@Named(RETROFIT_SPOTIFY_AUTHED) retrofit: Retrofit): SpotifyAuthedApi {
+        return retrofit.create(SpotifyAuthedApi::class.java)
     }
 
     @Provides

@@ -9,6 +9,7 @@
     <color name="color_soundcloud_auth_buttons">#589069</color>
     <color name="color_black_text">#1B1B1B</color>
     <color name="color_soundcloud">#ff8800</color>
+    <color name="color_spotify">#1db954</color>
     <color name="color_red_error">#F00000</color>
     <color name="color_disabled_button">#455A64</color>
     <color name="color_white">#FFFFFF</color>

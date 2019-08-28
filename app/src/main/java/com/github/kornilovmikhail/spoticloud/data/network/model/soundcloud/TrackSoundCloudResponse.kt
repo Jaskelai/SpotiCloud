@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.network.model
+package com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud
 
 import com.google.gson.annotations.SerializedName
 
