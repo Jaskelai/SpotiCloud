@@ -9,7 +9,6 @@ import com.github.kornilovmikhail.spoticloud.domain.model.Track
 fun mapSoundCloudTrackResponseToTrack(soundcloudTrack: TrackSoundCloudResponse): Track {
     return with(soundcloudTrack) {
         Track(
-            0,
             id.toString(),
             title,
             duration,

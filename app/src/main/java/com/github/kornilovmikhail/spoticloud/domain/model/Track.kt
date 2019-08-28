@@ -1,9 +1,8 @@
 package com.github.kornilovmikhail.spoticloud.domain.model
 
 data class Track(
-    val id: Int,
 
-    val idSource: String,
+    val id: String,
 
     val title: String,
 
