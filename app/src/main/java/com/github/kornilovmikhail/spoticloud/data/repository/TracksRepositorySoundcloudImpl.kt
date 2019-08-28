@@ -8,6 +8,7 @@ import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedAp
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TracksRepositorySoundcloudImpl @Inject constructor(
@@ -30,5 +31,6 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
             .map {
                 it.map { trackDB -> mapTrackDBToTrack(trackDB) }
             }
+            .subscribeOn(Schedulers.io())
     }
 }

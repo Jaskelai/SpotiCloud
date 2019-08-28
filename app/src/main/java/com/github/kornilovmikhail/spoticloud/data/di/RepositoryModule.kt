@@ -1,9 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.data.di
 
-import com.github.kornilovmikhail.spoticloud.data.repository.CommonUserRepositoryImpl
-import com.github.kornilovmikhail.spoticloud.data.repository.TracksRepositorySoundcloudImpl
-import com.github.kornilovmikhail.spoticloud.data.repository.UserSoundcloudRepositoryImpl
-import com.github.kornilovmikhail.spoticloud.data.repository.UserSpotifyRepositoryImpl
+import com.github.kornilovmikhail.spoticloud.data.repository.*
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
@@ -35,7 +32,15 @@ interface RepositoryModule {
 
     @Binds
     @AppScope
-    fun provideFavRepository(
+    @SoundCloudQualifier
+    fun provideSoundCloudFavTracksRepository(
         tracksSoundcloudRepository: TracksRepositorySoundcloudImpl
+    ): TracksRepository
+
+    @Binds
+    @AppScope
+    @SpotifyQualifier
+    fun provideSpotifyFavTracksRepository(
+        tracksSpotifyRepository: TracksRepositorySpotifyImpl
     ): TracksRepository
 }
