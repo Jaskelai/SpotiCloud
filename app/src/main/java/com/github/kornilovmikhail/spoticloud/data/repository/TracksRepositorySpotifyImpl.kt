@@ -1,21 +1,20 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
-import com.github.kornilovmikhail.spoticloud.data.mappers.mapSoundCloudTrackResponseToTrack
-import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
+import com.github.kornilovmikhail.spoticloud.data.mappers.mapSpotifyTrackRemoteToTrack
+import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyAuthedApi
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class TracksRepositorySoundcloudImpl @Inject constructor(
-    private val soundCloudAuthedApi: SoundCloudAuthedApi
+class TracksRepositorySpotifyImpl @Inject constructor(
+    private val spotifyAuthedApi: SpotifyAuthedApi
 ) : TracksRepository {
-
     override fun getFavTracks(): Single<List<Track>> {
-        return soundCloudAuthedApi.getFavoriteTracks()
+        return spotifyAuthedApi.getFavoriteTracks()
             .map {
-                it.map { track -> mapSoundCloudTrackResponseToTrack(track)}
+                it.items.map { track -> mapSpotifyTrackRemoteToTrack(track.track) }
             }
             .subscribeOn(Schedulers.io())
     }
