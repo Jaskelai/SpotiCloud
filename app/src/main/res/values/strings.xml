@@ -20,4 +20,5 @@
     <string name="my_tracks">My tracks</string>
     <string name="trends">Trends</string>
     <string name="track_cover">Track cover</string>
+    <string name="favourite_tracks">Favourite tracks</string>
 </resources>

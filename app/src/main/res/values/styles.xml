@@ -74,4 +74,8 @@
         <item name="android:textColor">@color/color_black_text</item>
     </style>
 
+    <style name="TextRegular.Toolbar">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/color_primary</item>
+    </style>
 </resources>

@@ -25,9 +25,11 @@ class BottomNavContainerFragment : BaseFragment() {
     @Inject
     @field:BottomNavQualifier
     lateinit var navigator: Navigator
+
     @Inject
     @field:BottomNavQualifier
     lateinit var navigatorHolder: NavigatorHolder
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 

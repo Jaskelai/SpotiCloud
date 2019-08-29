@@ -13,8 +13,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListFragment">
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include
+                    layout="@layout/toolbar"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_tracks"
@@ -22,8 +28,9 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ProgressBar
                 android:id="@+id/progress_bar_track_list"

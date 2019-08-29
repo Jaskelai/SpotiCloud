@@ -14,6 +14,7 @@ import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_track_list.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class TrackListFragment : BaseFragment(), TrackListClickListener {
@@ -23,8 +24,10 @@ class TrackListFragment : BaseFragment(), TrackListClickListener {
         fun getInstance() = TrackListFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject lateinit var trackListAdapter: TrackListAdapter
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var trackListAdapter: TrackListAdapter
 
     private lateinit var trackListViewModel: TrackListViewModel
 
@@ -50,6 +53,7 @@ class TrackListFragment : BaseFragment(), TrackListClickListener {
 
     override fun setupViews() {
         setupRecyclerView()
+        setupToolbar()
     }
 
     override fun subscribe() {
@@ -65,10 +69,14 @@ class TrackListFragment : BaseFragment(), TrackListClickListener {
     }
 
     private fun setupRecyclerView() {
-        rv_list_tracks.adapter = trackListAdapter
-        rv_list_tracks.setHasFixedSize(true)
-        rv_list_tracks.addItemDecoration(
-            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        )
+        rv_list_tracks.apply {
+            adapter = trackListAdapter
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        }
+    }
+
+    private fun setupToolbar() {
+        toolbar_text?.text = getString(R.string.favourite_tracks)
     }
 }
