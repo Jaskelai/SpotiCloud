@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.start.di
 
 import androidx.lifecycle.ViewModel
-import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
+import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.start.StartViewModel
 import dagger.Binds
 import dagger.Module

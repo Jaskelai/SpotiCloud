@@ -6,7 +6,7 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNa
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouter
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouterCiceroneImpl
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
-import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
+import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

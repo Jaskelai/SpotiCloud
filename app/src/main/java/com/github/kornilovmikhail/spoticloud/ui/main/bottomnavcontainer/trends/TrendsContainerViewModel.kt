@@ -2,9 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.Lifecycle
 import com.github.kornilovmikhail.spoticloud.domain.interactors.TrendsSoundCloudUseCase
 import com.github.kornilovmikhail.spoticloud.domain.interactors.TrendsSpotifyUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
@@ -23,7 +21,11 @@ class TrendsContainerViewModel @Inject constructor(
 
     private val disposables = CompositeDisposable()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    init {
+        fetchSoundCloudTracks()
+        fetchSpotifyTracks()
+    }
+
     fun fetchSoundCloudTracks() {
         disposables.add(
             trendsSoundCloudUseCase.getTrendsTracks()
@@ -42,7 +44,6 @@ class TrendsContainerViewModel @Inject constructor(
         )
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun fetchSpotifyTracks() {
         disposables.add(
             trendsSpotifyUseCase.getTrendsTracks()

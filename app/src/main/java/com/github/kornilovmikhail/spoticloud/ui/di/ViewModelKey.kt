@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.di
+package com.github.kornilovmikhail.spoticloud.ui.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
