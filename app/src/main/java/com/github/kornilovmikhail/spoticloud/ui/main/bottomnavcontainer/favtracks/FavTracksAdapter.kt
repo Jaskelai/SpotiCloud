@@ -1,19 +1,20 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.TrackListItemBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
 import javax.inject.Inject
 
-class TrackListAdapter @Inject constructor(
-    private val clickListener: TrackListClickListener
-) : ListAdapter<Track, TrackListAdapter.TrackViewHolder>(TrackDiffUtilCallback()) {
+class FavTracksAdapter @Inject constructor(
+    private val clickListener: TrackClickListener
+) : ListAdapter<Track, FavTracksAdapter.TrackViewHolder>(TrackDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,21 +34,9 @@ class TrackListAdapter @Inject constructor(
     inner class TrackViewHolder(private val binding: TrackListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(item: Track, trackListClickListener: TrackListClickListener) {
+        fun onBind(item: Track, trackClickListener: TrackClickListener) {
             binding.track = item
             binding.executePendingBindings()
         }
-    }
-}
-
-class TrackDiffUtilCallback : DiffUtil.ItemCallback<Track>() {
-
-    override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean {
-        return (oldItem.id == newItem.id) && (oldItem.title == newItem.title)
-    }
-
-    override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean {
-        return (oldItem.title == newItem.title) && (oldItem.artworkUrl == newItem.artworkUrl)
-                && (oldItem.author == newItem.author)
     }
 }

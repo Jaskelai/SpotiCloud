@@ -16,6 +16,11 @@ class TracksRepositorySpotifyImpl @Inject constructor(
     private val spotifyAuthedApi: SpotifyAuthedApi,
     private val trackDao: TrackDao
 ) : TracksRepository {
+
+    companion object {
+        private const val TRENDS_PLAYLIST_ID = "37i9dQZEVXbMDoHDwVN2tF"
+    }
+
     override fun getFavTracks(): Single<List<Track>> {
         return spotifyAuthedApi.getFavoriteTracks()
             .map {
@@ -30,6 +35,16 @@ class TracksRepositorySpotifyImpl @Inject constructor(
             }
             .map {
                 it.map { trackDB -> mapTrackDBToTrack(trackDB) }
+            }
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getTrendTracks(): Single<List<Track>> {
+        return spotifyAuthedApi.getTracksFromPlaylist(TRENDS_PLAYLIST_ID)
+            .map {
+                it.items.map { trackRemoteContainer ->
+                    mapSpotifyTrackRemoteToTrack(trackRemoteContainer.track)
+                }
             }
             .subscribeOn(Schedulers.io())
     }

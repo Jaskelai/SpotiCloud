@@ -1,17 +1,15 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.Lifecycle
 import com.github.kornilovmikhail.spoticloud.domain.interactors.FavTracksUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class TrackListViewModel @Inject constructor(
+class FavTracksViewModel @Inject constructor(
     private val favTracksUseCase: FavTracksUseCase
 ) : ViewModel(), LifecycleObserver {
 
@@ -20,8 +18,11 @@ class TrackListViewModel @Inject constructor(
 
     private val disposables = CompositeDisposable()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun fetchTracks() {
+    init {
+        fetchTracks()
+    }
+
+    private fun fetchTracks() {
         disposables.add(
             favTracksUseCase.getFavTracks()
                 .doOnSubscribe {

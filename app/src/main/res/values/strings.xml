@@ -5,9 +5,6 @@
     <string name="start_choice">OR/AND</string>
     <string name="signin_soundcloud">Sign in with SoundCloud</string>
     <string name="signin_spotify">Sign in with Spotify</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="header_soundcloud_auth">Sign in with SoundCloud</string>
     <string name="email">email</string>
     <string name="password">password</string>
@@ -20,4 +17,7 @@
     <string name="my_tracks">My tracks</string>
     <string name="trends">Trends</string>
     <string name="track_cover">Track cover</string>
+    <string name="favourite_tracks">Favourite tracks</string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="spotify">Spotify</string>
 </resources>

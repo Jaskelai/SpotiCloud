@@ -25,9 +25,11 @@ class BottomNavContainerFragment : BaseFragment() {
     @Inject
     @field:BottomNavQualifier
     lateinit var navigator: Navigator
+
     @Inject
     @field:BottomNavQualifier
     lateinit var navigatorHolder: NavigatorHolder
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -55,6 +57,22 @@ class BottomNavContainerFragment : BaseFragment() {
     }
 
     override fun setupViews() {
+        setupBottomBar()
+    }
+
+    override fun subscribe() {
+        lifecycle.addObserver(viewModel)
+
+        viewModel.selectedItemLiveData.observe(this, Observer {
+            if (it == BottomNavContainerViewModel.FAV_TRACKS_SCREEN) {
+                bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
+            }
+        })
+    }
+
+    fun getContainerId(): Int = R.id.container_bottom_nav
+
+    private fun setupBottomBar() {
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_action_search -> viewModel.onSearchBottomBtnClicked()
@@ -64,26 +82,4 @@ class BottomNavContainerFragment : BaseFragment() {
             true
         }
     }
-
-    override fun subscribe() {
-        lifecycle.addObserver(viewModel)
-
-        viewModel.selecteditemLiveData.observe(this, Observer {
-            when (it) {
-                BottomNavContainerViewModel.SEARCH_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_search
-                }
-                BottomNavContainerViewModel.TRACK_LIST_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
-                }
-                BottomNavContainerViewModel.TRENDS_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_trends
-                }
-                else -> {
-                }
-            }
-        })
-    }
-
-    fun getContainerId(): Int = R.id.container_bottom_nav
 }

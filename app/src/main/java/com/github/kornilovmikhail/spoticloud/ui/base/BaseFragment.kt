@@ -16,8 +16,8 @@ abstract class BaseFragment: Fragment(), HasAndroidInjector {
 
     override fun onAttach(context: Context) {
         inject()
-        super.onAttach(context)
         injectViewModel()
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

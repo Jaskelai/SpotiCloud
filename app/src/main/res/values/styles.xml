@@ -13,6 +13,10 @@
         <item name="android:fontFamily">@font/oxygen</item>
     </style>
 
+    <style name="TextRegular.ColorBlack">
+        <item name="android:textColor">@color/color_black_text</item>
+    </style>
+
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="android:indeterminateTint">@color/color_primary</item>
     </style>
@@ -74,4 +78,8 @@
         <item name="android:textColor">@color/color_black_text</item>
     </style>
 
+    <style name="TextRegular.Toolbar">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/color_primary</item>
+    </style>
 </resources>

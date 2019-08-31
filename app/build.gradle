@@ -13,6 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "SOUNDCLOUD_URL", "\"https://api.soundcloud.com/\""
+        buildConfigField "String", "SOUNDCLOUD_URL_V2", "\"https://api-v2.soundcloud.com/\""
         buildConfigField "String", "SOUNDCLOUD_CLIENT_ID", "\"51762b5b2ec86582ea95a9d816077654\""
         buildConfigField "String", "SOUNDCLOUD_CLIENT_SECRET", "\"9923d03b898d96820129c1b6720d915c\""
         buildConfigField "String", "SPOTIFY_URL", "\"https://api.spotify.com/v1/\""
@@ -49,6 +50,9 @@ dependencies {
     //constraint
     def constraintVersion = '2.0.0-beta2'
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    //viewpager
+    def viewpagerVersion = '1.0.0-beta03'
+    implementation "androidx.viewpager2:viewpager2:$viewpagerVersion"
     //appcompat
     def appCompatVersion = '1.1.0-rc01'
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
