@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,9 +12,9 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackCli
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
 import javax.inject.Inject
 
-class TrackListAdapter @Inject constructor(
+class FavTracksAdapter @Inject constructor(
     private val clickListener: TrackClickListener
-) : ListAdapter<Track, TrackListAdapter.TrackViewHolder>(TrackDiffUtilCallback()) {
+) : ListAdapter<Track, FavTracksAdapter.TrackViewHolder>(TrackDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

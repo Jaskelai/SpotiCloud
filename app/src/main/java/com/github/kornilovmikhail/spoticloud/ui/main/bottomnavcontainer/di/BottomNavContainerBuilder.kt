@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di
 
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.di.TrackListBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks.di.FavTracksBuilder
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.di.TrendsContainerBuilder
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import dagger.Module
@@ -13,7 +13,7 @@ interface BottomNavContainerBuilder {
     @ScreenScope
     @ContributesAndroidInjector(
         modules = [
-            TrackListBuilder::class,
+            FavTracksBuilder::class,
             TrendsContainerBuilder::class,
             BottomNavContainerModule::class
         ]

@@ -8,7 +8,7 @@
 
         <variable
                 name="viewModel"
-                type="com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListViewModel" />
+                type="com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks.FavTracksViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,45 +9,45 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
-import com.github.kornilovmikhail.spoticloud.databinding.FragmentTrackListBinding
+import com.github.kornilovmikhail.spoticloud.databinding.FragmentFavTracksBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
-import kotlinx.android.synthetic.main.fragment_track_list.*
+import kotlinx.android.synthetic.main.fragment_fav_tracks.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class TrackListFragment : BaseFragment(), TrackClickListener {
+class FavTracksFragment : BaseFragment(), TrackClickListener {
 
     companion object {
 
-        fun getInstance() = TrackListFragment()
+        fun getInstance() = FavTracksFragment()
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject lateinit var trackListAdapter: TrackListAdapter
+    @Inject lateinit var favTracksAdapter: FavTracksAdapter
 
-    private lateinit var trackListViewModel: TrackListViewModel
+    private lateinit var favTracksViewModel: FavTracksViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTrackListBinding>(
+        val binding = DataBindingUtil.inflate<FragmentFavTracksBinding>(
             inflater,
-            R.layout.fragment_track_list,
+            R.layout.fragment_fav_tracks,
             container,
             false
         ).apply {
-            viewModel = trackListViewModel
-            lifecycleOwner = this@TrackListFragment
+            viewModel = favTracksViewModel
+            lifecycleOwner = this@FavTracksFragment
         }
         return binding.root
     }
 
     override fun injectViewModel() {
-        trackListViewModel = injectViewModel(viewModelFactory)
+        favTracksViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
@@ -56,10 +56,10 @@ class TrackListFragment : BaseFragment(), TrackClickListener {
     }
 
     override fun subscribe() {
-        lifecycle.addObserver(trackListViewModel)
+        lifecycle.addObserver(favTracksViewModel)
 
-        trackListViewModel.trackListLiveData.observe(this, Observer {
-            trackListAdapter.submitList(it)
+        favTracksViewModel.trackListLiveData.observe(this, Observer {
+            favTracksAdapter.submitList(it)
         })
     }
 
@@ -69,7 +69,7 @@ class TrackListFragment : BaseFragment(), TrackClickListener {
 
     private fun setupRecyclerView() {
         rv_list_tracks.apply {
-            adapter = trackListAdapter
+            adapter = favTracksAdapter
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
