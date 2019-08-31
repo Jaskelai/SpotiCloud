@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.di
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.MainActivity
 import com.github.kornilovmikhail.spoticloud.ui.main.MainViewModel
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
@@ -26,9 +26,6 @@ abstract class MainActivityModule {
             return SupportAppNavigator(mainActivity, mainActivity.getContainerId())
         }
     }
-
-    @Binds
-    abstract fun provideViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap

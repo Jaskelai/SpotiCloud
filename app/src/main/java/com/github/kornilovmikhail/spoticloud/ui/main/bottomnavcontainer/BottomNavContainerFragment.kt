@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
@@ -61,6 +62,12 @@ class BottomNavContainerFragment : BaseFragment() {
 
     override fun subscribe() {
         lifecycle.addObserver(viewModel)
+
+        viewModel.selectedItemLiveData.observe(this, Observer {
+            if (it == BottomNavContainerViewModel.FAV_TRACKS_SCREEN) {
+                bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
+            }
+        })
     }
 
     fun getContainerId(): Int = R.id.container_bottom_nav
@@ -74,6 +81,5 @@ class BottomNavContainerFragment : BaseFragment() {
             }
             true
         }
-        bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
     }
 }

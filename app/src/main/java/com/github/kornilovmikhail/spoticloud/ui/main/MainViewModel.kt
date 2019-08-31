@@ -1,8 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.ui.main
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.domain.interactors.CommonAuthUseCase
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
@@ -13,17 +11,15 @@ class MainViewModel @Inject constructor(
     private val commonAuthUseCase: CommonAuthUseCase
 ) : ViewModel(), LifecycleObserver {
 
-    private var isFirst = true
+    init {
+        navigateToStartScreen()
+    }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun navigateToStartScreen() {
-        if (isFirst) {
-            if (commonAuthUseCase.checkAuth()) {
-                globalRouter.navigateToBottomNavScreen()
-            } else {
-                globalRouter.navigateToStartScreen()
-            }
-            isFirst = false
+    private fun navigateToStartScreen() {
+        if (commonAuthUseCase.checkAuth()) {
+            globalRouter.navigateToBottomNavScreen()
+        } else {
+            globalRouter.navigateToStartScreen()
         }
     }
 }

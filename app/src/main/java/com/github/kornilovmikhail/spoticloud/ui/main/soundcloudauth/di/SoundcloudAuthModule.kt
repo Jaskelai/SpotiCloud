@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.di
 
 import androidx.lifecycle.ViewModel
-import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
+import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthViewModel
 import dagger.Binds
 import dagger.Module

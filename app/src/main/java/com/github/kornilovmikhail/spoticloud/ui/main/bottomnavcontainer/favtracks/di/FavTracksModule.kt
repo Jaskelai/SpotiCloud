@@ -5,7 +5,7 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.Botto
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks.FavTracksFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks.FavTracksViewModel
-import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
+import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -14,11 +14,11 @@ import dagger.multibindings.IntoMap
 interface FavTracksModule {
 
     @Binds
+    @BottomScreenScope
+    fun provideTrackClickListener(favTracksFragment: FavTracksFragment): TrackClickListener
+
+    @Binds
     @IntoMap
     @ViewModelKey(FavTracksViewModel::class)
     fun provideTrackListViewModel(favTracksViewModel: FavTracksViewModel): ViewModel
-
-    @Binds
-    @BottomScreenScope
-    fun provideTrackClickListener(favTracksFragment: FavTracksFragment): TrackClickListener
 }
