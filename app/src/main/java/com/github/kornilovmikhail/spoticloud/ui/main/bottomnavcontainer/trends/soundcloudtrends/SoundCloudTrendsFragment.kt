@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
+import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsContainerViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsListAdapter
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.soundcloudtrends.di.SoundCloudTrendsQualifier
 import com.github.kornilovmikhail.spoticloud.utils.injectParentViewModel
 import kotlinx.android.synthetic.main.fragment_soundcloud_trends.*
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class SoundCloudTrendsFragment : BaseFragment(), TrackClickListener {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    @field:SoundCloudTrendsQualifier
+    @field:SoundCloudQualifier
     lateinit var trendsListAdapter: TrendsListAdapter
 
     private lateinit var trendsContainerViewModel: TrendsContainerViewModel

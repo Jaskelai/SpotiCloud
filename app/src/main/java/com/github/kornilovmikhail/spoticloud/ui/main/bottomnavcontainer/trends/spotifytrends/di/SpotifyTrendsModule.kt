@@ -1,5 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.spotifytrends.di
 
+import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsListAdapter
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.di.TrendsScope
@@ -16,10 +17,10 @@ abstract class SpotifyTrendsModule {
 
         @Provides
         @TrendsScope
-        @SpotifyTrendsQualifier
+        @SpotifyQualifier
         @JvmStatic
         fun provideTrendsSoundCloudAdapter(
-            @SpotifyTrendsQualifier trackClickListener: TrackClickListener
+            @SpotifyQualifier trackClickListener: TrackClickListener
         ): TrendsListAdapter {
             return TrendsListAdapter(trackClickListener)
         }
@@ -27,7 +28,7 @@ abstract class SpotifyTrendsModule {
 
     @Binds
     @TrendsScope
-    @SpotifyTrendsQualifier
+    @SpotifyQualifier
     abstract fun provideSpotifyTrendsClickListener(
         spotifyTrendsFragment: SpotifyTrendsFragment
     ): TrackClickListener
