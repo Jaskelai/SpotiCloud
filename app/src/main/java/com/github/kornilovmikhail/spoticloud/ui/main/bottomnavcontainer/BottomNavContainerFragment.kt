@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
@@ -57,6 +56,16 @@ class BottomNavContainerFragment : BaseFragment() {
     }
 
     override fun setupViews() {
+        setupBottomBar()
+    }
+
+    override fun subscribe() {
+        lifecycle.addObserver(viewModel)
+    }
+
+    fun getContainerId(): Int = R.id.container_bottom_nav
+
+    private fun setupBottomBar() {
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_action_search -> viewModel.onSearchBottomBtnClicked()
@@ -65,27 +74,6 @@ class BottomNavContainerFragment : BaseFragment() {
             }
             true
         }
+        bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
     }
-
-    override fun subscribe() {
-        lifecycle.addObserver(viewModel)
-
-        viewModel.selecteditemLiveData.observe(this, Observer {
-            when (it) {
-                BottomNavContainerViewModel.SEARCH_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_search
-                }
-                BottomNavContainerViewModel.TRACK_LIST_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
-                }
-                BottomNavContainerViewModel.TRENDS_ITEM -> {
-                    bottom_nav_view.selectedItemId = R.id.bottom_action_trends
-                }
-                else -> {
-                }
-            }
-        })
-    }
-
-    fun getContainerId(): Int = R.id.container_bottom_nav
 }

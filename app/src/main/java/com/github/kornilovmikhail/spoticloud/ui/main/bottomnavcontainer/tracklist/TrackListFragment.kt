@@ -12,22 +12,21 @@ import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentTrackListBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_track_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class TrackListFragment : BaseFragment(), TrackListClickListener {
+class TrackListFragment : BaseFragment(), TrackClickListener {
 
     companion object {
 
         fun getInstance() = TrackListFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var trackListAdapter: TrackListAdapter
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var trackListAdapter: TrackListAdapter
 
     private lateinit var trackListViewModel: TrackListViewModel
 

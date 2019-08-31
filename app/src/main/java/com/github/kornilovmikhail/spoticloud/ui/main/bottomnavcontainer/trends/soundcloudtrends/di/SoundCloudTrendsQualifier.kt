@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.di
+package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.soundcloudtrends.di
 
 import javax.inject.Qualifier
 
@@ -9,7 +9,6 @@ import javax.inject.Qualifier
     AnnotationTarget.VALUE_PARAMETER,
     AnnotationTarget.FUNCTION,
     AnnotationTarget.PROPERTY_GETTER,
-    AnnotationTarget.PROPERTY_SETTER,
-    AnnotationTarget.CONSTRUCTOR
+    AnnotationTarget.PROPERTY_SETTER
 )
-annotation class SoundCloudQualifier
+annotation class SoundCloudTrendsQualifier

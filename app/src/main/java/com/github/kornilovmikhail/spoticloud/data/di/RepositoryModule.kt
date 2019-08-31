@@ -1,6 +1,8 @@
 package com.github.kornilovmikhail.spoticloud.data.di
 
 import com.github.kornilovmikhail.spoticloud.data.repository.*
+import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
+import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
