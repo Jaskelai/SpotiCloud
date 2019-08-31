@@ -13,3 +13,10 @@ inline fun <reified T : ViewModel> FragmentActivity.injectViewModel(factory: Vie
 inline fun <reified T : ViewModel> Fragment.injectViewModel(factory: ViewModelProvider.Factory): T {
     return ViewModelProviders.of(this, factory)[T::class.java]
 }
+
+inline fun <reified T : ViewModel> Fragment.injectParentViewModel(factory: ViewModelProvider.Factory): T {
+    parentFragment?.let {
+        return ViewModelProviders.of(it, factory)[T::class.java]
+    }
+    return ViewModelProviders.of(this, factory)[T::class.java]
+}

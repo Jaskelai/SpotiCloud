@@ -3,4 +3,6 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigat
 interface LocalBottomNavRouter {
 
     fun navigateToTrackListScreen()
+
+    fun navigateToTrendsScreen()
 }

@@ -5,6 +5,7 @@ import com.github.kornilovmikhail.spoticloud.data.TokenHelperSoundcloud
 import com.github.kornilovmikhail.spoticloud.data.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
+import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudV2AuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyAuthedApi
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import dagger.Module
@@ -22,9 +23,11 @@ class NetworkModule {
 
     companion object {
         private const val SOUNDCLOUD_URL = "soundcloud_url"
+        private const val SOUNDCLOUD_V2_URL = "soundcloud_v2_url"
         private const val SPOTIFY_URL = "spotify_url"
         private const val RETROFIT_SOUNDCLOUD_NOT_AUTHED = "retrofit_soundcloud_no_authed"
         private const val RETROFIT_SOUNDCLOUD_AUTHED = "retrofit_soundcloud_authed"
+        private const val RETROFIT_SOUNDCLOUD_V2_AUTHED = "retrofit_soundcloud_v2_authed"
         private const val RETROFIT_SPOTIFY_AUTHED = "retrofit_spotify_authed"
     }
 
@@ -127,6 +130,36 @@ class NetworkModule {
 
     @Provides
     @AppScope
+    @Named(SOUNDCLOUD_V2_URL)
+    fun provideSoundcloudV2BaseUrl(): String = BuildConfig.SOUNDCLOUD_URL_V2
+
+    @Provides
+    @AppScope
+    @Named(RETROFIT_SOUNDCLOUD_V2_AUTHED)
+    fun provideRetrofitAuthedV2SoundCloud(
+        gsonConverterFactory: GsonConverterFactory,
+        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
+        @Named(RETROFIT_SOUNDCLOUD_AUTHED) clientOkHttpClient: OkHttpClient,
+        @Named(SOUNDCLOUD_V2_URL) baseURL: String
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseURL)
+            .client(clientOkHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(rxJava2CallAdapterFactory)
+            .build()
+    }
+
+    @Provides
+    @AppScope
+    fun provideSoundCloudV2AuthedApi(
+        @Named(RETROFIT_SOUNDCLOUD_V2_AUTHED) retrofit: Retrofit
+    ): SoundCloudV2AuthedApi {
+        return retrofit.create(SoundCloudV2AuthedApi::class.java)
+    }
+
+    @Provides
+    @AppScope
     @Named(SPOTIFY_URL)
     fun provideSpotifyBaseUrl(): String = BuildConfig.SPOTIFY_URL
 
@@ -172,7 +205,7 @@ class NetworkModule {
 
             val token = tokenHelper.getToken()
 
-            token?.let {token ->
+            token?.let { token ->
                 request = request.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
                     .build()

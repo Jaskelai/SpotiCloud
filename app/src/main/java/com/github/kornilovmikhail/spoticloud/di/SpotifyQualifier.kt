@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.di
+package com.github.kornilovmikhail.spoticloud.di
 
 import javax.inject.Qualifier
 
@@ -12,4 +12,4 @@ import javax.inject.Qualifier
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.CONSTRUCTOR
 )
-annotation class SoundCloudQualifier
+annotation class SpotifyQualifier

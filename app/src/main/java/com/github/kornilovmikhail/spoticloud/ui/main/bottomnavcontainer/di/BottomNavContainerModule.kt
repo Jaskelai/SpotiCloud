@@ -11,9 +11,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 @Module
@@ -21,33 +19,6 @@ abstract class BottomNavContainerModule {
 
     @Module
     companion object {
-
-        @Provides
-        @ScreenScope
-        @JvmStatic
-        fun provideLocalRouterCiceroneImpl(): LocalBottomNavRouterCiceroneImpl {
-            return LocalBottomNavRouterCiceroneImpl()
-        }
-
-        @Provides
-        @ScreenScope
-        @BottomNavQualifier
-        @JvmStatic
-        fun provideCicerone(
-            localCiceroneRouter: LocalBottomNavRouterCiceroneImpl
-        ): Cicerone<LocalBottomNavRouterCiceroneImpl> {
-            return Cicerone.create(localCiceroneRouter)
-        }
-
-        @Provides
-        @ScreenScope
-        @BottomNavQualifier
-        @JvmStatic
-        fun provideNavigatorHolder(
-            @BottomNavQualifier cicerone: Cicerone<LocalBottomNavRouterCiceroneImpl>
-        ): NavigatorHolder {
-            return cicerone.navigatorHolder
-        }
 
         @Provides
         @ScreenScope

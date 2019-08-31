@@ -6,4 +6,6 @@ import io.reactivex.Single
 interface TracksRepository {
 
     fun getFavTracks(): Single<List<Track>>
+
+    fun getTrendTracks(): Single<List<Track>>
 }

@@ -2,7 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trackli
 
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomScreenScope
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.tracklist.TrackListViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ViewModelKey
@@ -20,5 +20,5 @@ interface TrackListModule {
 
     @Binds
     @BottomScreenScope
-    fun provideTrackListClickListener(trackListFragment: TrackListFragment): TrackListClickListener
+    fun provideTrackClickListener(trackListFragment: TrackListFragment): TrackClickListener
 }
