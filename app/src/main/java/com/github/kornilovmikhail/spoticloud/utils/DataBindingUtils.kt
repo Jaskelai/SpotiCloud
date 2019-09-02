@@ -7,7 +7,7 @@ import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("android:visibility")
+@BindingAdapter("android:isVisible")
 fun setVisibility(view: View, value: Boolean?) {
     value?.let {
         view.visibility = if (it) View.VISIBLE else View.INVISIBLE

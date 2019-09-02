@@ -6,7 +6,7 @@ import com.github.kornilovmikhail.spoticloud.domain.model.Author
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 
-fun mapSoundCloudTrackResponseToTrack(soundcloudTrack: TrackSoundCloudResponse): Track {
+fun mapSoundCloudTrackRemoteToTrack(soundcloudTrack: TrackSoundCloudResponse): Track {
     return with(soundcloudTrack) {
         Track(
             id.toString(),

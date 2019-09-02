@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
 import com.github.kornilovmikhail.spoticloud.data.local.db.dao.TrackDao
-import com.github.kornilovmikhail.spoticloud.data.mappers.mapSoundCloudTrackResponseToTrack
+import com.github.kornilovmikhail.spoticloud.data.mappers.mapSoundCloudTrackRemoteToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackDBToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackToTrackDB
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
@@ -30,7 +30,7 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
     override fun getFavTracks(): Single<List<Track>> {
         return soundCloudAuthedApi.getFavoriteTracks()
             .map {
-                it.map { track -> mapSoundCloudTrackResponseToTrack(track) }
+                it.map { track -> mapSoundCloudTrackRemoteToTrack(track) }
             }
             .flatMap {
                 trackDao.upsertSoundcloudTracks(it.map { track -> mapTrackToTrackDB(track) })
@@ -68,13 +68,21 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
             .subscribeOn(Schedulers.io())
     }
 
+    override fun searchForTracks(text: String): Single<List<Track>> {
+        return soundCloudAuthedApi.searchForTracks(text)
+            .map {
+                it.map { trackRemote -> mapSoundCloudTrackRemoteToTrack(trackRemote) }
+            }
+            .subscribeOn(Schedulers.io())
+    }
+
     private fun getTrackById(id: String): Single<Track> {
         return soundCloudAuthedApi.getTrack(id)
-            .onErrorResumeNext {
-                Single.just(TrackSoundCloudResponse(0, 0, 0, "", "", "", AuthorSoundCloudRemote("", "")))
+            .onErrorReturn {
+                TrackSoundCloudResponse(0, 0, 0, "", "", "", AuthorSoundCloudRemote("", ""))
             }
             .map {
-                mapSoundCloudTrackResponseToTrack(it)
+                mapSoundCloudTrackRemoteToTrack(it)
             }
             .subscribeOn(Schedulers.io())
     }

@@ -6,7 +6,7 @@ import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 
 private const val IMAGE_LOW_SIZE = 70
-private const val IMAGE_BIG_SIZE = 600
+private const val IMAGE_BIG_SIZE = 500
 
 fun mapSpotifyTrackRemoteToTrack(spotifyTrack: TrackSpotifyRemote): Track =
     with(spotifyTrack) {
