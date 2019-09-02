@@ -8,4 +8,6 @@ interface TracksRepository {
     fun getFavTracks(): Single<List<Track>>
 
     fun getTrendTracks(): Single<List<Track>>
+
+    fun searchForTracks(text: String): Single<List<Track>>
 }

@@ -5,4 +5,6 @@ interface LocalBottomNavRouter {
     fun navigateToTrackListScreen()
 
     fun navigateToTrendsScreen()
+
+    fun navigateToSearchScreen()
 }

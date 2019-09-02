@@ -20,7 +20,7 @@
                 android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
-                    android:id="@+id/toolbar_layout"
+                    android:id="@+id/toolbar_fav_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -46,7 +46,7 @@
                 style="@style/ProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{viewModel.progressBarVisibilityLiveData}"
+                android:isVisible="@{viewModel.progressBarVisibilityLiveData}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
