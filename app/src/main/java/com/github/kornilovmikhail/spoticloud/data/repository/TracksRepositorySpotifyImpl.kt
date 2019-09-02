@@ -19,6 +19,7 @@ class TracksRepositorySpotifyImpl @Inject constructor(
 
     companion object {
         private const val TRENDS_PLAYLIST_ID = "37i9dQZEVXbMDoHDwVN2tF"
+        private const val TYPE_TRACK = "track"
     }
 
     override fun getFavTracks(): Single<List<Track>> {
@@ -45,6 +46,14 @@ class TracksRepositorySpotifyImpl @Inject constructor(
                 it.items.map { trackRemoteContainer ->
                     mapSpotifyTrackRemoteToTrack(trackRemoteContainer.track)
                 }
+            }
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun searchForTracks(text: String): Single<List<Track>> {
+        return spotifyAuthedApi.searchForTracks(text, TYPE_TRACK)
+            .map {
+                it.tracks.items.map { trackRemote -> mapSpotifyTrackRemoteToTrack(trackRemote) }
             }
             .subscribeOn(Schedulers.io())
     }

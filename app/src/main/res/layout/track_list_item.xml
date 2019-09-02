@@ -40,7 +40,7 @@
 
         <TextView
                 android:id="@+id/tv_list_track_item_title"
-                style="@style/TextRegular.TrackItemTitle"
+                style="@style/TextRegular.ColorBlack.TrackItemTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
 
         <TextView
                 android:id="@+id/tv_list_track_item_author"
-                style="@style/TextRegular.TrackItemAuthor"
+                style="@style/TextRegular.ColorBlack.TrackItemAuthor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -79,4 +79,5 @@
                 tools:srcCompat="@tools:sample/avatars[2]" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -43,9 +43,8 @@
         <item name="android:backgroundTint">@drawable/selector_buttons_start</item>
     </style>
 
-    <style name="TextRegular.SoundcloudAuthRegularText">
+    <style name="TextRegular.ColorBlack.SoundcloudAuthRegularText">
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/color_black_text</item>
     </style>
 
     <style name="TextRegular.SoundcloudAuthErrorText">
@@ -60,22 +59,19 @@
         <item name="android:backgroundTint">@color/color_soundcloud_auth_buttons</item>
     </style>
 
-    <style name="RoundedEditTextLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:fontFamily">@font/oxygen</item>
+    <style name="TextRegular.RoundedEditTextLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxCornerRadiusBottomStart">8dp</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
         <item name="boxCornerRadiusTopStart">8dp</item>
     </style>
 
-    <style name="TextRegular.TrackItemTitle">
+    <style name="TextRegular.ColorBlack.TrackItemTitle">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/color_black_text</item>
     </style>
 
-    <style name="TextRegular.TrackItemAuthor">
+    <style name="TextRegular.ColorBlack.TrackItemAuthor">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/color_black_text</item>
     </style>
 
     <style name="TextRegular.Toolbar">

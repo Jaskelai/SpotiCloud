@@ -20,4 +20,5 @@
     <string name="favourite_tracks">Favourite tracks</string>
     <string name="soundcloud">SoundCloud</string>
     <string name="spotify">Spotify</string>
+    <string name="search_for_songs">Search for songs</string>
 </resources>

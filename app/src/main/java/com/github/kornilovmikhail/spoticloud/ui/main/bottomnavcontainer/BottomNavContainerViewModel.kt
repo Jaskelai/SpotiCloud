@@ -22,7 +22,8 @@ class BottomNavContainerViewModel @Inject constructor(
     }
 
     fun onSearchBottomBtnClicked() {
-
+        localBottomNavRouter.navigateToSearchScreen()
+        selectedItemLiveData.value = CURRENT_SCREEN
     }
 
     fun onTrackListBtnClicked() {

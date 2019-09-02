@@ -4,6 +4,7 @@ import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.Track
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SoundCloudAuthedApi {
 
@@ -12,4 +13,9 @@ interface SoundCloudAuthedApi {
 
     @GET("tracks/{id}")
     fun getTrack(@Path("id") id: String): Single<TrackSoundCloudResponse>
+
+    @GET("tracks")
+    fun searchForTracks(
+        @Query("q") text: String
+    ): Single<List<TrackSoundCloudResponse>>
 }
