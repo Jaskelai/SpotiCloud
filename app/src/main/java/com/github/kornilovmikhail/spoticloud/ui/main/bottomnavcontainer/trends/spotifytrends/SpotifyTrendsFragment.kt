@@ -11,14 +11,13 @@ import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsContainerViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsListAdapter
 import com.github.kornilovmikhail.spoticloud.utils.injectParentViewModel
 import kotlinx.android.synthetic.main.fragment_spotify_trends.*
 import javax.inject.Inject
 
-class SpotifyTrendsFragment : BaseFragment(), TrackClickListener {
+class SpotifyTrendsFragment : BaseFragment() {
 
     companion object {
 
@@ -61,8 +60,5 @@ class SpotifyTrendsFragment : BaseFragment(), TrackClickListener {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
-    }
-
-    override fun onClick(track: Track?) {
     }
 }

@@ -10,16 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentSearchBinding
-import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerViewModel
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import com.jakewharton.rxbinding3.widget.textChangeEvents
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment(), TrackClickListener {
+class SearchFragment : BaseFragment(){
 
     companion object {
 
@@ -30,6 +29,7 @@ class SearchFragment : BaseFragment(), TrackClickListener {
     @Inject lateinit var searchTracksAdapter: SearchTracksAdapter
 
     private lateinit var searchViewModel: SearchViewModel
+    private lateinit var bottomNavContainerViewModel: BottomNavContainerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +49,7 @@ class SearchFragment : BaseFragment(), TrackClickListener {
 
     override fun injectViewModel() {
         searchViewModel = injectViewModel(viewModelFactory)
+        bottomNavContainerViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
@@ -64,9 +65,6 @@ class SearchFragment : BaseFragment(), TrackClickListener {
         searchViewModel.searchResultLiveData.observe(this, Observer {
             searchTracksAdapter.submitList(it)
         })
-    }
-
-    override fun onClick(track: Track?) {
     }
 
     private fun setupRecyclerView() {

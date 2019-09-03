@@ -21,4 +21,6 @@
     <string name="soundcloud">SoundCloud</string>
     <string name="spotify">Spotify</string>
     <string name="search_for_songs">Search for songs</string>
+    <string name="prev_track">Previous track</string>
+    <string name="next_track">Next track</string>
 </resources>

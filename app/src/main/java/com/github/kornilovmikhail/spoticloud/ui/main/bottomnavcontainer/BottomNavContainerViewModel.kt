@@ -3,6 +3,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
+import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouter
 import javax.inject.Inject
 
@@ -16,6 +17,7 @@ class BottomNavContainerViewModel @Inject constructor(
     }
 
     val selectedItemLiveData = MutableLiveData<Int>()
+    val currentTrackLiveData = MutableLiveData<Track>()
 
     init {
         selectedItemLiveData.value = FAV_TRACKS_SCREEN
@@ -34,5 +36,11 @@ class BottomNavContainerViewModel @Inject constructor(
     fun onTrendsBtnClicked() {
         localBottomNavRouter.navigateToTrendsScreen()
         selectedItemLiveData.value = CURRENT_SCREEN
+    }
+
+    fun play(track: Track?) {
+        track?.let {
+            currentTrackLiveData.value = it
+        }
     }
 }

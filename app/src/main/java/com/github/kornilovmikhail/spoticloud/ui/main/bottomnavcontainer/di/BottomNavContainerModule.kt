@@ -7,6 +7,7 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigati
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouterCiceroneImpl
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,12 @@ abstract class BottomNavContainerModule {
     abstract fun provideLocalBottomNavRouter(
         localBottomNavRouter: LocalBottomNavRouterCiceroneImpl
     ): LocalBottomNavRouter
+
+    @Binds
+    @ScreenScope
+    abstract fun provideTrackClickListener(
+        bottomNavContainerFragment: BottomNavContainerFragment
+    ): TrackClickListener
 
     @Binds
     @IntoMap

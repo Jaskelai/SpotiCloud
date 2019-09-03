@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="track"
+                type="com.github.kornilovmikhail.spoticloud.domain.model.Track" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/footer_player"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@color/color_white">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/iv_footer_player_cover_container"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                    android:id="@+id/iv_footer_player_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/track_cover"
+                    android:imageUrl="@{track.artworkLowSizeUrl ?? track.artworkUrl}"
+                    android:scaleType="fitCenter"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+                android:id="@+id/tv_footer_player_title"
+                style="@style/TextRegular.ColorBlack.TrackTitleFooter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:autoScrolling="@{true}"
+                android:singleLine="true"
+                android:text="@{track.title}"
+                app:layout_constraintBottom_toTopOf="@id/tv_footer_player_author"
+                app:layout_constraintEnd_toStartOf="@id/gd_footer_player_actions"
+                app:layout_constraintStart_toEndOf="@id/iv_footer_player_cover_container"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+                android:id="@+id/tv_footer_player_author"
+                style="@style/TextRegular.ColorBlack.TrackAuthorFooter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoScrolling="@{true}"
+                android:singleLine="true"
+                android:text="@{track.author.name}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/gd_footer_player_actions"
+                app:layout_constraintStart_toStartOf="@id/tv_footer_player_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_footer_player_title"
+                tools:text="@tools:sample/lorem/random" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gd_footer_player_actions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
+
+        <ImageButton
+                android:id="@+id/btn_footer_player_prev"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_footer_prev"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:contentDescription="@string/prev_track"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_footer_player_play_pause"
+                app:layout_constraintStart_toStartOf="@id/gd_footer_player_actions"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+                android:id="@+id/btn_footer_player_play_pause"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_play_pause_footer"
+                android:elevation="4dp"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintEnd_toStartOf="@id/btn_footer_player_next"
+                app:layout_constraintStart_toEndOf="@id/btn_footer_player_prev"
+                app:layout_constraintTop_toTopOf="@id/btn_footer_player_prev" />
+
+        <ImageButton
+                android:id="@+id/btn_footer_player_next"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_footer_next"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:contentDescription="@string/next_track"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_footer_player_play_pause"
+                app:layout_constraintTop_toTopOf="@id/btn_footer_player_prev" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

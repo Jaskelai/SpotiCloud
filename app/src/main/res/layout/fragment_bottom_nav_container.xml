@@ -3,24 +3,32 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".ui.main.bottomnavcontainer.BottomNavContainerFragment">
 
     <FrameLayout
             android:id="@+id/container_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
+            app:layout_constraintBottom_toTopOf="@id/vs_footer_player"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <ViewStub
+            android:id="@+id/vs_footer_player"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:inflatedId="@+id/vs_footer_player"
+            android:layout="@layout/layout_footer_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
             style="@style/Widget.MaterialComponents.BottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_gravity="bottom"
             app:itemIconTint="@drawable/selector_bottom_nav_colors"
             app:itemTextColor="@drawable/selector_bottom_nav_colors"
             app:labelVisibilityMode="unlabeled"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+
+            <item android:drawable="@drawable/ripple_prev">
+            </item>
+        </layer-list>
+    </item>
+</selector>

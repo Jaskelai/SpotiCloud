@@ -36,6 +36,9 @@ class SearchTracksAdapter @Inject constructor(
 
         fun onBind(item: Track, trackClickListener: TrackClickListener) {
             binding.track = item
+            binding.root.setOnClickListener {
+                trackClickListener.onClick(item)
+            }
             binding.executePendingBindings()
         }
     }
