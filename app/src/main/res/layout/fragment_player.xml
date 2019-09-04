@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.github.kornilovmikhail.spoticloud.ui.main.player.PlayerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.main.player.PlayerFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_back_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back_black_48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_player_item_source"
+                app:layout_constraintBottom_toBottomOf="@id/iv_player_item_source"/>
+
+        <TextView
+                android:id="@+id/tv_player_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/now_playing"
+                app:layout_constraintTop_toTopOf="@id/iv_player_item_source"
+                app:layout_constraintBottom_toBottomOf="@id/iv_player_item_source"
+                app:layout_constraintStart_toEndOf="@id/btn_back_player"
+                app:layout_constraintEnd_toStartOf="@id/iv_player_item_source"
+                style="@style/TextRegular.ColorBlack.PlayerHeader"/>
+
+        <ImageView
+                android:id="@+id/iv_player_item_source"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/source"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:srcMusicResource="@{viewModel.trackLiveData.streamService}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars[2]" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
