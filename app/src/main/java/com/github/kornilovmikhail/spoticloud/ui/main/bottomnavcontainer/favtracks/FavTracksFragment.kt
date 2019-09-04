@@ -49,6 +49,11 @@ class FavTracksFragment : BaseFragment(){
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rv_list_tracks.adapter = null
+    }
+
     override fun injectViewModel() {
         favTracksViewModel = injectViewModel(viewModelFactory)
         bottomNavContainerViewModel = injectParentViewModel(viewModelFactory)

@@ -47,6 +47,11 @@ class SearchFragment : BaseFragment(){
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rv_search.adapter = null
+    }
+
     override fun injectViewModel() {
         searchViewModel = injectViewModel(viewModelFactory)
         bottomNavContainerViewModel = injectViewModel(viewModelFactory)

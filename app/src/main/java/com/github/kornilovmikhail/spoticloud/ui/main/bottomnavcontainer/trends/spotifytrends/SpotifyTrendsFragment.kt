@@ -40,6 +40,11 @@ class SpotifyTrendsFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_spotify_trends, container, false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rv_trends_spotify.adapter = null
+    }
+
     override fun injectViewModel() {
         trendsContainerViewModel = injectParentViewModel(viewModelFactory)
     }

@@ -40,6 +40,11 @@ class SoundCloudTrendsFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_soundcloud_trends, container, false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rv_trends_soundcloud.adapter = null
+    }
+
     override fun injectViewModel() {
         trendsContainerViewModel = injectParentViewModel(viewModelFactory)
     }
