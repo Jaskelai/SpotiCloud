@@ -5,7 +5,7 @@ import com.github.kornilovmikhail.spoticloud.domain.interfaces.CurrentTrackRepos
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.google.gson.Gson
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CurrentTrackRepositoryImpl @Inject constructor(
@@ -26,6 +26,6 @@ class CurrentTrackRepositoryImpl @Inject constructor(
             .map {
                 gson.fromJson(it, Track::class.java)
             }
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 }

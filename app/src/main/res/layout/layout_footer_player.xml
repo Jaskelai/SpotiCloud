@@ -6,6 +6,10 @@
     <data>
 
         <variable
+                name="isExist"
+                type="Boolean" />
+
+        <variable
                 name="track"
                 type="com.github.kornilovmikhail.spoticloud.domain.model.Track" />
     </data>
@@ -14,6 +18,7 @@
             android:id="@+id/footer_player"
             android:layout_width="match_parent"
             android:layout_height="72dp"
+            android:isExist="@{isExist}"
             android:background="@color/color_white">
 
         <View
@@ -100,7 +105,7 @@
                 android:id="@+id/btn_footer_player_play_pause"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="@drawable/selector_play_pause_footer"
+                android:background="@drawable/selector_play_pause"
                 android:elevation="4dp"
                 android:textOff=""
                 android:textOn=""

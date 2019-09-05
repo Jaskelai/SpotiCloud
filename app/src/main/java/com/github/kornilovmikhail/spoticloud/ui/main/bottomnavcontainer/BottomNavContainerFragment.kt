@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
+import com.github.kornilovmikhail.spoticloud.databinding.FragmentBottomNavContainerBinding
 import com.github.kornilovmikhail.spoticloud.databinding.LayoutFooterPlayerBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
@@ -36,16 +37,23 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: BottomNavContainerViewModel
-
-    private var footer: View? = null
-    private var footerBinding: LayoutFooterPlayerBinding? = null
+    private lateinit var bottomNavViewModel: BottomNavContainerViewModel
+    private lateinit var binding: FragmentBottomNavContainerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_nav_container, container, false)
+        binding = DataBindingUtil.inflate<FragmentBottomNavContainerBinding>(
+            inflater,
+            R.layout.fragment_bottom_nav_container,
+            container,
+            false
+        ).apply {
+            viewModel = bottomNavViewModel
+            lifecycleOwner = this@BottomNavContainerFragment
+        }
+        return binding.root
     }
 
     override fun onResume() {
@@ -59,35 +67,34 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
     }
 
     override fun injectViewModel() {
-        viewModel = injectViewModel(viewModelFactory)
+        bottomNavViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
         setupBottomBar()
-        setupFooterInflationListener()
+        setFooterClickListener()
     }
 
     override fun subscribe() {
-        lifecycle.addObserver(viewModel)
+        lifecycle.addObserver(bottomNavViewModel)
 
-        viewModel.selectedItemLiveData.observe(this, Observer {
+        bottomNavViewModel.selectedItemLiveData.observe(this, Observer {
             if (it == BottomNavContainerViewModel.FAV_TRACKS_SCREEN) {
                 bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
             }
         })
 
-        viewModel.currentTrackLiveData.observe(this, Observer { track ->
-            if (track != null) {
-                if (footer == null) {
-                    footer = vs_footer_player.inflate()
-                }
-                footerBinding?.track = track
-            }
+        bottomNavViewModel.isFooterEnabledLiveData.observe(this, Observer {
+            binding.includeFooterPlayer.isExist = it
+        })
+
+        bottomNavViewModel.currentTrackLiveData.observe(this, Observer { track ->
+            binding.includeFooterPlayer.track = track
         })
     }
 
-    override fun onClick(track: Track?) {
-        viewModel.play(track)
+    override fun onTrackClicked(track: Track?) {
+        bottomNavViewModel.play(track)
     }
 
     fun getContainerId(): Int = R.id.container_bottom_nav
@@ -96,15 +103,15 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_action_search -> {
-                    viewModel.onSearchBottomBtnClicked()
+                    bottomNavViewModel.onSearchBottomBtnClicked()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_tracks -> {
-                    viewModel.onTrackListBtnClicked()
+                    bottomNavViewModel.onTrackListBtnClicked()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_trends -> {
-                    viewModel.onTrendsBtnClicked()
+                    bottomNavViewModel.onTrendsBtnClicked()
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -112,9 +119,9 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         }
     }
 
-    private fun setupFooterInflationListener() {
-        vs_footer_player.setOnInflateListener { viewStub, view ->
-            footerBinding = DataBindingUtil.bind(view)
+    private fun setFooterClickListener() {
+        include_footer_player.setOnClickListener {
+            bottomNavViewModel.onFooterClicked()
         }
     }
 }

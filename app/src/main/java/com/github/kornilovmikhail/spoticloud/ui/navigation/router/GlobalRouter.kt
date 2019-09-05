@@ -16,4 +16,6 @@ interface GlobalRouter {
     )
 
     fun navigateToBottomNavScreen()
+
+    fun navigateToPlayerScreen()
 }

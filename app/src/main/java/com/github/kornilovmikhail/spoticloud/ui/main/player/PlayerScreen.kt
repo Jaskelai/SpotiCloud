@@ -1,6 +1,9 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.player
 
-class PlayerScreen {
+import androidx.fragment.app.Fragment
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
+class PlayerScreen: SupportAppScreen() {
 
+    override fun getFragment(): Fragment = PlayerFragment()
 }

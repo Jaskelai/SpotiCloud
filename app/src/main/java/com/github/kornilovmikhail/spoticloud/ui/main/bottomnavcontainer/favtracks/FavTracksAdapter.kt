@@ -37,7 +37,7 @@ class FavTracksAdapter @Inject constructor(
         fun onBind(item: Track, trackClickListener: TrackClickListener) {
             binding.track = item
             binding.root.setOnClickListener {
-                trackClickListener.onClick(item)
+                trackClickListener.onTrackClicked(item)
             }
             binding.executePendingBindings()
         }

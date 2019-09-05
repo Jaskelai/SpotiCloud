@@ -16,6 +16,13 @@ fun setVisibility(view: View, value: Boolean?) {
     }
 }
 
+@BindingAdapter("android:isExist")
+fun setExisting(view: View, value: Boolean?) {
+    value?.let {
+        view.visibility = if (it) View.VISIBLE else View.GONE
+    }
+}
+
 @BindingAdapter("android:imageUrl")
 fun setImage(view: ImageView, imageUrl: String?) {
     Picasso.get()
@@ -36,9 +43,10 @@ fun setAutoScrolling(view: TextView, value: Boolean?) {
 }
 
 @BindingAdapter("android:srcMusicResource")
-fun setSrcResource(view: ImageView, streamServiceEnum: StreamServiceEnum) {
+fun setSrcResource(view: ImageView, streamServiceEnum: StreamServiceEnum?) {
     when (streamServiceEnum) {
         StreamServiceEnum.SOUNDCLOUD -> view.setImageResource(R.drawable.ic_soundcloudlogo)
         StreamServiceEnum.SPOTIFY -> view.setImageResource(R.drawable.ic_spotifylogo)
+        else -> {}
     }
 }

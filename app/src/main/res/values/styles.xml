@@ -91,4 +91,12 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TextRegular.ColorBlack.PlayerTitle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextRegular.ColorBlack.PlayerAuthor">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

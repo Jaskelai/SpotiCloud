@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.player.PlayerScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.start.StartScreen
 import com.spotify.sdk.android.authentication.AuthenticationRequest
@@ -48,5 +49,9 @@ class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok
             BackTo(null),
             Replace(BottomNavContainerScreen())
         )
+    }
+
+    override fun navigateToPlayerScreen() {
+        executeCommands(Forward(PlayerScreen()))
     }
 }
