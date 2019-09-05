@@ -26,7 +26,7 @@ class TrendsContainerViewModel @Inject constructor(
         fetchSpotifyTracks()
     }
 
-    fun fetchSoundCloudTracks() {
+    private fun fetchSoundCloudTracks() {
         disposables.add(
             trendsSoundCloudUseCase.getTrendsTracks()
                 .doOnSubscribe {
@@ -44,7 +44,7 @@ class TrendsContainerViewModel @Inject constructor(
         )
     }
 
-    fun fetchSpotifyTracks() {
+    private fun fetchSpotifyTracks() {
         disposables.add(
             trendsSpotifyUseCase.getTrendsTracks()
                 .observeOn(AndroidSchedulers.mainThread())
