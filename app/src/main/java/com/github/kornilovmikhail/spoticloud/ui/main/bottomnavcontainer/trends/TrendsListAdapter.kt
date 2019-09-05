@@ -36,6 +36,9 @@ class TrendsListAdapter constructor(
         fun onBind(item: Track, position: Int, trackClickListener: TrackClickListener) {
             binding.track = item
             binding.position = position + 1
+            binding.root.setOnClickListener {
+                trackClickListener.onTrackClicked(item)
+            }
             binding.executePendingBindings()
         }
     }

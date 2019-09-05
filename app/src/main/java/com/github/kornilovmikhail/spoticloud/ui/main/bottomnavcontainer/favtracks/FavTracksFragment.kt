@@ -10,25 +10,28 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentFavTracksBinding
-import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerViewModel
+import com.github.kornilovmikhail.spoticloud.utils.injectParentViewModel
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_fav_tracks.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class FavTracksFragment : BaseFragment(), TrackClickListener {
+class FavTracksFragment : BaseFragment(){
 
     companion object {
 
         fun getInstance() = FavTracksFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject lateinit var favTracksAdapter: FavTracksAdapter
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var favTracksAdapter: FavTracksAdapter
 
     private lateinit var favTracksViewModel: FavTracksViewModel
+    private lateinit var bottomNavContainerViewModel: BottomNavContainerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +49,14 @@ class FavTracksFragment : BaseFragment(), TrackClickListener {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rv_list_tracks.adapter = null
+    }
+
     override fun injectViewModel() {
         favTracksViewModel = injectViewModel(viewModelFactory)
+        bottomNavContainerViewModel = injectParentViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
@@ -61,10 +70,6 @@ class FavTracksFragment : BaseFragment(), TrackClickListener {
         favTracksViewModel.trackListLiveData.observe(this, Observer {
             favTracksAdapter.submitList(it)
         })
-    }
-
-    override fun onClick(track: Track?) {
-
     }
 
     private fun setupRecyclerView() {

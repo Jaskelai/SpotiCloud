@@ -4,10 +4,7 @@ import com.github.kornilovmikhail.spoticloud.data.repository.*
 import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
 import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.*
 import dagger.Binds
 import dagger.Module
 
@@ -45,4 +42,10 @@ interface RepositoryModule {
     fun provideSpotifyFavTracksRepository(
         tracksSpotifyRepository: TracksRepositorySpotifyImpl
     ): TracksRepository
+
+    @Binds
+    @AppScope
+    fun provideCurrentTrackRepository(
+        currentTrackRepositoryImpl: CurrentTrackRepositoryImpl
+    ): CurrentTrackRepository
 }
