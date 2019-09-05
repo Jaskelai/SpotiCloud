@@ -26,17 +26,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_player_item_source" />
 
-        <TextView
-                android:id="@+id/tv_player_header"
-                style="@style/TextRegular.ColorBlack.PlayerHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/now_playing"
-                app:layout_constraintBottom_toBottomOf="@id/iv_player_item_source"
-                app:layout_constraintEnd_toStartOf="@id/iv_player_item_source"
-                app:layout_constraintStart_toEndOf="@id/btn_back_player"
-                app:layout_constraintTop_toTopOf="@id/iv_player_item_source" />
-
         <ImageView
                 android:id="@+id/iv_player_item_source"
                 android:layout_width="48dp"
@@ -53,14 +42,14 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/iv_player_track_cover_container"
-                android:layout_width="256dp"
-                android:layout_height="256dp"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:elevation="4dp"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintBottom_toTopOf="@id/tv_player_track_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_player_header">
+                app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                     android:id="@+id/iv_player_track_cover"

@@ -11,6 +11,7 @@ import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentPlayerBinding
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
+import kotlinx.android.synthetic.main.fragment_player.*
 import javax.inject.Inject
 
 class PlayerFragment : BaseFragment() {
@@ -44,13 +45,15 @@ class PlayerFragment : BaseFragment() {
     }
 
     override fun setupViews() {
+        btn_back_player.setOnClickListener {
+            playerViewModel.onBackButtonClicked()
+        }
     }
 
     override fun subscribe() {
         lifecycle.addObserver(playerViewModel)
 
         playerViewModel.trackLiveData.observe(this, Observer { track ->
-            println(track)
             binding.track = track
         })
     }

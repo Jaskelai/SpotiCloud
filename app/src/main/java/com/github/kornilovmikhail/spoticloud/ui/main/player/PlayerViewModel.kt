@@ -33,4 +33,8 @@ class PlayerViewModel @Inject constructor(
                 })
         )
     }
+
+    fun onBackButtonClicked() {
+        globalRouter.returnToBottomNavScreen()
+    }
 }
