@@ -1,8 +1,9 @@
 package com.github.kornilovmikhail.spoticloud.data.di
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.data.TokenHelperSoundcloud
-import com.github.kornilovmikhail.spoticloud.data.TokenHelperSpotify
+import com.github.kornilovmikhail.spoticloud.data.network.SoundCloudAuthenticator
+import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloud
+import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudV2AuthedApi
@@ -91,12 +92,14 @@ class NetworkModule {
     @AppScope
     @Named(RETROFIT_SOUNDCLOUD_AUTHED)
     fun provideOkHttpAuthedSoundCloud(
-        @Named(RETROFIT_SOUNDCLOUD_AUTHED) authInterceptor: Interceptor
+        @Named(RETROFIT_SOUNDCLOUD_AUTHED) authInterceptor: Interceptor,
+        soundCloudAuthenticator: SoundCloudAuthenticator
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
+            .authenticator(soundCloudAuthenticator)
             .addInterceptor(authInterceptor)
             .build()
     }

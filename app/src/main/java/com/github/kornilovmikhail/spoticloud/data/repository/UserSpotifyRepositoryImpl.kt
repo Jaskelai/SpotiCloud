@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
-import com.github.kornilovmikhail.spoticloud.data.TokenHelperSpotify
+import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import javax.inject.Inject
