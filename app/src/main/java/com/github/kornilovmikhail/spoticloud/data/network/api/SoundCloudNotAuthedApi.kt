@@ -17,4 +17,12 @@ interface SoundCloudNotAuthedApi {
         @Field("client_secret") clientSecret: String,
         @Field("grant_type") grantType: String
     ): Single<TokenSoundCloudResponse>
+
+    @FormUrlEncoded
+    @POST("oauth2/token")
+    fun getTokenByRefreshToken(
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("refresh_token") refreshToken: String
+    ): Single<TokenSoundCloudResponse>
 }

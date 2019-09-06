@@ -1,8 +1,10 @@
-package com.github.kornilovmikhail.spoticloud.data
+package com.github.kornilovmikhail.spoticloud.data.network.tokenhelper
 
 import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
+import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import javax.inject.Inject
 
+@AppScope
 class TokenHelperSpotify @Inject constructor(
     private val sharedPreferencesStorage: SharedPreferencesStorage
 ) {

@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.data.TokenHelperSoundcloud
+import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloud
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
 import io.reactivex.Completable
@@ -26,10 +26,7 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
             SOUNDCLOUD_CLIENT_SECRET,
             SOUNDCLOUD_GRANT_TYPE
         )
-            .map {
-                tokenHelperSoundcloud.saveToken(it.accessToken)
-                tokenHelperSoundcloud.saveRefreshToken(it.refreshToken)
-            }
+            .map { tokenHelperSoundcloud.saveToken(it) }
             .ignoreElement()
     }
 
