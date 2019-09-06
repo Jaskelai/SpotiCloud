@@ -38,8 +38,7 @@ class CiceroneModule {
 
     @Provides
     @AppScope
-    fun provideCiceroneRouter(): GlobalRouterCiceroneImpl =
-        GlobalRouterCiceroneImpl()
+    fun provideCiceroneRouter(): GlobalRouterCiceroneImpl = GlobalRouterCiceroneImpl()
 
     @Provides
     @AppScope

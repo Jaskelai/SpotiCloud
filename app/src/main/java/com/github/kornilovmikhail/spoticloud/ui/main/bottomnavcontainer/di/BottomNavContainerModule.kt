@@ -8,12 +8,12 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigati
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.navigation.SpotiCloudSupportAppNavigator
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 @Module
 abstract class BottomNavContainerModule {
@@ -26,7 +26,7 @@ abstract class BottomNavContainerModule {
         @BottomNavQualifier
         @JvmStatic
         fun provideNavigator(bottomNavContainerFragment: BottomNavContainerFragment): Navigator {
-            return SupportAppNavigator(
+            return SpotiCloudSupportAppNavigator(
                 bottomNavContainerFragment.activity,
                 bottomNavContainerFragment.childFragmentManager,
                 bottomNavContainerFragment.getContainerId()

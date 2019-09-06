@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseActivity
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
@@ -30,6 +31,13 @@ class MainActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         navigatorHolder.removeNavigator()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.fragments.first().childFragmentManager.backStackEntryCount == 1) {
+            mainViewModel.exit()
+        }
+        super.onBackPressed()
     }
 
     override fun injectViewModel() {
