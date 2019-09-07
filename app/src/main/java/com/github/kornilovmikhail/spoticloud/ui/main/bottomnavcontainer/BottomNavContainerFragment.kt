@@ -7,16 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentBottomNavContainerBinding
-import com.github.kornilovmikhail.spoticloud.databinding.LayoutFooterPlayerBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomNavQualifier
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_bottom_nav_container.*
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
@@ -27,15 +24,9 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
     }
 
     @Inject
-    @field:BottomNavQualifier
-    lateinit var navigator: Navigator
-
-    @Inject
-    @field:BottomNavQualifier
-    lateinit var navigatorHolder: NavigatorHolder
-
-    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var bottomNavContainerViewPager: BottomNavContainerViewPager
 
     private lateinit var bottomNavViewModel: BottomNavContainerViewModel
     private lateinit var binding: FragmentBottomNavContainerBinding
@@ -56,33 +47,18 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        navigatorHolder.setNavigator(navigator)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        navigatorHolder.removeNavigator()
-    }
-
     override fun injectViewModel() {
         bottomNavViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
         setupBottomBar()
+        setupViewPager()
         setFooterClickListener()
     }
 
     override fun subscribe() {
         lifecycle.addObserver(bottomNavViewModel)
-
-        bottomNavViewModel.selectedItemLiveData.observe(this, Observer {
-            if (it == BottomNavContainerViewModel.FAV_TRACKS_SCREEN) {
-                bottom_nav_view.selectedItemId = R.id.bottom_action_tracks
-            }
-        })
 
         bottomNavViewModel.isFooterEnabledLiveData.observe(this, Observer {
             binding.includeFooterPlayer.isExist = it
@@ -97,21 +73,44 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         bottomNavViewModel.play(track)
     }
 
-    fun getContainerId(): Int = R.id.container_bottom_nav
+    private fun setupViewPager() {
+        viewpager_bottom_nav.adapter = bottomNavContainerViewPager
+
+        viewpager_bottom_nav.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+
+            override fun onPageSelected(position: Int) {
+                bottom_nav_view.menu.getItem(position).isChecked = true
+            }
+        })
+
+        viewpager_bottom_nav.setCurrentItem(BottomNavContainerViewPager.FAV_TRACKS_SCREEN, false)
+
+        viewpager_bottom_nav.isUserInputEnabled = false
+    }
 
     private fun setupBottomBar() {
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_action_search -> {
-                    bottomNavViewModel.onSearchBottomBtnClicked()
+                    viewpager_bottom_nav.setCurrentItem(
+                        BottomNavContainerViewPager.SEARCH_SCREEN,
+                        false
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_tracks -> {
-                    bottomNavViewModel.onTrackListBtnClicked()
+                    viewpager_bottom_nav.setCurrentItem(
+                        BottomNavContainerViewPager.FAV_TRACKS_SCREEN,
+                        false
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_trends -> {
-                    bottomNavViewModel.onTrendsBtnClicked()
+                    viewpager_bottom_nav.setCurrentItem(
+                        BottomNavContainerViewPager.TRENDS_SCREEN,
+                        false
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
             }

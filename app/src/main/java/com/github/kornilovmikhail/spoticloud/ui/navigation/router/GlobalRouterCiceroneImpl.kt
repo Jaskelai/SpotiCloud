@@ -7,7 +7,6 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNa
 import com.github.kornilovmikhail.spoticloud.ui.main.player.PlayerScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.start.StartScreen
-import com.github.kornilovmikhail.spoticloud.ui.navigation.ReplaceForContainer
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.LoginActivity
 import ru.terrakok.cicerone.commands.Back
@@ -49,7 +48,7 @@ class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok
     override fun navigateToBottomNavScreen() {
         executeCommands(
             BackTo(null),
-            ReplaceForContainer(BottomNavContainerScreen())
+            Replace(BottomNavContainerScreen())
         )
     }
 
@@ -60,6 +59,5 @@ class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok
     override fun returnToBottomNavScreen() {
         executeCommands(Back())
     }
-
 
 }

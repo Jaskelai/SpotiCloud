@@ -6,8 +6,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.soundcloudtrends.SoundCloudTrendsFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.spotifytrends.SpotifyTrendsFragment
+import javax.inject.Inject
 
-class FragmentViewPagerAdapter(
+class TrendsViewPagerAdapter @Inject constructor(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -21,9 +22,7 @@ class FragmentViewPagerAdapter(
         return when (position) {
             SOUNDCLOUD_TAB -> SoundCloudTrendsFragment.getInstance()
             SPOTIFY_TAB -> SpotifyTrendsFragment.getInstance()
-            else -> {
-                SoundCloudTrendsFragment.getInstance()
-            }
+            else -> { SoundCloudTrendsFragment.getInstance() }
         }
     }
 

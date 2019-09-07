@@ -1,19 +1,17 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di
 
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerViewModel
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouter
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.navigation.LocalBottomNavRouterCiceroneImpl
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
-import com.github.kornilovmikhail.spoticloud.ui.navigation.SpotiCloudSupportAppNavigator
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import ru.terrakok.cicerone.Navigator
 
 @Module
 abstract class BottomNavContainerModule {
@@ -23,22 +21,18 @@ abstract class BottomNavContainerModule {
 
         @Provides
         @ScreenScope
-        @BottomNavQualifier
         @JvmStatic
-        fun provideNavigator(bottomNavContainerFragment: BottomNavContainerFragment): Navigator {
-            return SpotiCloudSupportAppNavigator(
-                bottomNavContainerFragment.activity,
-                bottomNavContainerFragment.childFragmentManager,
-                bottomNavContainerFragment.getContainerId()
-            )
-        }
-    }
+        @BottomNavQualifier
+        fun provideBottomFragmentManager(fragment: BottomNavContainerFragment): FragmentManager =
+            fragment.childFragmentManager
 
-    @Binds
-    @ScreenScope
-    abstract fun provideLocalBottomNavRouter(
-        localBottomNavRouter: LocalBottomNavRouterCiceroneImpl
-    ): LocalBottomNavRouter
+        @Provides
+        @ScreenScope
+        @JvmStatic
+        @BottomNavQualifier
+        fun provideBottomLifecycle(fragment: BottomNavContainerFragment): Lifecycle =
+            fragment.lifecycle
+    }
 
     @Binds
     @ScreenScope
@@ -49,7 +43,7 @@ abstract class BottomNavContainerModule {
     @Binds
     @IntoMap
     @ViewModelKey(BottomNavContainerViewModel::class)
-    abstract fun provideNavContainerViewModel(
+    abstract fun provideBottomNavContainerViewModel(
         bottomNavContainerViewModel: BottomNavContainerViewModel
     ): ViewModel
 }

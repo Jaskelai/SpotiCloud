@@ -5,16 +5,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseActivity
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject lateinit var navigator: Navigator
-    @Inject lateinit var navigatorHolder: NavigatorHolder
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var navigator: Navigator
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
 
     private lateinit var mainViewModel: MainViewModel
 
@@ -34,10 +36,15 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.first().childFragmentManager.backStackEntryCount == 1) {
-            mainViewModel.exit()
+        val childFragmentManager =
+            supportFragmentManager.fragments.firstOrNull()?.childFragmentManager
+        childFragmentManager?.let {
+            if (it.backStackEntryCount > 1) {
+                it.popBackStack()
+            } else {
+                super.onBackPressed()
+            }
         }
-        super.onBackPressed()
     }
 
     override fun injectViewModel() {
