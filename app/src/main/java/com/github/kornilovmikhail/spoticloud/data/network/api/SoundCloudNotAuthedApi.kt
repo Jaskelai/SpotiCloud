@@ -23,6 +23,7 @@ interface SoundCloudNotAuthedApi {
     fun getTokenByRefreshToken(
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
-        @Field("refresh_token") refreshToken: String
+        @Field("refresh_token") refreshToken: String,
+        @Field("grant_type") grantType: String
     ): Single<TokenSoundCloudResponse>
 }

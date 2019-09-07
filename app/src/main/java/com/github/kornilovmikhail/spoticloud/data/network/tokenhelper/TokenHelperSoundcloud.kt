@@ -19,6 +19,7 @@ class TokenHelperSoundcloud @Inject constructor(
         private const val KEY_REFRESH_TOKEN_SOUNDCLOUD = "key_refresh_token_soundcloud"
         private const val SOUNDCLOUD_CLIENT_ID = BuildConfig.SOUNDCLOUD_CLIENT_ID
         private const val SOUNDCLOUD_CLIENT_SECRET = BuildConfig.SOUNDCLOUD_CLIENT_SECRET
+        private const val SOUNDCLOUD_GRANT_TYPE = "refresh_token"
     }
 
     fun getToken(): String? = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
@@ -37,7 +38,8 @@ class TokenHelperSoundcloud @Inject constructor(
             soundCloudNotAuthedApi.getTokenByRefreshToken(
                 SOUNDCLOUD_CLIENT_ID,
                 SOUNDCLOUD_CLIENT_SECRET,
-                it
+                it,
+                SOUNDCLOUD_GRANT_TYPE
             )
                 .subscribeOn(Schedulers.io())
                 .doOnSuccess { tokenResponse -> saveToken(tokenResponse) }
