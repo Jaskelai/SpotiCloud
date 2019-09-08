@@ -25,8 +25,6 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var bottomNavContainerViewPager: BottomNavContainerViewPager
 
     private lateinit var bottomNavViewModel: BottomNavContainerViewModel
     private lateinit var binding: FragmentBottomNavContainerBinding
@@ -74,7 +72,7 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
     }
 
     private fun setupViewPager() {
-        viewpager_bottom_nav.adapter = bottomNavContainerViewPager
+        viewpager_bottom_nav.adapter = BottomNavContainerViewPager(childFragmentManager, lifecycle)
 
         viewpager_bottom_nav.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {

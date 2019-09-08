@@ -4,15 +4,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomNavQualifier
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.favtracks.FavTracksFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.search.SearchFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsContainerFragment
-import javax.inject.Inject
 
-class BottomNavContainerViewPager @Inject constructor(
-    @BottomNavQualifier fragmentManager: FragmentManager,
-    @BottomNavQualifier lifecycle: Lifecycle
+class BottomNavContainerViewPager (
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     companion object {
