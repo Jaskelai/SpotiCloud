@@ -16,7 +16,7 @@ class SharedPreferencesStorage @Inject constructor(
 
     fun readMessage(key: String): String? = sharedPreferences.getString(key, null)
 
-    fun readObservableMessage(key: String): Observable<String> {
+    fun observeMessage(key: String): Observable<String> {
         return rxSharedPreferences.getString(key, "").asObservable()
     }
 }

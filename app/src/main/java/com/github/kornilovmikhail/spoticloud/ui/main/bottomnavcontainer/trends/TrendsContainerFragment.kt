@@ -23,6 +23,7 @@ class TrendsContainerFragment : BaseFragment() {
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var trendsViewPagerAdapter: TrendsViewPagerAdapter
 
     private lateinit var trendsContainerViewModel: TrendsContainerViewModel
 
@@ -41,6 +42,11 @@ class TrendsContainerFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onStop() {
+        super.onStop()
+        viewpager_trends.adapter = null
+    }
+
     override fun injectViewModel() {
         trendsContainerViewModel = injectViewModel(viewModelFactory)
     }
@@ -55,14 +61,14 @@ class TrendsContainerFragment : BaseFragment() {
     }
 
     private fun setupViewPager() {
-        viewpager_trends.adapter = FragmentViewPagerAdapter(childFragmentManager, lifecycle)
+        viewpager_trends.adapter = trendsViewPagerAdapter
 
         TabLayoutMediator(tabs_trends, viewpager_trends,
             TabLayoutMediator.OnConfigureTabCallback { tab, position ->
                 when (position) {
-                    FragmentViewPagerAdapter.SOUNDCLOUD_TAB -> tab.text =
+                    TrendsScreens.SOUNDCLOUD.value -> tab.text =
                         getString(R.string.soundcloud)
-                    FragmentViewPagerAdapter.SPOTIFY_TAB -> tab.text = getString(R.string.spotify)
+                    TrendsScreens.SPOTIFY.value -> tab.text = getString(R.string.spotify)
                     else -> {
                     }
                 }

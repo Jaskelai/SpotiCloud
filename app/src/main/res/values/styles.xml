@@ -17,6 +17,10 @@
         <item name="android:textColor">@color/color_black_text</item>
     </style>
 
+    <style name="TextRegular.ColorWhite">
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="android:indeterminateTint">@color/color_primary</item>
     </style>

@@ -32,6 +32,18 @@ class MainActivity : BaseActivity() {
         navigatorHolder.removeNavigator()
     }
 
+    override fun onBackPressed() {
+        val childFragmentManager =
+            supportFragmentManager.fragments.firstOrNull()?.childFragmentManager
+        childFragmentManager?.let {
+            if (it.backStackEntryCount > 1) {
+                it.popBackStack()
+            } else {
+                super.onBackPressed()
+            }
+        }
+    }
+
     override fun injectViewModel() {
         mainViewModel = injectViewModel(viewModelFactory)
     }

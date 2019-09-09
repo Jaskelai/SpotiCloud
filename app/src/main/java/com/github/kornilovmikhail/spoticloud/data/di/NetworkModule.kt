@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.di
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.data.network.SoundCloudAuthenticator
+import com.github.kornilovmikhail.spoticloud.data.network.authenticator.SoundCloudAuthenticator
 import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloud
 import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSpotify
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedApi

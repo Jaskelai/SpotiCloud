@@ -25,10 +25,8 @@ class FavTracksFragment : BaseFragment(){
         fun getInstance() = FavTracksFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var favTracksAdapter: FavTracksAdapter
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var favTracksAdapter: FavTracksAdapter
 
     private lateinit var favTracksViewModel: FavTracksViewModel
     private lateinit var bottomNavContainerViewModel: BottomNavContainerViewModel

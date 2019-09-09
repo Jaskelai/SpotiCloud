@@ -34,10 +34,12 @@ fun setImage(view: ImageView, imageUrl: String?) {
 @BindingAdapter("android:autoScrolling")
 fun setAutoScrolling(view: TextView, value: Boolean?) {
     value?.let {
-        view.apply {
-            isSelected = it
-            ellipsize = TextUtils.TruncateAt.MARQUEE
-            marqueeRepeatLimit = -1
+        if (value) {
+            view.apply {
+                isSelected = it
+                ellipsize = TextUtils.TruncateAt.MARQUEE
+                marqueeRepeatLimit = -1
+            }
         }
     }
 }
@@ -47,6 +49,7 @@ fun setSrcResource(view: ImageView, streamServiceEnum: StreamServiceEnum?) {
     when (streamServiceEnum) {
         StreamServiceEnum.SOUNDCLOUD -> view.setImageResource(R.drawable.ic_soundcloudlogo)
         StreamServiceEnum.SPOTIFY -> view.setImageResource(R.drawable.ic_spotifylogo)
-        else -> {}
+        else -> {
+        }
     }
 }
