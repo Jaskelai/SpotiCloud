@@ -82,7 +82,7 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
             }
         })
 
-        viewpager_bottom_nav.setCurrentItem(BottomNavContainerViewPager.FAV_TRACKS_SCREEN, false)
+        viewpager_bottom_nav.setCurrentItem(BottomNavScreens.FAV_TRACKS_SCREEN.value, false)
 
         viewpager_bottom_nav.isUserInputEnabled = false
     }
@@ -92,21 +92,21 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
             when (it.itemId) {
                 R.id.bottom_action_search -> {
                     viewpager_bottom_nav.setCurrentItem(
-                        BottomNavContainerViewPager.SEARCH_SCREEN,
+                        BottomNavScreens.SEARCH_SCREEN.value,
                         false
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_tracks -> {
                     viewpager_bottom_nav.setCurrentItem(
-                        BottomNavContainerViewPager.FAV_TRACKS_SCREEN,
+                        BottomNavScreens.FAV_TRACKS_SCREEN.value,
                         false
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottom_action_trends -> {
                     viewpager_bottom_nav.setCurrentItem(
-                        BottomNavContainerViewPager.TRENDS_SCREEN,
+                        BottomNavScreens.TRENDS_SCREEN.value,
                         false
                     )
                     return@setOnNavigationItemSelectedListener true

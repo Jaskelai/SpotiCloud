@@ -15,10 +15,6 @@ class MainViewModel @Inject constructor(
         navigateToStartScreen()
     }
 
-    fun exit() {
-        globalRouter.exit()
-    }
-
     private fun navigateToStartScreen() {
         if (commonAuthUseCase.checkAuth()) {
             globalRouter.navigateToBottomNavScreen()

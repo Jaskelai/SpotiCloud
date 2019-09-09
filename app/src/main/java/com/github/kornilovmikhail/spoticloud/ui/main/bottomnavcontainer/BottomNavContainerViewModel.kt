@@ -1,6 +1,10 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Lifecycle
 import com.github.kornilovmikhail.spoticloud.domain.interactors.CurrentTrackUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter

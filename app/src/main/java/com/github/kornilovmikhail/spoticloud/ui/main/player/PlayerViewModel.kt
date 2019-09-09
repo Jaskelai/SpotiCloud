@@ -1,6 +1,10 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.player
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Lifecycle
 import com.github.kornilovmikhail.spoticloud.domain.interactors.CurrentTrackUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
@@ -17,11 +21,6 @@ class PlayerViewModel @Inject constructor(
 
     private val disposables = CompositeDisposable()
 
-    override fun onCleared() {
-        super.onCleared()
-        if (!disposables.isDisposed) disposables.dispose()
-    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun observeCurrentTrack() {
         disposables.add(
@@ -36,5 +35,10 @@ class PlayerViewModel @Inject constructor(
 
     fun onBackButtonClicked() {
         globalRouter.returnToBottomNavScreen()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (!disposables.isDisposed) disposables.dispose()
     }
 }

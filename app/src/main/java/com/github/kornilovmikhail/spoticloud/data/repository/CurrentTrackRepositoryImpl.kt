@@ -22,7 +22,7 @@ class CurrentTrackRepositoryImpl @Inject constructor(
     }
 
     override fun observeCurrentTrack(): Observable<Track> {
-        return sharedPreferencesStorage.readObservableMessage(CURRENT_TRACK)
+        return sharedPreferencesStorage.observeMessage(CURRENT_TRACK)
             .map {
                 gson.fromJson(it, Track::class.java)
             }

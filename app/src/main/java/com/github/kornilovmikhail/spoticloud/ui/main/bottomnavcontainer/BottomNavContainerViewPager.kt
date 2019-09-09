@@ -13,20 +13,18 @@ class BottomNavContainerViewPager (
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    companion object {
-        const val SEARCH_SCREEN = 0
-        const val FAV_TRACKS_SCREEN = 1
-        const val TRENDS_SCREEN = 2
-    }
-
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            SEARCH_SCREEN -> SearchFragment.getInstance()
-            FAV_TRACKS_SCREEN -> FavTracksFragment.getInstance()
-            TRENDS_SCREEN -> TrendsContainerFragment.getInstance()
+            BottomNavScreens.SEARCH_SCREEN.value -> SearchFragment.getInstance()
+            BottomNavScreens.FAV_TRACKS_SCREEN.value -> FavTracksFragment.getInstance()
+            BottomNavScreens.TRENDS_SCREEN.value -> TrendsContainerFragment.getInstance()
             else -> { FavTracksFragment.getInstance() }
         }
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = BottomNavScreens.values().size
+}
+
+enum class BottomNavScreens(val value: Int){
+    SEARCH_SCREEN(0), FAV_TRACKS_SCREEN(1), TRENDS_SCREEN(2)
 }

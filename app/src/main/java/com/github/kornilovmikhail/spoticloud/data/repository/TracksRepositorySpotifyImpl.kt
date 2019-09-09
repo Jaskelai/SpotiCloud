@@ -28,7 +28,10 @@ class TracksRepositorySpotifyImpl @Inject constructor(
                 it.items.map { track -> mapSpotifyTrackRemoteToTrack(track.track) }
             }
             .flatMap {
-                trackDao.upsertSpotifyTracks(it.map { track -> mapTrackToTrackDB(track) })
+                trackDao.upsertTracksbyStreamService(
+                    it.map { track -> mapTrackToTrackDB(track) },
+                    StreamServiceEnum.SPOTIFY
+                )
                 trackDao.findTracksByStreamService(StreamServiceEnum.SPOTIFY)
             }
             .onErrorResumeNext {

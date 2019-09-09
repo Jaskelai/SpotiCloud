@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.network
+package com.github.kornilovmikhail.spoticloud.data.network.authenticator
 
 import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloud
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
@@ -34,7 +34,7 @@ class SoundCloudAuthenticator @Inject constructor(
     private fun buildRequest(request: Request): Request {
         var url = request.url
 
-        if (request.url.queryParameter(TOKEN_QUERY) != null) {
+        if (url.queryParameter(TOKEN_QUERY) != null) {
             url = url.newBuilder()
                 .addQueryParameter(TOKEN_QUERY, tokenHelperSoundcloud.getToken())
                 .build()

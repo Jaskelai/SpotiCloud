@@ -33,7 +33,10 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
                 it.map { track -> mapSoundCloudTrackRemoteToTrack(track) }
             }
             .flatMap {
-                trackDao.upsertSoundcloudTracks(it.map { track -> mapTrackToTrackDB(track) })
+                trackDao.upsertTracksbyStreamService(
+                    it.map { track -> mapTrackToTrackDB(track) },
+                    StreamServiceEnum.SOUNDCLOUD
+                )
                 trackDao.findTracksByStreamService(StreamServiceEnum.SOUNDCLOUD)
             }
             .onErrorResumeNext {

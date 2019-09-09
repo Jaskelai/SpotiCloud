@@ -16,8 +16,8 @@ fun mapSpotifyTrackRemoteToTrack(spotifyTrack: TrackSpotifyRemote): Track =
             duration,
             StreamServiceEnum.SPOTIFY,
             null,
-            album?.image?.filter { it.size < IMAGE_LOW_SIZE }?.get(0)?.url,
-            album?.image?.filter { it.size > IMAGE_BIG_SIZE }?.get(0)?.url,
+            album?.image?.firstOrNull { it.size < IMAGE_LOW_SIZE }?.url,
+            album?.image?.firstOrNull { it.size > IMAGE_BIG_SIZE }?.url,
             streamUrl,
             Author(artists[0].name, artists[0].link)
         )

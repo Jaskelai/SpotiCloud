@@ -13,18 +13,17 @@ class TrendsViewPagerAdapter @Inject constructor(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    companion object {
-        const val SOUNDCLOUD_TAB = 0
-        const val SPOTIFY_TAB = 1
-    }
-
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            SOUNDCLOUD_TAB -> SoundCloudTrendsFragment.getInstance()
-            SPOTIFY_TAB -> SpotifyTrendsFragment.getInstance()
+            TrendsScreens.SOUNDCLOUD.value -> SoundCloudTrendsFragment.getInstance()
+            TrendsScreens.SPOTIFY.value -> SpotifyTrendsFragment.getInstance()
             else -> { SoundCloudTrendsFragment.getInstance() }
         }
     }
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = TrendsScreens.values().size
+}
+
+enum class TrendsScreens(val value: Int) {
+    SOUNDCLOUD(0), SPOTIFY(1)
 }

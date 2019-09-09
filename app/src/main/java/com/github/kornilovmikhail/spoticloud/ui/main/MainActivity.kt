@@ -11,12 +11,9 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var navigator: Navigator
-    @Inject
-    lateinit var navigatorHolder: NavigatorHolder
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var navigator: Navigator
+    @Inject lateinit var navigatorHolder: NavigatorHolder
 
     private lateinit var mainViewModel: MainViewModel
 

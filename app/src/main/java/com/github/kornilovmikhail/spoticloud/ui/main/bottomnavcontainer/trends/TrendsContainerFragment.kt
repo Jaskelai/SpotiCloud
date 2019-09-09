@@ -66,9 +66,9 @@ class TrendsContainerFragment : BaseFragment() {
         TabLayoutMediator(tabs_trends, viewpager_trends,
             TabLayoutMediator.OnConfigureTabCallback { tab, position ->
                 when (position) {
-                    TrendsViewPagerAdapter.SOUNDCLOUD_TAB -> tab.text =
+                    TrendsScreens.SOUNDCLOUD.value -> tab.text =
                         getString(R.string.soundcloud)
-                    TrendsViewPagerAdapter.SPOTIFY_TAB -> tab.text = getString(R.string.spotify)
+                    TrendsScreens.SPOTIFY.value -> tab.text = getString(R.string.spotify)
                     else -> {
                     }
                 }

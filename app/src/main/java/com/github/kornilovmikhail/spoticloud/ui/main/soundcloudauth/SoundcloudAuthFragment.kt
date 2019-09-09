@@ -63,8 +63,7 @@ class SoundcloudAuthFragment : BaseFragment() {
             when (it) {
                 STATUS_BAD_CONNECTION -> tv_error_soundcloud_auth.text = getString(R.string.bad_connection)
                 STATUS_BAD_CREDENTIALS -> tv_error_soundcloud_auth.text = getString(R.string.bad_credentials)
-                else -> {
-                }
+                else -> { }
             }
         })
     }

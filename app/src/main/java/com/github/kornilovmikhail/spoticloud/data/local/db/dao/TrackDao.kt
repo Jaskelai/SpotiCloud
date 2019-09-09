@@ -32,14 +32,8 @@ interface TrackDao {
     fun findTracksByStreamService(service: StreamServiceEnum): Single<List<TrackDB>>
 
     @Transaction
-    fun upsertSoundcloudTracks(tracks: List<TrackDB>) {
-        deleteTracksByStreamService(StreamServiceEnum.SOUNDCLOUD)
-        insertTrackList(tracks)
-    }
-
-    @Transaction
-    fun upsertSpotifyTracks(tracks: List<TrackDB>) {
-        deleteTracksByStreamService(StreamServiceEnum.SPOTIFY)
+    fun upsertTracksbyStreamService(tracks: List<TrackDB>, service: StreamServiceEnum) {
+        deleteTracksByStreamService(service)
         insertTrackList(tracks)
     }
 }

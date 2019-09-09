@@ -59,5 +59,4 @@ class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok
     override fun returnToBottomNavScreen() {
         executeCommands(Back())
     }
-
 }

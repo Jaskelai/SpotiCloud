@@ -24,8 +24,7 @@ class SoundCloudTrendsFragment : BaseFragment() {
         fun getInstance() = SoundCloudTrendsFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject  lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     @field:SoundCloudQualifier
