@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kornilovmikhail.spoticloud.R
-import com.github.kornilovmikhail.spoticloud.databinding.TrackListItemBinding
+import com.github.kornilovmikhail.spoticloud.databinding.SearchListItemBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
@@ -18,9 +18,9 @@ class SearchTracksAdapter @Inject constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<TrackListItemBinding>(
+        val binding = DataBindingUtil.inflate<SearchListItemBinding>(
             layoutInflater,
-            R.layout.track_list_item,
+            R.layout.search_list_item,
             parent,
             false
         )
@@ -31,7 +31,7 @@ class SearchTracksAdapter @Inject constructor(
         holder.onBind(getItem(position), clickListener)
     }
 
-    inner class SearchViewHolder(private val binding: TrackListItemBinding) :
+    inner class SearchViewHolder(private val binding: SearchListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(item: Track, trackClickListener: TrackClickListener) {

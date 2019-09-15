@@ -12,7 +12,7 @@ class CommonUserRepositoryImpl @Inject constructor(
         private const val IS_AUTHED = "is_authed"
     }
 
-    override fun checkAuth(): Boolean {
+    override fun isAuthed(): Boolean {
         return sharedPreferencesStorage.readMessage(IS_AUTHED)?.toBoolean() ?: false
     }
 
