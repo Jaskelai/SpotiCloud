@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentSearchBinding
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerViewModel
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import com.jakewharton.rxbinding3.widget.textChangeEvents
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment(){
+class SearchFragment : BaseFragment() {
 
     companion object {
 
@@ -26,10 +25,11 @@ class SearchFragment : BaseFragment(){
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+
     @Inject lateinit var searchTracksAdapter: SearchTracksAdapter
 
     private lateinit var searchViewModel: SearchViewModel
-    private lateinit var bottomNavContainerViewModel: BottomNavContainerViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,6 @@ class SearchFragment : BaseFragment(){
 
     override fun injectViewModel() {
         searchViewModel = injectViewModel(viewModelFactory)
-        bottomNavContainerViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {

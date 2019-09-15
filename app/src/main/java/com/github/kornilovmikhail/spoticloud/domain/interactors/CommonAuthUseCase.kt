@@ -7,7 +7,7 @@ class CommonAuthUseCase @Inject constructor(
     private val commonUserRepository: CommonUserRepository
 ) {
 
-    fun checkAuth(): Boolean = commonUserRepository.checkAuth()
+    fun isAuthed(): Boolean = commonUserRepository.isAuthed()
 
     fun saveAuthStatus(status: Boolean) {
         commonUserRepository.saveAuthStatus(status)

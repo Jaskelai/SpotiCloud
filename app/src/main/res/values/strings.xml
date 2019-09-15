@@ -25,4 +25,6 @@
     <string name="next_track">Next track</string>
     <string name="source">Source</string>
     <string name="now_playing">Now playing</string>
+    <string name="error_server">Something wrong with server</string>
+    <string name="no_connection">No internet connection</string>
 </resources>

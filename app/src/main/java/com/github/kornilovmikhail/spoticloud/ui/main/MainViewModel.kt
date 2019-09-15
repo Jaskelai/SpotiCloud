@@ -16,7 +16,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun navigateToStartScreen() {
-        if (commonAuthUseCase.checkAuth()) {
+        if (commonAuthUseCase.isAuthed()) {
             globalRouter.navigateToBottomNavScreen()
         } else {
             globalRouter.navigateToStartScreen()

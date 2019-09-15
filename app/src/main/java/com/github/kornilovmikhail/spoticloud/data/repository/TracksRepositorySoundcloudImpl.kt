@@ -1,5 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
+import android.content.Context
+import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.data.local.db.dao.TrackDao
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapSoundCloudTrackRemoteToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackDBToTrack
@@ -13,12 +15,14 @@ import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class TracksRepositorySoundcloudImpl @Inject constructor(
     private val soundCloudAuthedApi: SoundCloudAuthedApi,
     private val soundCloudV2AuthedApi: SoundCloudV2AuthedApi,
-    private val trackDao: TrackDao
+    private val trackDao: TrackDao,
+    private val appContext: Context
 ) : TracksRepository {
 
     companion object {
@@ -68,6 +72,13 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
                         }
                 }
             }
+            .onErrorResumeNext {
+                if (it is HttpException) {
+                    Single.error(Throwable(appContext.getString(R.string.error_server)))
+                } else {
+                    Single.error(Throwable(appContext.getString(R.string.no_connection)))
+                }
+            }
             .subscribeOn(Schedulers.io())
     }
 
@@ -75,6 +86,9 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
         return soundCloudAuthedApi.searchForTracks(text)
             .map {
                 it.map { trackRemote -> mapSoundCloudTrackRemoteToTrack(trackRemote) }
+            }
+            .onErrorReturn {
+               arrayListOf()
             }
             .subscribeOn(Schedulers.io())
     }
