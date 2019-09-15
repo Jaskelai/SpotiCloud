@@ -23,8 +23,7 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         fun getInstance() = BottomNavContainerFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var bottomNavViewModel: BottomNavContainerViewModel
     private lateinit var binding: FragmentBottomNavContainerBinding

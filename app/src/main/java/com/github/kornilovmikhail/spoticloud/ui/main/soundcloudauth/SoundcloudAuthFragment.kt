@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentSoundcloudAuthBinding
@@ -24,6 +24,11 @@ class SoundcloudAuthFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var soundcloudAuthViewModel: SoundcloudAuthViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,13 +63,5 @@ class SoundcloudAuthFragment : BaseFragment() {
 
     override fun subscribe() {
         lifecycle.addObserver(soundcloudAuthViewModel)
-
-        soundcloudAuthViewModel.errorCodeLiveData.observe(this, Observer {
-            when (it) {
-                STATUS_BAD_CONNECTION -> tv_error_soundcloud_auth.text = getString(R.string.bad_connection)
-                STATUS_BAD_CREDENTIALS -> tv_error_soundcloud_auth.text = getString(R.string.bad_credentials)
-                else -> { }
-            }
-        })
     }
 }

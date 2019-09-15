@@ -2,7 +2,7 @@ package com.github.kornilovmikhail.spoticloud.domain.interfaces
 
 interface CommonUserRepository {
 
-    fun checkAuth(): Boolean
+    fun isAuthed(): Boolean
 
     fun saveAuthStatus(isAuthed: Boolean)
 }

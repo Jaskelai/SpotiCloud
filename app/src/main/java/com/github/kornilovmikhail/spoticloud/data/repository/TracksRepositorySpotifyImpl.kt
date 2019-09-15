@@ -1,5 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
+import android.content.Context
+import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.data.local.db.dao.TrackDao
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapSpotifyTrackRemoteToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackDBToTrack
@@ -10,11 +12,13 @@ import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class TracksRepositorySpotifyImpl @Inject constructor(
     private val spotifyAuthedApi: SpotifyAuthedApi,
-    private val trackDao: TrackDao
+    private val trackDao: TrackDao,
+    private val appContext: Context
 ) : TracksRepository {
 
     companion object {
@@ -50,6 +54,13 @@ class TracksRepositorySpotifyImpl @Inject constructor(
                     mapSpotifyTrackRemoteToTrack(trackRemoteContainer.track)
                 }
             }
+            .onErrorResumeNext {
+                if (it is HttpException) {
+                    Single.error(Throwable(appContext.getString(R.string.error_server)))
+                } else {
+                    Single.error(Throwable(appContext.getString(R.string.no_connection)))
+                }
+            }
             .subscribeOn(Schedulers.io())
     }
 
@@ -57,6 +68,9 @@ class TracksRepositorySpotifyImpl @Inject constructor(
         return spotifyAuthedApi.searchForTracks(text, TYPE_TRACK)
             .map {
                 it.tracks.items.map { trackRemote -> mapSpotifyTrackRemoteToTrack(trackRemote) }
+            }
+            .onErrorReturn {
+                arrayListOf()
             }
             .subscribeOn(Schedulers.io())
     }

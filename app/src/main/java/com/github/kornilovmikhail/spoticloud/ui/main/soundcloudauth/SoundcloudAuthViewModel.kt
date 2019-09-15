@@ -7,11 +7,7 @@ import com.github.kornilovmikhail.spoticloud.domain.interactors.SoundCloudAuthUs
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import retrofit2.HttpException
 import javax.inject.Inject
-
-const val STATUS_BAD_CONNECTION = 0
-const val STATUS_BAD_CREDENTIALS = 1
 
 class SoundcloudAuthViewModel @Inject constructor(
     private val globalRouter: GlobalRouter,
@@ -19,7 +15,7 @@ class SoundcloudAuthViewModel @Inject constructor(
 ) : ViewModel(), LifecycleObserver {
 
     val progressBarVisibilityLiveData = MutableLiveData<Boolean>()
-    val errorCodeLiveData = MutableLiveData<Int>()
+    val errorLiveData = MutableLiveData<String>()
 
     private val disposables = CompositeDisposable()
 
@@ -45,11 +41,7 @@ class SoundcloudAuthViewModel @Inject constructor(
                 .subscribe({
                     globalRouter.navigateToStartScreen()
                 }, {
-                    if (it is HttpException) {
-                        errorCodeLiveData.value = STATUS_BAD_CREDENTIALS
-                    } else {
-                        errorCodeLiveData.value = STATUS_BAD_CONNECTION
-                    }
+                    errorLiveData.value = it.message
                 })
         )
     }

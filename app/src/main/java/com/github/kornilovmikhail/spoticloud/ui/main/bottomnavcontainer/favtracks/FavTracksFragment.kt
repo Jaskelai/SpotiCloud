@@ -26,6 +26,7 @@ class FavTracksFragment : BaseFragment(){
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+
     @Inject lateinit var favTracksAdapter: FavTracksAdapter
 
     private lateinit var favTracksViewModel: FavTracksViewModel
