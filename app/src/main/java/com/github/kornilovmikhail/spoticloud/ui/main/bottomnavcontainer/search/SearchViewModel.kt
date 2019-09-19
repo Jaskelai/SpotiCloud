@@ -2,9 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.search
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.Lifecycle
 import com.github.kornilovmikhail.spoticloud.domain.interactors.TrackSearchUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.jakewharton.rxbinding3.widget.TextViewTextChangeEvent
@@ -49,11 +47,6 @@ class SearchViewModel @Inject constructor(
                     it.printStackTrace()
                 })
         )
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun unsubscribe() {
-        disposables.clear()
     }
 
     override fun onCleared() {
