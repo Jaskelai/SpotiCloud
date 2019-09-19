@@ -15,10 +15,8 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class FavTracksUseCaseTest {
 
-    @Mock
-    private lateinit var soundcloudTrackRepository: TracksRepository
-    @Mock
-    private lateinit var spotifyTrackRepository: TracksRepository
+    @Mock private lateinit var soundcloudTrackRepository: TracksRepository
+    @Mock private lateinit var spotifyTrackRepository: TracksRepository
 
     private lateinit var favTracksUseCase: FavTracksUseCase
 
