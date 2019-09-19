@@ -28,10 +28,10 @@ class CommonAuthUseCaseTest {
     fun `test checkAuth() will return true`() {
         val expectedValue = true
 
-        given(commonUserRepository.checkAuth())
+        given(commonUserRepository.isAuthed())
             .willReturn(true)
 
-        val actualValue = commonAuthUseCase.checkAuth()
+        val actualValue = commonAuthUseCase.isAuthed()
 
         assertEquals(expectedValue, actualValue)
     }
