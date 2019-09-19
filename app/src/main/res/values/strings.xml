@@ -27,4 +27,7 @@
     <string name="now_playing">Now playing</string>
     <string name="error_server">Something wrong with server</string>
     <string name="no_connection">No internet connection</string>
+    <string name="add_to_favorite">Add to favourite</string>
+    <string name="track_added">Track added to favourites</string>
+    <string name="track_not_added">Track not added</string>
 </resources>
