@@ -6,6 +6,8 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNa
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegateImpl
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -25,4 +27,8 @@ abstract class BottomNavContainerModule {
     abstract fun provideBottomNavContainerViewModel(
         bottomNavContainerViewModel: BottomNavContainerViewModel
     ): ViewModel
+
+    @Binds
+    @ScreenScope
+    abstract fun providePopupMenuDelegate(popupMenuDelegateImpl: PopupMenuDelegateImpl): PopupMenuDelegate
 }

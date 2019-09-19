@@ -2,6 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.
 
 import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsListAdapter
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.di.TrendsScope
 import dagger.Module
@@ -14,6 +15,7 @@ class SpotifyTrendsModule {
     @TrendsScope
     @SpotifyQualifier
     fun provideSpotofyTrendsAdapter(
-        trackClickListener: TrackClickListener
-    ): TrendsListAdapter = TrendsListAdapter(trackClickListener)
+        trackClickListener: TrackClickListener,
+        popupMenuDelegate: PopupMenuDelegate
+    ): TrendsListAdapter = TrendsListAdapter(trackClickListener, popupMenuDelegate)
 }
