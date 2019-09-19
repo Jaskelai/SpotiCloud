@@ -13,6 +13,7 @@ import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.Track
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
@@ -90,6 +91,11 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
             .onErrorReturn {
                arrayListOf()
             }
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun addTrackToFav(track: Track): Completable {
+        return soundCloudAuthedApi.addTrackToFav(track.id)
             .subscribeOn(Schedulers.io())
     }
 

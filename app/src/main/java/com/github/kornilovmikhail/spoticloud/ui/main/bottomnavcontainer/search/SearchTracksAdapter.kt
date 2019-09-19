@@ -10,11 +10,14 @@ import com.github.kornilovmikhail.spoticloud.databinding.SearchListItemBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
 import javax.inject.Inject
 
 class SearchTracksAdapter @Inject constructor(
-    private val clickListener: TrackClickListener
-) : ListAdapter<Track, SearchTracksAdapter.SearchViewHolder>(TrackDiffUtilCallback()) {
+    private val clickListener: TrackClickListener,
+    private val popupMenuDelegate: PopupMenuDelegate
+) : ListAdapter<Track, SearchTracksAdapter.SearchViewHolder>(TrackDiffUtilCallback()),
+    PopupMenuDelegate by popupMenuDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,6 +41,10 @@ class SearchTracksAdapter @Inject constructor(
             binding.track = item
             binding.root.setOnClickListener {
                 trackClickListener.onTrackClicked(item)
+            }
+            binding.root.setOnLongClickListener {
+                showPopup(binding.root.context, binding.root, item)
+                true
             }
             binding.executePendingBindings()
         }
