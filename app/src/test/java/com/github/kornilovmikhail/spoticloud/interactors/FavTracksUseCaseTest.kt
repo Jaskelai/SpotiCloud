@@ -2,6 +2,8 @@ package com.github.kornilovmikhail.spoticloud.interactors
 
 import com.github.kornilovmikhail.spoticloud.domain.interactors.FavTracksUseCase
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import org.junit.Before
@@ -17,23 +19,70 @@ class FavTracksUseCaseTest {
 
     @Mock private lateinit var soundcloudTrackRepository: TracksRepository
     @Mock private lateinit var spotifyTrackRepository: TracksRepository
+    @Mock private lateinit var userSoundcloudRepository: UserSoundcloudRepository
+    @Mock private lateinit var userSpotifyRepository: UserSpotifyRepository
+
+    @Mock private lateinit var track: Track
 
     private lateinit var favTracksUseCase: FavTracksUseCase
 
     @Before
     fun setUp() {
-        favTracksUseCase = FavTracksUseCase(soundcloudTrackRepository, spotifyTrackRepository)
+        favTracksUseCase = FavTracksUseCase(
+            soundcloudTrackRepository,
+            spotifyTrackRepository,
+            userSoundcloudRepository,
+            userSpotifyRepository
+        )
     }
 
     @Test
-    fun `test getFavTracks() will return empty list`() {
-        val soundcloudTracks = emptyList<Track>()
-        val spotifyTracks = emptyList<Track>()
+    fun `test getFavTracks() all not authed will return empty list`() {
+        val soundcloudTracks = arrayListOf(track)
+        val spotifyTracks = arrayListOf(track)
 
         val expectedValue = emptyList<Track>()
 
+        given(userSoundcloudRepository.isAuthed())
+            .willReturn(false)
+        given(userSpotifyRepository.isAuthed())
+            .willReturn(false)
+
+        val trackListObserver = favTracksUseCase.getFavTracks().test()
+
+        trackListObserver.assertValue(expectedValue)
+    }
+
+    @Test
+    fun `test getFavTracks() soundcloud authed will return list with one track`() {
+        val soundcloudTracks = arrayListOf(track)
+        val spotifyTracks = arrayListOf(track)
+
+        val expectedValue = arrayListOf(track)
+
+        given(userSoundcloudRepository.isAuthed())
+            .willReturn(true)
+        given(userSpotifyRepository.isAuthed())
+            .willReturn(false)
         given(soundcloudTrackRepository.getFavTracks())
             .willReturn(Single.just(soundcloudTracks))
+
+        val trackListObserver = favTracksUseCase.getFavTracks().test()
+
+        trackListObserver.assertValue(expectedValue)
+    }
+
+    @Test
+    fun `test getFavTracks() spotify authed will return list with one track`() {
+        val soundcloudTracks = arrayListOf(track)
+        val spotifyTracks = arrayListOf(track)
+
+        val expectedValue = arrayListOf(track)
+
+        given(userSoundcloudRepository.isAuthed())
+            .willReturn(false)
+        given(userSpotifyRepository.isAuthed())
+            .willReturn(true)
         given(spotifyTrackRepository.getFavTracks())
             .willReturn(Single.just(spotifyTracks))
 
@@ -43,13 +92,16 @@ class FavTracksUseCaseTest {
     }
 
     @Test
-    fun `test getFavTracks() will return list with one track`() {
-        val track = mock(Track::class.java)
-        val soundcloudTracks = arrayListOf<Track>(track)
-        val spotifyTracks = emptyList<Track>()
+    fun `test getFavTracks() all authed will return list with two tracks`() {
+        val soundcloudTracks = arrayListOf(track)
+        val spotifyTracks = arrayListOf(track)
 
-        val expectedValue = arrayListOf<Track>(track)
+        val expectedValue = arrayListOf(track, track)
 
+        given(userSoundcloudRepository.isAuthed())
+            .willReturn(true)
+        given(userSpotifyRepository.isAuthed())
+            .willReturn(true)
         given(soundcloudTrackRepository.getFavTracks())
             .willReturn(Single.just(soundcloudTracks))
         given(spotifyTrackRepository.getFavTracks())
