@@ -23,9 +23,8 @@
                 android:id="@+id/toolbar_fav_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_white"
-                android:orientation="vertical"
-                android:elevation="4dp">
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null">
 
                 <include layout="@layout/toolbar" />
 
