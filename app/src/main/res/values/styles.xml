@@ -22,6 +22,8 @@
     </style>
 
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
         <item name="android:indeterminateTint">@color/color_primary</item>
     </style>
 

@@ -11,7 +11,9 @@ class UserSpotifyRepositoryImpl @Inject constructor(
 
     override fun auth(any: Any?) {
         val token = (any as AuthenticationResponse).accessToken
-        tokenHelperSpotify.saveToken(token)
+        token?.let {
+            tokenHelperSpotify.saveToken(it)
+        }
     }
 
     override fun isAuthed(): Boolean {
