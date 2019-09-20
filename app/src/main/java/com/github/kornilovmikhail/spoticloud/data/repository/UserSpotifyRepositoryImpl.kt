@@ -14,7 +14,7 @@ class UserSpotifyRepositoryImpl @Inject constructor(
         tokenHelperSpotify.saveToken(token)
     }
 
-    override fun checkAuth(): Boolean {
+    override fun isAuthed(): Boolean {
         return tokenHelperSpotify.getToken() != null
     }
 }
