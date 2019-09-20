@@ -9,5 +9,5 @@ class SpotifyAuthUseCase @Inject constructor(
 
     fun auth(any: Any?) = userSpotifyRepository.auth(any)
 
-    fun checkAuth(): Boolean = userSpotifyRepository.checkAuth()
+    fun checkAuth(): Boolean = userSpotifyRepository.isAuthed()
 }

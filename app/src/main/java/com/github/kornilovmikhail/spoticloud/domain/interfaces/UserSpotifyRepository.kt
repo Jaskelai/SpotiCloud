@@ -4,5 +4,5 @@ interface UserSpotifyRepository{
 
     fun auth(any: Any?)
 
-    fun checkAuth(): Boolean
+    fun isAuthed(): Boolean
 }

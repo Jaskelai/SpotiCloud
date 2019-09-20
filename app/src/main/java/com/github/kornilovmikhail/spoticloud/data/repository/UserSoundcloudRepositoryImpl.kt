@@ -41,7 +41,7 @@ class UserSoundcloudRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun checkAuth(): Boolean {
+    override fun isAuthed(): Boolean {
         return tokenHelperSoundcloud.getToken() != null
     }
 }
