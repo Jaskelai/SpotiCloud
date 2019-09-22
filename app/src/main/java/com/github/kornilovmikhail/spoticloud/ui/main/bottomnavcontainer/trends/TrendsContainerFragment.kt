@@ -4,12 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.github.kornilovmikhail.spoticloud.R
-import com.github.kornilovmikhail.spoticloud.databinding.FragmentTrendsContainerBinding
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
-import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_trends_container.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -22,24 +18,12 @@ class TrendsContainerFragment : BaseFragment() {
         fun getInstance() = TrendsContainerFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var trendsViewPagerAdapter: TrendsViewPagerAdapter
-
-    private lateinit var trendsContainerViewModel: TrendsContainerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTrendsContainerBinding>(
-            inflater,
-            R.layout.fragment_trends_container,
-            container,
-            false
-        ).apply {
-            viewModel = trendsContainerViewModel
-            lifecycleOwner = this@TrendsContainerFragment
-        }
-        return binding.root
+        return inflater.inflate(R.layout.fragment_trends_container, container, false)
     }
 
     override fun onStop() {
@@ -48,7 +32,6 @@ class TrendsContainerFragment : BaseFragment() {
     }
 
     override fun injectViewModel() {
-        trendsContainerViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun setupViews() {
@@ -57,7 +40,6 @@ class TrendsContainerFragment : BaseFragment() {
     }
 
     override fun subscribe() {
-        lifecycle.addObserver(trendsContainerViewModel)
     }
 
     private fun setupViewPager() {
