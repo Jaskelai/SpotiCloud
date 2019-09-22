@@ -9,7 +9,6 @@ import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_trends_container.*
 import kotlinx.android.synthetic.main.toolbar.*
-import javax.inject.Inject
 
 class TrendsContainerFragment : BaseFragment() {
 
@@ -18,17 +17,10 @@ class TrendsContainerFragment : BaseFragment() {
         fun getInstance() = TrendsContainerFragment()
     }
 
-    @Inject lateinit var trendsViewPagerAdapter: TrendsViewPagerAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_trends_container, container, false)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewpager_trends.adapter = null
     }
 
     override fun injectViewModel() {
@@ -43,7 +35,7 @@ class TrendsContainerFragment : BaseFragment() {
     }
 
     private fun setupViewPager() {
-        viewpager_trends.adapter = trendsViewPagerAdapter
+        viewpager_trends.adapter = TrendsViewPagerAdapter(childFragmentManager, lifecycle)
 
         TabLayoutMediator(tabs_trends, viewpager_trends,
             TabLayoutMediator.OnConfigureTabCallback { tab, position ->
