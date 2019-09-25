@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.data.network.api
 
-import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.TokenSoundCloudResponse
+import com.github.kornilovmikhail.spoticloud.data.network.model.TokenResponse
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -16,7 +16,7 @@ interface SoundCloudNotAuthedApi {
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("grant_type") grantType: String
-    ): Single<TokenSoundCloudResponse>
+    ): Single<TokenResponse>
 
     @FormUrlEncoded
     @POST("oauth2/token")
@@ -25,5 +25,5 @@ interface SoundCloudNotAuthedApi {
         @Field("client_secret") clientSecret: String,
         @Field("refresh_token") refreshToken: String,
         @Field("grant_type") grantType: String
-    ): Single<TokenSoundCloudResponse>
+    ): Single<TokenResponse>
 }

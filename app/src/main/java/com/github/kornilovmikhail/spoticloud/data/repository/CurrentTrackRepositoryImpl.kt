@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
 import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CurrentTrackRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CurrentTrackRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.google.gson.Gson
 import io.reactivex.Observable

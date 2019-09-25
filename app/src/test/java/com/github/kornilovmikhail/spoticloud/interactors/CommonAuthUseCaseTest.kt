@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.interactors
 
 import com.github.kornilovmikhail.spoticloud.domain.interactors.CommonAuthUseCase
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CommonUserRepository
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

@@ -4,20 +4,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.soundcloudtrends.SoundCloudTrendsFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.spotifytrends.SpotifyTrendsFragment
-import javax.inject.Inject
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.trendssoundcloud.TrendsSoundCloudFragment
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.trendsspotify.TrendsSpotifyFragment
 
-class TrendsViewPagerAdapter @Inject constructor(
+class TrendsViewPagerAdapter (
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            TrendsScreens.SOUNDCLOUD.value -> SoundCloudTrendsFragment.getInstance()
-            TrendsScreens.SPOTIFY.value -> SpotifyTrendsFragment.getInstance()
-            else -> { SoundCloudTrendsFragment.getInstance() }
+            TrendsScreens.SOUNDCLOUD.value -> TrendsSoundCloudFragment.getInstance()
+            TrendsScreens.SPOTIFY.value -> TrendsSpotifyFragment.getInstance()
+            else -> { TrendsSoundCloudFragment.getInstance() }
         }
     }
 

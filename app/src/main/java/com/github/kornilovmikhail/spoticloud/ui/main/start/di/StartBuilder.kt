@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector
 interface StartBuilder {
 
     @ScreenScope
-    @ContributesAndroidInjector(modules = [StartModule::class, SpotifyAuthModule::class])
+    @ContributesAndroidInjector(modules = [StartModule::class])
     fun bindStartFragment(): StartFragment
 }

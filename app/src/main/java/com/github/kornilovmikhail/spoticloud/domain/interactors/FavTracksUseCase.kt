@@ -2,9 +2,9 @@ package com.github.kornilovmikhail.spoticloud.domain.interactors
 
 import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
 import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSoundcloudRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSpotifyRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction

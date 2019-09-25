@@ -1,9 +1,9 @@
 package com.github.kornilovmikhail.spoticloud.interactors
 
 import com.github.kornilovmikhail.spoticloud.domain.interactors.FavTracksUseCase
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSpotifyRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSoundcloudRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSpotifyRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Single
 import org.junit.Before
@@ -11,7 +11,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito.given
 import org.mockito.Mock
-import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -38,8 +37,6 @@ class FavTracksUseCaseTest {
 
     @Test
     fun `test getFavTracks() all not authed will return empty list`() {
-        val soundcloudTracks = arrayListOf(track)
-        val spotifyTracks = arrayListOf(track)
 
         val expectedValue = emptyList<Track>()
 
@@ -56,7 +53,6 @@ class FavTracksUseCaseTest {
     @Test
     fun `test getFavTracks() soundcloud authed will return list with one track`() {
         val soundcloudTracks = arrayListOf(track)
-        val spotifyTracks = arrayListOf(track)
 
         val expectedValue = arrayListOf(track)
 
@@ -74,7 +70,6 @@ class FavTracksUseCaseTest {
 
     @Test
     fun `test getFavTracks() spotify authed will return list with one track`() {
-        val soundcloudTracks = arrayListOf(track)
         val spotifyTracks = arrayListOf(track)
 
         val expectedValue = arrayListOf(track)

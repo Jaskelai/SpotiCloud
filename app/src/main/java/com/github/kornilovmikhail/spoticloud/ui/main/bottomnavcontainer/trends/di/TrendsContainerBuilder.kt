@@ -2,8 +2,8 @@ package com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.
 
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsContainerFragment
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.soundcloudtrends.di.SoundCloudTrendsFragmentBuilder
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.spotifytrends.di.SpotifyTrendsFragmentBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.trendssoundcloud.di.TrendsSoundCloudFragmentBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.trendsspotify.di.TrendsSpotifyFragmentBuilder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,8 +13,8 @@ interface TrendsContainerBuilder {
     @BottomScreenScope
     @ContributesAndroidInjector(
         modules = [
-            SoundCloudTrendsFragmentBuilder::class,
-            SpotifyTrendsFragmentBuilder::class,
+            TrendsSoundCloudFragmentBuilder::class,
+            TrendsSpotifyFragmentBuilder::class,
             TrendsContainerModule::class]
     )
     fun bindTrendsListFragment(): TrendsContainerFragment

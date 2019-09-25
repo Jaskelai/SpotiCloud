@@ -17,7 +17,9 @@ android {
         buildConfigField "String", "SOUNDCLOUD_CLIENT_ID", "\"51762b5b2ec86582ea95a9d816077654\""
         buildConfigField "String", "SOUNDCLOUD_CLIENT_SECRET", "\"9923d03b898d96820129c1b6720d915c\""
         buildConfigField "String", "SPOTIFY_URL", "\"https://api.spotify.com/v1/\""
+        buildConfigField "String", "SPOTIFY_ACCOUNTS_URL", "\"https://accounts.spotify.com/api/\""
         buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"65ce988e91de442cbe4510b47a48c2b9\""
+        buildConfigField "String", "SPOTIFY_CLIENT_SECRET", "\"4d6ed47aac2e4eb0a66815ee1cd0fb93\""
     }
     buildTypes {
         release {
@@ -101,9 +103,6 @@ dependencies {
     //picasso
     def picassoVersion = '2.71828'
     implementation "com.squareup.picasso:picasso:$picassoVersion"
-    //spotify auth
-    def spotifyAuthVersion = '1.1.0'
-    implementation "com.spotify.android:auth:$spotifyAuthVersion"
     //cicerone
     def ciceroneVersion = '5.0.0'
     implementation "ru.terrakok.cicerone:cicerone:$ciceroneVersion"

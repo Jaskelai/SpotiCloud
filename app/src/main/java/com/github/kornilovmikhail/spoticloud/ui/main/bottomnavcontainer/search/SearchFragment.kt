@@ -25,7 +25,6 @@ class SearchFragment : BaseFragment() {
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-
     @Inject lateinit var searchTracksAdapter: SearchTracksAdapter
 
     private lateinit var searchViewModel: SearchViewModel

@@ -4,6 +4,7 @@ import com.github.kornilovmikhail.spoticloud.ui.main.MainActivity
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.di.BottomNavContainerBuilder
 import com.github.kornilovmikhail.spoticloud.ui.main.player.di.PlayerBuilder
 import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.di.SoundcloudAuthBuilder
+import com.github.kornilovmikhail.spoticloud.ui.main.spotifyauth.di.SpotifyAuthBuilder
 import com.github.kornilovmikhail.spoticloud.ui.main.start.di.StartBuilder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -17,8 +18,10 @@ interface MainActivityBuilder {
             MainActivityModule::class,
             StartBuilder::class,
             SoundcloudAuthBuilder::class,
+            SpotifyAuthBuilder::class,
             PlayerBuilder::class,
-            BottomNavContainerBuilder::class]
+            BottomNavContainerBuilder::class
+        ]
     )
     fun bindMainActivity(): MainActivity
 }

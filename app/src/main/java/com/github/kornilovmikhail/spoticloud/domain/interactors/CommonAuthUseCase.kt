@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.domain.interactors
 
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CommonUserRepository
 import javax.inject.Inject
 
 class CommonAuthUseCase @Inject constructor(
