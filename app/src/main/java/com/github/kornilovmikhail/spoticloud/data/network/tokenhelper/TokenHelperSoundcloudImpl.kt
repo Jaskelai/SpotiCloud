@@ -32,8 +32,7 @@ class TokenHelperSoundcloudImpl @Inject constructor(
     }
 
     override fun refresh() {
-        val refreshToken = getRefreshToken()
-        refreshToken?.let {
+        getRefreshToken()?.let {
             soundCloudNotAuthedApi.getTokenByRefreshToken(
                 SOUNDCLOUD_CLIENT_ID,
                 SOUNDCLOUD_CLIENT_SECRET,

@@ -1,31 +1,31 @@
 package com.github.kornilovmikhail.spoticloud.data.network.authenticator
 
-import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloudImpl
-import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
+import com.github.kornilovmikhail.spoticloud.data.network.di.NetworkModule
+import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 import javax.inject.Inject
 
-@AppScope
-class SoundCloudAuthenticator @Inject constructor(
-    private val tokenHelperSoundcloudImpl: TokenHelperSoundcloudImpl
+class AuthenticatorSoundcloudImpl @Inject constructor(
+    @param: SoundCloudQualifier private val tokenHelperSoundcloud: TokenHelper
 ) : Authenticator {
 
     companion object {
-        private const val TOKEN_QUERY = "oauth_token"
+        private const val TOKEN_QUERY = NetworkModule.AUTH_SOUNDCLOUD_QUERY
     }
 
     @Synchronized
     override fun authenticate(route: Route?, response: Response): Request? {
-        val storedToken = tokenHelperSoundcloudImpl.getToken()
+        val storedToken = tokenHelperSoundcloud.getToken()
         val requestToken = response.request.url.queryParameter(TOKEN_QUERY)
 
         val requestBuilder = response.request
 
         if (storedToken.equals(requestToken)) {
-            tokenHelperSoundcloudImpl.refresh()
+            tokenHelperSoundcloud.refresh()
         }
 
         return buildRequest(requestBuilder)
@@ -36,7 +36,7 @@ class SoundCloudAuthenticator @Inject constructor(
 
         if (url.queryParameter(TOKEN_QUERY) != null) {
             url = url.newBuilder()
-                .addQueryParameter(TOKEN_QUERY, tokenHelperSoundcloudImpl.getToken())
+                .addQueryParameter(TOKEN_QUERY, tokenHelperSoundcloud.getToken())
                 .build()
         }
 

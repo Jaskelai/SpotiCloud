@@ -17,4 +17,12 @@ interface SpotifyNotAuthedApi {
         @Field("redirect_uri") redirectUri: String,
         @Header("Authorization") authorization: String
     ): Single<TokenResponse>
+
+    @FormUrlEncoded
+    @POST("token")
+    fun getTokenByRefreshToken(
+        @Field("grant_type") grantType: String,
+        @Field("refresh_token") refreshToken: String,
+        @Header("Authorization") authorization: String
+    )
 }

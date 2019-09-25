@@ -2,13 +2,13 @@ package com.github.kornilovmikhail.spoticloud.data.network.di
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
 import com.github.kornilovmikhail.spoticloud.data.network.api.*
-import com.github.kornilovmikhail.spoticloud.data.network.authenticator.SoundCloudAuthenticator
 import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
 import com.github.kornilovmikhail.spoticloud.di.SpotifyQualifier
 import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
 import dagger.Module
 import dagger.Provides
+import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -21,6 +21,10 @@ import javax.inject.Named
 class NetworkModule {
 
     companion object {
+        const val AUTH_SPOTIFY_HEADER = "Authorization"
+        const val AUTH_SPOTIFY_HEADER_EXTRA = "Bearer"
+        const val AUTH_SOUNDCLOUD_QUERY = "oauth_token"
+
         private const val SOUNDCLOUD_URL = "soundcloud_url"
         private const val SOUNDCLOUD_V2_URL = "soundcloud_v2_url"
         private const val SPOTIFY_URL = "spotify_url"
@@ -94,7 +98,7 @@ class NetworkModule {
     @Named(RETROFIT_SOUNDCLOUD_AUTHED)
     fun provideOkHttpAuthedSoundCloud(
         @Named(RETROFIT_SOUNDCLOUD_AUTHED) authInterceptor: Interceptor,
-        soundCloudAuthenticator: SoundCloudAuthenticator
+        @SoundCloudQualifier soundCloudAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -115,7 +119,7 @@ class NetworkModule {
             val originalRequest = it.request()
 
             val url = originalRequest.url.newBuilder()
-                .addQueryParameter("oauth_token", tokenHelperSoundcloud.getToken())
+                .addQueryParameter(AUTH_SOUNDCLOUD_QUERY, tokenHelperSoundcloud.getToken())
                 .build()
 
             val newRequest = originalRequest.newBuilder()
@@ -216,13 +220,15 @@ class NetworkModule {
     @AppScope
     @Named(RETROFIT_SPOTIFY_AUTHED)
     fun provideOkHttpAuthedSpotify(
-        @Named(RETROFIT_SPOTIFY_AUTHED) authInterceptor: Interceptor
+        @Named(RETROFIT_SPOTIFY_AUTHED) authInterceptor: Interceptor,
+        @SpotifyQualifier spotifyAuthenticator: Authenticator
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(authInterceptor)
+            .authenticator(spotifyAuthenticator)
             .build()
     }
 
@@ -239,7 +245,7 @@ class NetworkModule {
 
             token?.let { token ->
                 request = request.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
+                    .addHeader(AUTH_SPOTIFY_HEADER, "$AUTH_SPOTIFY_HEADER_EXTRA $token")
                     .build()
             }
             it.proceed(request)

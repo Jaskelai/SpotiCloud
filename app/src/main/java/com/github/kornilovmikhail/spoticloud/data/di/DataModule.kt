@@ -2,6 +2,7 @@ package com.github.kornilovmikhail.spoticloud.data.di
 
 import com.github.kornilovmikhail.spoticloud.data.local.di.RoomModule
 import com.github.kornilovmikhail.spoticloud.data.local.di.SharedPreferencesModule
+import com.github.kornilovmikhail.spoticloud.data.network.di.AuthenticatorModule
 import com.github.kornilovmikhail.spoticloud.data.network.di.NetworkModule
 import com.github.kornilovmikhail.spoticloud.data.network.di.TokenHelperModule
 import com.github.kornilovmikhail.spoticloud.data.repository.di.RepositoryModule
@@ -13,7 +14,8 @@ import dagger.Module
         RepositoryModule::class,
         RoomModule::class,
         SharedPreferencesModule::class,
-        TokenHelperModule::class
+        TokenHelperModule::class,
+        AuthenticatorModule::class
     ]
 )
 interface DataModule
