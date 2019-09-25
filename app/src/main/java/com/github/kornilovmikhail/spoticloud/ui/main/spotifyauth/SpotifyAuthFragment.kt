@@ -2,6 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.main.spotifyauth
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +30,8 @@ class SpotifyAuthFragment : BaseFragment() {
         fun getInstance() = SpotifyAuthFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var spotifyAuthViewModel: SpotifyAuthViewModel
 
@@ -52,10 +55,7 @@ class SpotifyAuthFragment : BaseFragment() {
         spotifyAuthViewModel = injectViewModel(viewModelFactory)
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun setupViews() {
-        webview_spotify_auth.settings.javaScriptEnabled = true
-
         setupWebView()
     }
 
@@ -67,8 +67,10 @@ class SpotifyAuthFragment : BaseFragment() {
         })
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {
-        spotifyAuthViewModel.showProgressBar()
+        webview_spotify_auth.settings.javaScriptEnabled = true
+
         webview_spotify_auth.loadUrl(spotifyAuthViewModel.getAuthUrl())
 
         webview_spotify_auth.webViewClient = object : WebViewClient() {
@@ -82,18 +84,33 @@ class SpotifyAuthFragment : BaseFragment() {
                 }
             }
 
+            @SuppressWarnings("deprecation")
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                url?.let {
+                    return shouldLoadPage(Uri.parse(it))
+                }
+                return true
+            }
+
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
                 request: WebResourceRequest?
             ): Boolean {
                 request?.let {
-                    val code = request.url.getQueryParameter(CODE)
-                    spotifyAuthViewModel.onPageLoading(code)
-                    if (code != null) {
-                        return true
-                    }
+                    return shouldLoadPage(it.url)
                 }
-                return super.shouldOverrideUrlLoading(view, request)
+                return true
+            }
+
+            private fun shouldLoadPage(url: Uri): Boolean {
+                val code = url.getQueryParameter(CODE)
+                spotifyAuthViewModel.onPageLoading(code)
+
+                if (code != null) {
+                    return true
+                }
+                return false
             }
         }
     }

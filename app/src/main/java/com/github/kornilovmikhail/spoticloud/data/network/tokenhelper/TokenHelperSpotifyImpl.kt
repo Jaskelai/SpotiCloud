@@ -6,6 +6,7 @@ import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPrefer
 import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyNotAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.model.TokenResponse
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TokenHelperSpotifyImpl @Inject constructor(
@@ -43,10 +44,13 @@ class TokenHelperSpotifyImpl @Inject constructor(
                 it,
                 authorization
             )
+                .subscribeOn(Schedulers.io())
+                .doOnSuccess { tokenResponse -> saveToken(tokenResponse) }
+                .blockingGet()
         }
     }
 
     private fun getRefreshToken(): String? {
-        return sharedPreferencesStorage.readMessage(TokenHelperSpotifyImpl.KEY_REFRESH_TOKEN_SPOTIFY)
+        return sharedPreferencesStorage.readMessage(KEY_REFRESH_TOKEN_SPOTIFY)
     }
 }

@@ -37,7 +37,6 @@ class FavTracksUseCaseTest {
 
     @Test
     fun `test getFavTracks() all not authed will return empty list`() {
-
         val expectedValue = emptyList<Track>()
 
         given(userSoundcloudRepository.isAuthed())

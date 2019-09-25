@@ -23,7 +23,7 @@ class SpotifyAuthViewModel @Inject constructor(
     private val disposables = CompositeDisposable()
 
     init {
-        progressBarVisibilityLiveData.value = false
+        progressBarVisibilityLiveData.value = true
     }
 
     override fun onCleared() {
@@ -32,13 +32,13 @@ class SpotifyAuthViewModel @Inject constructor(
     }
 
     fun onPageLoading(code: String?) {
-        if (code != null) {
-            auth(code)
+        code?.let {
+            auth(it)
         }
     }
 
     fun onPageLoaded(code: String?) {
-        if (code == null) {
+        code?.let {
             progressBarVisibilityLiveData.value = false
         }
     }
@@ -59,9 +59,5 @@ class SpotifyAuthViewModel @Inject constructor(
                     errorLiveData.value = it.message
                 })
         )
-    }
-
-    fun showProgressBar() {
-        progressBarVisibilityLiveData.value = true
     }
 }
