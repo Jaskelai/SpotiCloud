@@ -103,9 +103,6 @@ dependencies {
     //picasso
     def picassoVersion = '2.71828'
     implementation "com.squareup.picasso:picasso:$picassoVersion"
-    //spotify auth
-    def spotifyAuthVersion = '1.1.0'
-    implementation "com.spotify.android:auth:$spotifyAuthVersion"
     //cicerone
     def ciceroneVersion = '5.0.0'
     implementation "ru.terrakok.cicerone:cicerone:$ciceroneVersion"
