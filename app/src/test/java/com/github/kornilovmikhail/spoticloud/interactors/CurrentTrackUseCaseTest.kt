@@ -28,7 +28,6 @@ class CurrentTrackUseCaseTest {
 
     @Test
     fun `test setCurrentTrack() will call repository's saveCurrentTrack()`() {
-
         currentTrackUseCase.setCurrentTrack(track)
 
         verify(currentTrackRepository, times(1)).setCurrentTrack(track)

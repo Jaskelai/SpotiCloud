@@ -55,10 +55,7 @@ class SpotifyAuthFragment : BaseFragment() {
         spotifyAuthViewModel = injectViewModel(viewModelFactory)
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun setupViews() {
-        webview_spotify_auth.settings.javaScriptEnabled = true
-
         setupWebView()
     }
 
@@ -70,8 +67,10 @@ class SpotifyAuthFragment : BaseFragment() {
         })
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {
-        spotifyAuthViewModel.showProgressBar()
+        webview_spotify_auth.settings.javaScriptEnabled = true
+
         webview_spotify_auth.loadUrl(spotifyAuthViewModel.getAuthUrl())
 
         webview_spotify_auth.webViewClient = object : WebViewClient() {
@@ -88,7 +87,7 @@ class SpotifyAuthFragment : BaseFragment() {
             @SuppressWarnings("deprecation")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 url?.let {
-                    return dealWithUrl(Uri.parse(url))
+                    return shouldLoadPage(Uri.parse(it))
                 }
                 return true
             }
@@ -99,14 +98,15 @@ class SpotifyAuthFragment : BaseFragment() {
                 request: WebResourceRequest?
             ): Boolean {
                 request?.let {
-                    return dealWithUrl(it.url)
+                    return shouldLoadPage(it.url)
                 }
                 return true
             }
 
-            private fun dealWithUrl(url: Uri): Boolean {
+            private fun shouldLoadPage(url: Uri): Boolean {
                 val code = url.getQueryParameter(CODE)
                 spotifyAuthViewModel.onPageLoading(code)
+
                 if (code != null) {
                     return true
                 }

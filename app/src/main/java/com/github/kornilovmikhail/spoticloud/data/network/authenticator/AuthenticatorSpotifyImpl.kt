@@ -18,6 +18,7 @@ class AuthenticatorSpotifyImpl @Inject constructor(
         private const val HEADER_AUTHORIZATION_EXTRA = NetworkModule.AUTH_SPOTIFY_HEADER_EXTRA
     }
 
+    @Synchronized
     override fun authenticate(route: Route?, response: Response): Request? {
         val storedToken = tokenHelperSpotify.getToken()
         val requestToken = response.request.header(HEADER_AUTHORIZATION)?.substringAfter(" ")

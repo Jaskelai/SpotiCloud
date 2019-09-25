@@ -24,5 +24,5 @@ interface SpotifyNotAuthedApi {
         @Field("grant_type") grantType: String,
         @Field("refresh_token") refreshToken: String,
         @Header("Authorization") authorization: String
-    )
+    ): Single<TokenResponse>
 }
