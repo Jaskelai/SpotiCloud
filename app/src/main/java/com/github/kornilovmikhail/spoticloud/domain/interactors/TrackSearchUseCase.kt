@@ -18,18 +18,19 @@ class TrackSearchUseCase @Inject constructor(
 ) {
 
     fun searchForTracks(text: String): Single<List<Track>> {
-        val soundcloudSearchedTracks: Single<List<Track>> = if (userSoundcloudRepository.isAuthed()) {
-            soundCloudTrackRepository.searchForTracks(text)
-        } else {
-            Single.just(emptyList())
-        }
+        val soundcloudSearchedTracks: Single<List<Track>> =
+            if (userSoundcloudRepository.isAuthed()) {
+                soundCloudTrackRepository.searchForTracks(text)
+            } else {
+                Single.just(emptyList())
+            }
         val spotifySearchedTracks: Single<List<Track>> = if (userSpotifyRepository.isAuthed()) {
             spotifyTrackRepository.searchForTracks(text)
         } else {
             Single.just(emptyList())
         }
-        return Single.zip(spotifyTrackRepository.searchForTracks(text),
-            soundCloudTrackRepository.searchForTracks(text),
+        return Single.zip(spotifySearchedTracks,
+            soundcloudSearchedTracks,
             BiFunction { soundcloudTracks, spotifyTracks -> (soundcloudTracks + spotifyTracks) })
     }
 }

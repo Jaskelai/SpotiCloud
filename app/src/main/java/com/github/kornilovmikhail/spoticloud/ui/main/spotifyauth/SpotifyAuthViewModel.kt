@@ -43,7 +43,7 @@ class SpotifyAuthViewModel @Inject constructor(
         }
     }
 
-    fun auth(code: String) {
+    private fun auth(code: String) {
         disposables.add(
             spotifyAuthUseCase.auth(code)
                 .doOnSubscribe {
