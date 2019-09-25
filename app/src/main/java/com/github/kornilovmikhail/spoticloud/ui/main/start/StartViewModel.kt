@@ -1,8 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.ui.main.start
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
@@ -13,21 +11,14 @@ import com.github.kornilovmikhail.spoticloud.domain.interactors.CommonAuthUseCas
 import com.github.kornilovmikhail.spoticloud.domain.interactors.SoundCloudAuthUseCase
 import com.github.kornilovmikhail.spoticloud.domain.interactors.SpotifyAuthUseCase
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
-import com.spotify.sdk.android.authentication.AuthenticationRequest
 import javax.inject.Inject
 
 class StartViewModel @Inject constructor(
     private val globalRouter: GlobalRouter,
     private val soundCloudAuthUseCase: SoundCloudAuthUseCase,
     private val spotifyAuthUseCase: SpotifyAuthUseCase,
-    private val commonAuthUseCase: CommonAuthUseCase,
-    private val request: AuthenticationRequest
+    private val commonAuthUseCase: CommonAuthUseCase
 ) : ViewModel(), LifecycleObserver {
-
-    companion object {
-        private const val REQUEST_CODE_SPOTIFY = 1337
-        private const val EXTRA_AUTH_RESPONSE = "EXTRA_AUTH_RESPONSE"
-    }
 
     val authedLiveData = MediatorLiveData<Boolean>()
     val soundcloudBtnActiveLiveData = MutableLiveData<Boolean>()
@@ -56,30 +47,13 @@ class StartViewModel @Inject constructor(
         globalRouter.navigateToSoundcloudAuthScreen()
     }
 
-    fun onBtnAuthSpotifyClicked(fragment: Fragment?) {
-        globalRouter.navigateToSpotifyAuthScreen(fragment, request, REQUEST_CODE_SPOTIFY)
+    fun onBtnAuthSpotifyClicked() {
+        globalRouter.navigateToSpotifyAuthScreen()
     }
 
     fun onBtnSnackbarClicked() {
         commonAuthUseCase.saveAuthStatus(true)
         globalRouter.navigateToBottomNavScreen()
-    }
-
-    fun handleResult(requestCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE_SPOTIFY) {
-            val dataBundle = data?.getBundleExtra(EXTRA_AUTH_RESPONSE)
-            var value: Any? = null
-            dataBundle?.let {
-                for (key in dataBundle.keySet()) {
-                    value = dataBundle.get(key)
-                }
-            }
-            onSpotifyResult(value)
-        }
-    }
-
-    private fun onSpotifyResult(any: Any?) {
-        spotifyAuthUseCase.auth(any)
     }
 
     @SuppressLint("CheckResult")

@@ -3,16 +3,17 @@ package com.github.kornilovmikhail.spoticloud.data.repository
 import android.content.Context
 import com.github.kornilovmikhail.spoticloud.BuildConfig
 import com.github.kornilovmikhail.spoticloud.R
-import com.github.kornilovmikhail.spoticloud.data.network.tokenhelper.TokenHelperSoundcloud
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
+import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSoundcloudRepository
 import io.reactivex.Completable
 import retrofit2.HttpException
 import javax.inject.Inject
 
 class UserSoundcloudRepositoryImpl @Inject constructor(
     private val soundCloudNotAuthedApi: SoundCloudNotAuthedApi,
-    private val tokenHelperSoundcloud: TokenHelperSoundcloud,
+    @param:SoundCloudQualifier private val tokenHelperSoundcloud: TokenHelper,
     private val appContext: Context
 ) : UserSoundcloudRepository {
 

@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.interactors
 
 import com.github.kornilovmikhail.spoticloud.domain.interactors.CurrentTrackUseCase
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CurrentTrackRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CurrentTrackRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Observable
 import org.junit.Before

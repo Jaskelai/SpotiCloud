@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.di
+package com.github.kornilovmikhail.spoticloud.data.local.di
 
 import android.content.Context
 import android.content.SharedPreferences

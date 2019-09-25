@@ -7,7 +7,7 @@ import com.github.kornilovmikhail.spoticloud.data.mappers.mapSpotifyTrackRemoteT
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackDBToTrack
 import com.github.kornilovmikhail.spoticloud.data.mappers.mapTrackToTrackDB
 import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyAuthedApi
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.TracksRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Completable

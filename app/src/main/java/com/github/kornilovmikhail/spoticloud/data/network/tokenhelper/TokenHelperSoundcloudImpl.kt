@@ -3,16 +3,15 @@ package com.github.kornilovmikhail.spoticloud.data.network.tokenhelper
 import com.github.kornilovmikhail.spoticloud.BuildConfig
 import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
-import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.TokenSoundCloudResponse
-import com.github.kornilovmikhail.spoticloud.di.scope.AppScope
+import com.github.kornilovmikhail.spoticloud.data.network.model.TokenResponse
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-@AppScope
-class TokenHelperSoundcloud @Inject constructor(
+class TokenHelperSoundcloudImpl @Inject constructor(
     private val sharedPreferencesStorage: SharedPreferencesStorage,
     private val soundCloudNotAuthedApi: SoundCloudNotAuthedApi
-) {
+) : TokenHelper {
 
     companion object {
         private const val KEY_TOKEN_SOUNDCLOUD = "key_token_soundcloud"
@@ -22,9 +21,9 @@ class TokenHelperSoundcloud @Inject constructor(
         private const val SOUNDCLOUD_GRANT_TYPE = "refresh_token"
     }
 
-    fun getToken(): String? = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
+    override fun getToken(): String? = sharedPreferencesStorage.readMessage(KEY_TOKEN_SOUNDCLOUD)
 
-    fun saveToken(tokenResponse: TokenSoundCloudResponse) {
+    override fun saveToken(tokenResponse: TokenResponse) {
         sharedPreferencesStorage.writeMessage(KEY_TOKEN_SOUNDCLOUD, tokenResponse.accessToken)
         sharedPreferencesStorage.writeMessage(
             KEY_REFRESH_TOKEN_SOUNDCLOUD,
@@ -32,7 +31,7 @@ class TokenHelperSoundcloud @Inject constructor(
         )
     }
 
-    fun refresh() {
+    override fun refresh() {
         val refreshToken = getRefreshToken()
         refreshToken?.let {
             soundCloudNotAuthedApi.getTokenByRefreshToken(

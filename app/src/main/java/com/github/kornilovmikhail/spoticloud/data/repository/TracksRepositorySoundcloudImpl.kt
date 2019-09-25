@@ -10,7 +10,7 @@ import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudAuthedAp
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudV2AuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.AuthorSoundCloudRemote
 import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.TrackSoundCloudResponse
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.TracksRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.TracksRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Completable

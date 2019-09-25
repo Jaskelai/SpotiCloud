@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
 import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CommonUserRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CommonUserRepository
 import javax.inject.Inject
 
 class CommonUserRepositoryImpl @Inject constructor(

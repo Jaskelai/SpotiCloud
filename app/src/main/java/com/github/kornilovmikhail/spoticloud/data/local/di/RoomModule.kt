@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.data.di
+package com.github.kornilovmikhail.spoticloud.data.local.di
 
 import android.content.Context
 import androidx.room.Room
@@ -18,7 +18,9 @@ class RoomModule {
     @Provides
     @AppScope
     fun provideTrackDB(context: Context): AbstractTrackDB =
-        Room.databaseBuilder(context, AbstractTrackDB::class.java, DATABASE_NAME)
+        Room.databaseBuilder(context, AbstractTrackDB::class.java,
+            DATABASE_NAME
+        )
             .build()
 
     @Provides

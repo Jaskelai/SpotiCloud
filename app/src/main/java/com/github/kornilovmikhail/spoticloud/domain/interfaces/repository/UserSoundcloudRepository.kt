@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.domain.interfaces
+package com.github.kornilovmikhail.spoticloud.domain.interfaces.repository
 
 import io.reactivex.Completable
 

@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.domain.interactors
 
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.CurrentTrackRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CurrentTrackRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.Observable
 import javax.inject.Inject

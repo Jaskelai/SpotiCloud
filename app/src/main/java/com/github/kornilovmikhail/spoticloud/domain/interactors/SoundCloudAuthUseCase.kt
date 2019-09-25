@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.domain.interactors
 
-import com.github.kornilovmikhail.spoticloud.domain.interfaces.UserSoundcloudRepository
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.UserSoundcloudRepository
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
