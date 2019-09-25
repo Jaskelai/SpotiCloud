@@ -1,6 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
 import android.content.Context
+import android.net.Uri
 import android.util.Base64
 import com.github.kornilovmikhail.spoticloud.BuildConfig
 import com.github.kornilovmikhail.spoticloud.R
@@ -61,6 +62,15 @@ class UserSpotifyRepositoryImpl @Inject constructor(
     }
 
     override fun getAuthUrl(): String {
-        return "$BASE_AUTH_URL?client_id=$CLIENT_ID&response_type=$RESPONSE_TYPE&redirect_uri=$REDIRECT_URI&scopes=$SCOPE_LIBRARY_READ $SCOPE_LIBRARY_MODIFY $SCOPE_USER_READ_PRIVATE $SCOPE_STREAMING"
+        return Uri.parse(BASE_AUTH_URL).buildUpon()
+            .appendQueryParameter("client_id", CLIENT_ID)
+            .appendQueryParameter("response_type", RESPONSE_TYPE)
+            .appendQueryParameter("redirect_uri", REDIRECT_URI)
+            .appendQueryParameter(
+                "scope",
+                "$SCOPE_USER_READ_PRIVATE $SCOPE_LIBRARY_READ $SCOPE_LIBRARY_MODIFY $SCOPE_STREAMING"
+            )
+            .build()
+            .toString()
     }
 }
