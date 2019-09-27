@@ -14,14 +14,14 @@ class AuthenticatorSpotifyImpl @Inject constructor(
 ): Authenticator {
 
     companion object {
-        private const val HEADER_AUTHORIZATION = NetworkModule.AUTH_SPOTIFY_HEADER
-        private const val HEADER_AUTHORIZATION_EXTRA = NetworkModule.AUTH_SPOTIFY_HEADER_EXTRA
+        private const val TOKEN_HEADER = NetworkModule.AUTH_SPOTIFY_HEADER
+        private const val TOKEN_HEADER_EXTRA = NetworkModule.AUTH_SPOTIFY_HEADER_EXTRA
     }
 
     @Synchronized
     override fun authenticate(route: Route?, response: Response): Request? {
         val storedToken = tokenHelperSpotify.getToken()
-        val requestToken = response.request.header(HEADER_AUTHORIZATION)?.substringAfter(" ")
+        val requestToken = response.request.header(TOKEN_HEADER)?.substringAfter(" ")
 
         val requestBuilder = response.request
 
@@ -34,12 +34,12 @@ class AuthenticatorSpotifyImpl @Inject constructor(
 
     private fun buildRequest(request: Request): Request {
         var token: String? = ""
-        if (request.header(HEADER_AUTHORIZATION) != null) {
+        if (request.header(TOKEN_HEADER) != null) {
             token = tokenHelperSpotify.getToken()
         }
 
         return request.newBuilder()
-            .header(HEADER_AUTHORIZATION, "$HEADER_AUTHORIZATION_EXTRA $token")
+            .header(TOKEN_HEADER, "$TOKEN_HEADER_EXTRA $token")
             .build()
     }
 }

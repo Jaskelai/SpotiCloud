@@ -6,7 +6,5 @@ import androidx.room.Entity
 data class AuthorDB (
     val name: String,
 
-    val uri: String,
-
     val avatarUrl: String
 )

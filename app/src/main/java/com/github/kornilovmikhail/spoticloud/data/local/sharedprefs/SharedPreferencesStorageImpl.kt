@@ -2,21 +2,22 @@ package com.github.kornilovmikhail.spoticloud.data.local.sharedprefs
 
 import android.content.SharedPreferences
 import com.f2prateek.rx.preferences2.RxSharedPreferences
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.SharedPreferencesStorage
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class SharedPreferencesStorage @Inject constructor(
+class SharedPreferencesStorageImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val rxSharedPreferences: RxSharedPreferences
-) {
+): SharedPreferencesStorage {
 
-    fun writeMessage(key: String, value: String) {
+    override fun writeMessage(key: String, value: String) {
         sharedPreferences.edit().putString(key, value).apply()
     }
 
-    fun readMessage(key: String): String? = sharedPreferences.getString(key, null)
+    override fun readMessage(key: String): String? = sharedPreferences.getString(key, null)
 
-    fun observeMessage(key: String): Observable<String> {
+    override fun observeMessage(key: String): Observable<String> {
         return rxSharedPreferences.getString(key, "").asObservable()
     }
 }

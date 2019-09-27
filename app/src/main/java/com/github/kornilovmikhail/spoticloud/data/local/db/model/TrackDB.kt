@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Embedded
-import com.github.kornilovmikhail.spoticloud.domain.model.Author
 import com.github.kornilovmikhail.spoticloud.domain.model.StreamServiceEnum
 
 @Entity(
@@ -36,5 +35,5 @@ data class TrackDB(
     val streamUrl: String,
 
     @Embedded(prefix = "author_")
-    val author: Author
+    val author: AuthorDB
 )
