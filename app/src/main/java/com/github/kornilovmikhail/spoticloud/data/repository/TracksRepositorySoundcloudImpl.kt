@@ -89,7 +89,7 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
                 it.map { trackRemote -> mapSoundCloudTrackRemoteToTrack(trackRemote) }
             }
             .onErrorReturn {
-               arrayListOf()
+                arrayListOf()
             }
             .subscribeOn(Schedulers.io())
     }

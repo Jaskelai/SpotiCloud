@@ -37,10 +37,8 @@ class SpotifyAuthViewModel @Inject constructor(
         }
     }
 
-    fun onPageLoaded(code: String?) {
-        code?.let {
-            progressBarVisibilityLiveData.value = false
-        }
+    fun onPageLoaded() {
+        progressBarVisibilityLiveData.value = false
     }
 
     private fun auth(code: String) {

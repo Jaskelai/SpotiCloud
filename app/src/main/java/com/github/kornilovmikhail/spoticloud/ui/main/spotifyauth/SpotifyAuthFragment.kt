@@ -30,8 +30,7 @@ class SpotifyAuthFragment : BaseFragment() {
         fun getInstance() = SpotifyAuthFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var spotifyAuthViewModel: SpotifyAuthViewModel
 
@@ -78,10 +77,7 @@ class SpotifyAuthFragment : BaseFragment() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
 
-                url?.let {
-                    val code = Uri.parse(url).getQueryParameter(CODE)
-                    spotifyAuthViewModel.onPageLoaded(code)
-                }
+                spotifyAuthViewModel.onPageLoaded()
             }
 
             @SuppressWarnings("deprecation")

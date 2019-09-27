@@ -20,7 +20,7 @@ class UserSpotifyRepositoryImpl @Inject constructor(
 ) : UserSpotifyRepository {
 
     companion object {
-        private const val BASE_AUTH_URL = "https://accounts.spotify.com/authorize"
+        private const val BASE_AUTH_URL = BuildConfig.SPOTIFY_ACCOUNTS_AUTHORIZE_URL
         private const val CLIENT_ID = BuildConfig.SPOTIFY_CLIENT_ID
         private const val CLIENT_SECRET = BuildConfig.SPOTIFY_CLIENT_SECRET
         private const val RESPONSE_TYPE = "code"

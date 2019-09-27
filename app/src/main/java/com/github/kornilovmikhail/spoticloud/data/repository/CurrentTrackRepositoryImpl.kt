@@ -1,6 +1,6 @@
 package com.github.kornilovmikhail.spoticloud.data.repository
 
-import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
+import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorageImpl
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.repository.CurrentTrackRepository
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.google.gson.Gson
@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CurrentTrackRepositoryImpl @Inject constructor(
-    private val sharedPreferencesStorage: SharedPreferencesStorage,
+    private val sharedPreferencesStorage: SharedPreferencesStorageImpl,
     private val gson: Gson
 ) : CurrentTrackRepository {
 

@@ -1,7 +1,7 @@
 package com.github.kornilovmikhail.spoticloud.data.network.tokenhelper
 
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
+import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorageImpl
 import com.github.kornilovmikhail.spoticloud.data.network.api.SoundCloudNotAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.model.TokenResponse
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TokenHelperSoundcloudImpl @Inject constructor(
-    private val sharedPreferencesStorage: SharedPreferencesStorage,
+    private val sharedPreferencesStorage: SharedPreferencesStorageImpl,
     private val soundCloudNotAuthedApi: SoundCloudNotAuthedApi
 ) : TokenHelper {
 

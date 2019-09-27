@@ -2,7 +2,7 @@ package com.github.kornilovmikhail.spoticloud.data.network.tokenhelper
 
 import android.util.Base64
 import com.github.kornilovmikhail.spoticloud.BuildConfig
-import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorage
+import com.github.kornilovmikhail.spoticloud.data.local.sharedprefs.SharedPreferencesStorageImpl
 import com.github.kornilovmikhail.spoticloud.data.network.api.SpotifyNotAuthedApi
 import com.github.kornilovmikhail.spoticloud.data.network.model.TokenResponse
 import com.github.kornilovmikhail.spoticloud.domain.interfaces.TokenHelper
@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TokenHelperSpotifyImpl @Inject constructor(
-    private val sharedPreferencesStorage: SharedPreferencesStorage,
+    private val sharedPreferencesStorage: SharedPreferencesStorageImpl,
     private val spotifyNotAuthedApi: SpotifyNotAuthedApi
 ) : TokenHelper {
 
