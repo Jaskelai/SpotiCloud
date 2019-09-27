@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_trends_container.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -51,5 +52,11 @@ class TrendsContainerFragment : BaseFragment() {
 
     private fun setupToolbar() {
         toolbar_text?.text = getString(R.string.trends)
+
+        if (parentFragment is BottomNavContainerFragment) {
+            toolbar_btn_settings.setOnClickListener {
+                (parentFragment as BottomNavContainerFragment).setToolbarClickListener()
+            }
+        }
     }
 }

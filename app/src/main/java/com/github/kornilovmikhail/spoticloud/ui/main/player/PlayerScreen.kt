@@ -5,5 +5,5 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class PlayerScreen: SupportAppScreen() {
 
-    override fun getFragment(): Fragment = PlayerFragment()
+    override fun getFragment(): Fragment = PlayerFragment.getInstance()
 }

@@ -26,6 +26,11 @@ class BottomNavContainerViewModel @Inject constructor(
         isFooterEnabledLiveData.value = false
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        if (!disposables.isDisposed) disposables.dispose()
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun observeCurrentTrack() {
         disposables.add(
@@ -49,9 +54,8 @@ class BottomNavContainerViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        if (!disposables.isDisposed) disposables.dispose()
+    fun onBtnSettingsToolbarClicked() {
+        globalRouter.navigateToSettingsScreen()
     }
 
     private fun updateFooter(track: Track) {

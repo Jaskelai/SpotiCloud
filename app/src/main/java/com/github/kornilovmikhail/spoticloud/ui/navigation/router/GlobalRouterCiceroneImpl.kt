@@ -2,6 +2,7 @@ package com.github.kornilovmikhail.spoticloud.ui.navigation.router
 
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.player.PlayerScreen
+import com.github.kornilovmikhail.spoticloud.ui.main.settings.SettingsScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.soundcloudauth.SoundcloudAuthScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.spotifyauth.SpotifyAuthScreen
 import com.github.kornilovmikhail.spoticloud.ui.main.start.StartScreen
@@ -38,5 +39,9 @@ class GlobalRouterCiceroneImpl @Inject constructor() : GlobalRouter, ru.terrakok
 
     override fun returnToBottomNavScreen() {
         executeCommands(Back())
+    }
+
+    override fun navigateToSettingsScreen() {
+        executeCommands(Forward(SettingsScreen()))
     }
 }

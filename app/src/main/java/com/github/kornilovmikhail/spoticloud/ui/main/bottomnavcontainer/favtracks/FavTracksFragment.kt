@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentFavTracksBinding
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerFragment
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerViewModel
 import com.github.kornilovmikhail.spoticloud.utils.injectParentViewModel
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
@@ -18,16 +19,18 @@ import kotlinx.android.synthetic.main.fragment_fav_tracks.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-class FavTracksFragment : BaseFragment(){
+class FavTracksFragment : BaseFragment() {
 
     companion object {
 
         fun getInstance() = FavTracksFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject lateinit var favTracksAdapter: FavTracksAdapter
+    @Inject
+    lateinit var favTracksAdapter: FavTracksAdapter
 
     private lateinit var favTracksViewModel: FavTracksViewModel
     private lateinit var bottomNavContainerViewModel: BottomNavContainerViewModel
@@ -81,5 +84,11 @@ class FavTracksFragment : BaseFragment(){
 
     private fun setupToolbar() {
         toolbar_text?.text = getString(R.string.favourite_tracks)
+
+        if (parentFragment is BottomNavContainerFragment) {
+            toolbar_btn_settings.setOnClickListener {
+                (parentFragment as BottomNavContainerFragment).setToolbarClickListener()
+            }
+        }
     }
 }

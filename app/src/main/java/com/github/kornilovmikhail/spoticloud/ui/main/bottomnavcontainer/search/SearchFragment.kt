@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.databinding.FragmentSearchBinding
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
+import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNavContainerFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import com.jakewharton.rxbinding3.widget.textChangeEvents
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -80,5 +81,11 @@ class SearchFragment : BaseFragment() {
 
     private fun setupToolbar() {
         toolbar_text?.text = getString(R.string.search)
+
+        if (parentFragment is BottomNavContainerFragment) {
+            toolbar_btn_settings.setOnClickListener {
+                (parentFragment as BottomNavContainerFragment).setToolbarClickListener()
+            }
+        }
     }
 }

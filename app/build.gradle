@@ -59,6 +59,9 @@ dependencies {
     //appcompat
     def appCompatVersion = '1.1.0-rc01'
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    //preference
+    def preferenceVersion = '1.1.0'
+    implementation "androidx.preference:preference:$preferenceVersion"
     //rxKotlin
     def rxKotlinVersion = '2.4.0'
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
@@ -82,9 +85,9 @@ dependencies {
     def javaxInjectVersion = '1'
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
     //lifecycle
-    def architectureComponentVersion = '2.1.0-rc01'
+    def architectureComponentVersion = '2.1.0'
     implementation "androidx.lifecycle:lifecycle-runtime:$architectureComponentVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$architectureComponentVersion"
+    kapt "androidx.lifecycle:lifecycle-common-java8:$architectureComponentVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponentVersion"
     //room
     implementation "androidx.room:room-runtime:$architectureComponentVersion"

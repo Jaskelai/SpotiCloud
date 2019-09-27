@@ -14,6 +14,7 @@ import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.base.BaseFragment
 import com.github.kornilovmikhail.spoticloud.utils.injectViewModel
 import kotlinx.android.synthetic.main.fragment_bottom_nav_container.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
@@ -23,7 +24,8 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
         fun getInstance() = BottomNavContainerFragment()
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var bottomNavViewModel: BottomNavContainerViewModel
     private lateinit var binding: FragmentBottomNavContainerBinding
@@ -68,6 +70,10 @@ class BottomNavContainerFragment : BaseFragment(), TrackClickListener {
 
     override fun onTrackClicked(track: Track?) {
         bottomNavViewModel.play(track)
+    }
+
+    fun setToolbarClickListener() {
+        bottomNavViewModel.onBtnSettingsToolbarClicked()
     }
 
     private fun setupViewPager() {
