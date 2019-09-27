@@ -10,11 +10,14 @@ import com.github.kornilovmikhail.spoticloud.databinding.TrackListItemBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.FavTracksPopupMenuDelegate
 import javax.inject.Inject
 
 class FavTracksAdapter @Inject constructor(
-    private val clickListener: TrackClickListener
-) : ListAdapter<Track, FavTracksAdapter.TrackViewHolder>(TrackDiffUtilCallback()) {
+    private val clickListener: TrackClickListener,
+    private val favTracksPopupMenuDelegate: FavTracksPopupMenuDelegate
+) : ListAdapter<Track, FavTracksAdapter.TrackViewHolder>(TrackDiffUtilCallback()),
+    FavTracksPopupMenuDelegate by favTracksPopupMenuDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -39,7 +42,15 @@ class FavTracksAdapter @Inject constructor(
             binding.root.setOnClickListener {
                 trackClickListener.onTrackClicked(item)
             }
+            binding.root.setOnLongClickListener {
+                showFavTracksPopup(binding.root, item, this::deleteTrackFromList)
+                true
+            }
             binding.executePendingBindings()
+        }
+
+        private fun deleteTrackFromList() {
+            notifyItemRemoved(adapterPosition)
         }
     }
 }

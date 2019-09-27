@@ -10,13 +10,13 @@ import com.github.kornilovmikhail.spoticloud.databinding.TrendsListItemBinding
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackDiffUtilCallback
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.SearchTrendsPopupMenuDelegate
 
 class TrendsListAdapter (
     private val clickListener: TrackClickListener,
-    private val popupMenuDelegate: PopupMenuDelegate
+    private val popupMenuDelegate: SearchTrendsPopupMenuDelegate
 ) : ListAdapter<Track, TrendsListAdapter.TrackViewHolder>(TrackDiffUtilCallback()),
-    PopupMenuDelegate by popupMenuDelegate {
+    SearchTrendsPopupMenuDelegate by popupMenuDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -43,7 +43,7 @@ class TrendsListAdapter (
                 trackClickListener.onTrackClicked(item)
             }
             binding.root.setOnLongClickListener {
-                showPopup(binding.root.context, binding.root, item)
+                showSearchTrendsPopup(binding.root, item)
                 true
             }
             binding.executePendingBindings()

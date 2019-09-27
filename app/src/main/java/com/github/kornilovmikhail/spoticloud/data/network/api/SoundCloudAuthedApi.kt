@@ -3,6 +3,7 @@ package com.github.kornilovmikhail.spoticloud.data.network.api
 import com.github.kornilovmikhail.spoticloud.data.network.model.soundcloud.TrackSoundCloudResponse
 import io.reactivex.Completable
 import io.reactivex.Single
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -23,6 +24,11 @@ interface SoundCloudAuthedApi {
 
     @PUT("me/favorites/{id}")
     fun addTrackToFav(
+        @Path("id") id: String
+    ): Completable
+
+    @DELETE("me/favorites/{id}")
+    fun deleteTrackFromFav(
         @Path("id") id: String
     ): Completable
 }

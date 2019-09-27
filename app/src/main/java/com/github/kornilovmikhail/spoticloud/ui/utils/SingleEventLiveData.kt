@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.utils
+package com.github.kornilovmikhail.spoticloud.ui.utils
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

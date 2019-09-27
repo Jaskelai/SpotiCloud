@@ -1,4 +1,4 @@
-package com.github.kornilovmikhail.spoticloud.utils
+package com.github.kornilovmikhail.spoticloud.ui.utils
 
 import android.text.TextUtils
 import android.view.View

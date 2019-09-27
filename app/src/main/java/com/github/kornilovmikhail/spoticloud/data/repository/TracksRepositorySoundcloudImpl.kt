@@ -99,6 +99,11 @@ class TracksRepositorySoundcloudImpl @Inject constructor(
             .subscribeOn(Schedulers.io())
     }
 
+    override fun deleteTrackFromFav(track: Track): Completable {
+        return soundCloudAuthedApi.deleteTrackFromFav(track.id)
+            .subscribeOn(Schedulers.io())
+    }
+
     private fun getTrackById(id: String): Single<Track> {
         return soundCloudAuthedApi.getTrack(id)
             .onErrorReturn {

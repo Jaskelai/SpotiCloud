@@ -80,4 +80,9 @@ class TracksRepositorySpotifyImpl @Inject constructor(
         return spotifyAuthedApi.addTrackToFav(track.id)
             .subscribeOn(Schedulers.io())
     }
+
+    override fun deleteTrackFromFav(track: Track): Completable {
+        return spotifyAuthedApi.deleteTrackFromFav(track.id)
+            .subscribeOn(Schedulers.io())
+    }
 }

@@ -13,4 +13,6 @@ interface TracksRepository {
     fun searchForTracks(text: String): Single<List<Track>>
 
     fun addTrackToFav(track: Track): Completable
+
+    fun deleteTrackFromFav(track: Track): Completable
 }

@@ -30,4 +30,7 @@
     <string name="add_to_favorite">Add to favourite</string>
     <string name="track_added">Track added to favourites</string>
     <string name="track_not_added">Track not added</string>
+    <string name="delete_from_favourite">Delete from favourite</string>
+    <string name="track_deleted">Track deleted</string>
+    <string name="track_not_deleted">Track not deleted</string>
 </resources>

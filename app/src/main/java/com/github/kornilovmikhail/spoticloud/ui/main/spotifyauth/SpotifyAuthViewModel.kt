@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.domain.interactors.SpotifyAuthUseCase
 import com.github.kornilovmikhail.spoticloud.ui.navigation.router.GlobalRouter
-import com.github.kornilovmikhail.spoticloud.utils.SingleEventLiveData
+import com.github.kornilovmikhail.spoticloud.ui.utils.SingleEventLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

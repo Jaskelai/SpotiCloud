@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.di.SoundCloudQualifier
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.SearchTrendsPopupMenuDelegate
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.TrendsListAdapter
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.di.TrendsScope
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.trends.trendssoundcloud.TrendsSoundCloudViewModel
@@ -25,7 +25,7 @@ abstract class TrendsSoundCloudModule {
         @JvmStatic
         fun provideSoundCloudTrendsAdapter(
             trackClickListener: TrackClickListener,
-            popupMenuDelegate: PopupMenuDelegate
+            popupMenuDelegate: SearchTrendsPopupMenuDelegate
         ): TrendsListAdapter = TrendsListAdapter(trackClickListener, popupMenuDelegate)
     }
 

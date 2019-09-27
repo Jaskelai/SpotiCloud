@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.domain.interactors.TrendsSpotifyUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
-import com.github.kornilovmikhail.spoticloud.utils.SingleEventLiveData
+import com.github.kornilovmikhail.spoticloud.ui.utils.SingleEventLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -16,7 +16,8 @@ class TrendsSpotifyViewModel @Inject constructor(
 
     val progressBarVisibilityLiveData = MutableLiveData<Boolean>()
     val spotifyTracksLiveData = MutableLiveData<List<Track>>()
-    val errorSpotifyLiveData = SingleEventLiveData<String>()
+    val errorSpotifyLiveData =
+        SingleEventLiveData<String>()
 
     private val disposables = CompositeDisposable()
 

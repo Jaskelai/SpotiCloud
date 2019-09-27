@@ -6,30 +6,54 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import com.github.kornilovmikhail.spoticloud.R
 import com.github.kornilovmikhail.spoticloud.domain.interactors.AddToFavTracksUseCase
+import com.github.kornilovmikhail.spoticloud.domain.interactors.DeleteFromFavTracksUseCase
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.FavTracksPopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.SearchTrendsPopupMenuDelegate
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
+typealias DeleteListener = () -> Unit
+
 class PopupMenuDelegateImpl @Inject constructor(
     private val addToFavTracksUseCase: AddToFavTracksUseCase,
+    private val deleteFromFavTracksUseCase: DeleteFromFavTracksUseCase,
     private val appContext: Context
-) : PopupMenuDelegate {
+) : SearchTrendsPopupMenuDelegate,
+    FavTracksPopupMenuDelegate {
 
     private val disposables = CompositeDisposable()
 
-    override fun showPopup(
-        context: Context,
-        containerView: View,
-        track: Track
-    ) {
-        val popup = PopupMenu(context, containerView)
+    override fun showSearchTrendsPopup(containerView: View, track: Track) {
+        val popup = PopupMenu(containerView.context, containerView)
         popup.apply {
-            inflate(R.menu.long_click_track_menu)
+            inflate(R.menu.long_click_search_trends_track_menu)
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.item_search_popup_add_fav -> {
                         addTrackToFav(track)
+                        return@setOnMenuItemClickListener true
+                    }
+                }
+                false
+            }
+            show()
+        }
+    }
+
+    override fun showFavTracksPopup(
+        containerView: View,
+        track: Track,
+        deleteListener: DeleteListener
+    ) {
+        val popup = PopupMenu(containerView.context, containerView)
+        popup.apply {
+            inflate(R.menu.long_click_fav_tracks_menu)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.item_search_popup_delete_fav -> {
+                        deleteTrackFromFav(track, deleteListener)
                         return@setOnMenuItemClickListener true
                     }
                 }
@@ -53,6 +77,27 @@ class PopupMenuDelegateImpl @Inject constructor(
                     Toast.makeText(
                         appContext,
                         appContext.resources.getText(R.string.track_not_added),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
+        )
+    }
+
+    private fun deleteTrackFromFav(track: Track, deleteListener: DeleteListener) {
+        disposables.add(
+            deleteFromFavTracksUseCase.deleteTrackFromFav(track)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    deleteListener.invoke()
+                    Toast.makeText(
+                        appContext,
+                        appContext.resources.getText(R.string.track_deleted),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }, {
+                    Toast.makeText(
+                        appContext,
+                        appContext.resources.getText(R.string.track_not_deleted),
                         Toast.LENGTH_SHORT
                     ).show()
                 })

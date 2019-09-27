@@ -6,7 +6,8 @@ import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.BottomNa
 import com.github.kornilovmikhail.spoticloud.ui.main.di.ScreenScope
 import com.github.kornilovmikhail.spoticloud.ui.di.ViewModelKey
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.TrackClickListener
-import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.FavTracksPopupMenuDelegate
+import com.github.kornilovmikhail.spoticloud.domain.interfaces.SearchTrendsPopupMenuDelegate
 import com.github.kornilovmikhail.spoticloud.ui.main.bottomnavcontainer.popupmenu.PopupMenuDelegateImpl
 import dagger.Binds
 import dagger.Module
@@ -30,5 +31,13 @@ abstract class BottomNavContainerModule {
 
     @Binds
     @ScreenScope
-    abstract fun providePopupMenuDelegate(popupMenuDelegateImpl: PopupMenuDelegateImpl): PopupMenuDelegate
+    abstract fun provideSearchTrendsPopupMenuDelegate(
+        popupMenuDelegateImpl: PopupMenuDelegateImpl
+    ): SearchTrendsPopupMenuDelegate
+
+    @Binds
+    @ScreenScope
+    abstract fun provideFavTracksPopupMenuDelegate(
+        popupMenuDelegateImpl: PopupMenuDelegateImpl
+    ): FavTracksPopupMenuDelegate
 }

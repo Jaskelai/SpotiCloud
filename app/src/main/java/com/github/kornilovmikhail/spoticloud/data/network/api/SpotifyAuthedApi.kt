@@ -4,10 +4,11 @@ import com.github.kornilovmikhail.spoticloud.data.network.model.spotify.Searched
 import com.github.kornilovmikhail.spoticloud.data.network.model.spotify.TracksSpotifyResponse
 import io.reactivex.Completable
 import io.reactivex.Single
+import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.PUT
 
 interface SpotifyAuthedApi {
 
@@ -25,6 +26,11 @@ interface SpotifyAuthedApi {
 
     @PUT("me/tracks")
     fun addTrackToFav(
+        @Query("ids") id: String
+    ): Completable
+
+    @DELETE("me/tracks")
+    fun deleteTrackFromFav(
         @Query("ids") id: String
     ): Completable
 }
