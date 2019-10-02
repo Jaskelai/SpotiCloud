@@ -54,7 +54,7 @@ dependencies {
     def constraintVersion = '2.0.0-beta2'
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     //viewpager
-    def viewpagerVersion = '1.0.0-beta03'
+    def viewpagerVersion = '1.0.0-beta04'
     implementation "androidx.viewpager2:viewpager2:$viewpagerVersion"
     //appcompat
     def appCompatVersion = '1.1.0-rc01'

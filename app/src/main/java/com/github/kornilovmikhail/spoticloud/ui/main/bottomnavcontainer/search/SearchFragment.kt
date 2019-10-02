@@ -30,7 +30,6 @@ class SearchFragment : BaseFragment() {
 
     private lateinit var searchViewModel: SearchViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
