@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.kornilovmikhail.spoticloud.domain.interactors.TrackSearchUseCase
 import com.github.kornilovmikhail.spoticloud.domain.model.Track
-import com.jakewharton.rxbinding3.widget.TextViewTextChangeEvent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -25,19 +24,16 @@ class SearchViewModel @Inject constructor(
         progressBarVisibilityLiveData.value = false
     }
 
-
-    fun searchForTracks(observable: Observable<TextViewTextChangeEvent>) {
+    fun searchForTracks(observable: Observable<String>) {
         disposables.add(
             observable
                 .skip(1)
                 .cache()
-                .map {
-                    it.text }
                 .debounce(700, TimeUnit.MILLISECONDS)
                 .filter { it.isNotEmpty() }
                 .doOnNext { progressBarVisibilityLiveData.postValue(true) }
                 .flatMap {
-                    trackSearchUseCase.searchForTracks(it.toString()).toObservable()
+                    trackSearchUseCase.searchForTracks(it).toObservable()
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEach { progressBarVisibilityLiveData.value = false }
